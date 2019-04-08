@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Typography from '@material-ui/core/Typography';
+import {withStyles} from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+const styles = {
+  title: {
+    margin: '1em 0'
   }
+};
+
+function App(props) {
+  const {classes} = props;
+  return (
+    <div className="App">
+      <header className="App-header">
+        <Typography className={classes.title} variant={'h2'}>Spotify Health Checks</Typography>
+        <Typography variant={'h5'}>
+          <Link href={'dud'}>
+            New Session
+          </Link>
+        </Typography>
+      </header>
+    </div>
+  );
 }
 
-export default App;
+export default withStyles(styles)(App);

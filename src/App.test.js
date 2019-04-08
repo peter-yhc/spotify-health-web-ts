@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
+import {mount} from 'enzyme';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+test('render title', () => {
+  const title = mount(<App/>).find('h2');
+  expect(title).toHaveLength(1);
+});
+
+test('render link', () => {
+  const link = mount(<App/>).find('a');
+  expect(link).toHaveLength(1);
 });
