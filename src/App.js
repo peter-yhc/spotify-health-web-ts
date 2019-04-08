@@ -9,6 +9,11 @@ const styles = {
   title: {
     margin: '1em 0',
   },
+  link: {
+    '&:hover': {
+      textDecoration: 'none',
+    },
+  },
 };
 
 function App(props) {
@@ -18,7 +23,7 @@ function App(props) {
       <header className="App-header">
         <Typography className={classes.title} variant="h2">Spotify Health Checks</Typography>
         <Typography variant="h5">
-          <Link href="dud">
+          <Link className={classes.link} href="dud">
             New Session
           </Link>
         </Typography>
