@@ -1,11 +1,22 @@
 import React from 'react';
-import './App.css';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import PropTypes from 'prop-types';
 
 const styles = {
+  app: {
+    textAlign: 'center',
+  },
+  appHeader: {
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 'calc(10px + 2vmin)',
+    color: 'white',
+  },
   title: {
     margin: '1em 0',
   },
@@ -19,8 +30,8 @@ const styles = {
 function App(props) {
   const { classes } = props;
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className={classes.app}>
+      <header className={classes.appHeader}>
         <Typography className={classes.title} variant="h2">Spotify Health Checks</Typography>
         <Typography variant="h5">
           <Link className={classes.link} href="dud">
