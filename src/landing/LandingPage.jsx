@@ -32,7 +32,7 @@ function LandingPage(props) {
 }
 
 LandingPage.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(LandingPage);

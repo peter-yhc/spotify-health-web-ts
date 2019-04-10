@@ -1,0 +1,72 @@
+[
+  {
+    "area": "Easy to release",
+    "textAwesome": "Releasing is simple, safe, painless & mostly automated.",
+    "textCrappy": "Releasing is risky, painful, lots of manual work, and takes forever."
+  },
+  {
+    "area": "Suitable process",
+    "textAwesome": "Our way of working fits us perfectly",
+    "textCrappy": "Our way of working sucks"
+  },
+  {
+    "area": "Tech quality (code base health)",
+    "textAwesome": "We’re proud of the quality of our code! It is clean, easy to read, and has great test coverage.",
+    "textCrappy": "Our code is a pile of dung, and technical debt is raging out of control"
+  },
+  {
+    "area": "Value",
+    "textAwesome": "We deliver great stuff! We’re proud of it and our stakeholders are really happy.",
+    "textCrappy": "We deliver crap. We feel ashamed to deliver it. Our stakeholders hate us."
+  },
+  {
+    "area": "Speed",
+    "textAwesome": "We get stuff done really quickly.No waiting, no delays.",
+    "textCrappy": "We never seem to get done with anything.We keep getting stuck or interrupted. Stories keep getting stuck on dependencies"
+  },
+  {
+    "area": "Mission",
+    "textAwesome": "We know exactly why we are here, and we are really excited about it",
+    "textCrappy": "We have no idea why we are here, there is no high level picture or focus. Our so-called mission is completely unclear and uninspiring."
+  },
+  {
+    "area": "Fun",
+    "textAwesome": "We love going to work, and have great fun working together",
+    "textCrappy": "Boooooooring."
+  },
+  {
+    "area": "Learning",
+    "textAwesome": "We’re learning lots of interesting stuff all the time!",
+    "textCrappy": "We never have time to learn anything"
+  },
+  {
+    "area": "Support",
+    "textAwesome": "We always get great support & help when we ask for it!",
+    "textCrappy": "We keep getting stuck because we can’t get the support & help that we ask for."
+  },
+  {
+    "area": "Pawns or players",
+    "textAwesome": "We are in control of our destiny! We decide what to build and how to build it.",
+    "textCrappy": "We are just pawns in a game of chess, with no influence over what we build or how we build it"
+  }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
