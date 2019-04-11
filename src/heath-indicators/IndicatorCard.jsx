@@ -10,6 +10,14 @@ const styles = {
     height: '225px',
     padding: '1em',
   },
+  areaTitle: {
+    marginBottom: '0.75em',
+  },
+  descriptionText: {
+    textAlign: 'left',
+    padding: '0 0.5em',
+    marginBottom: '0.5em',
+  },
 };
 
 const IndicatorCard = (props) => {
@@ -17,9 +25,15 @@ const IndicatorCard = (props) => {
   return (
     <React.Fragment>
       <Paper className={classes.paper}>
-        <Typography variant="headline"> {area} </Typography>
-        <Typography variant="subtitle1"> {textAwesome} </Typography>
-        <Typography variant="subtitle1"> {textCrappy} </Typography>
+        <div className={classes.areaTitle}>
+          <Typography variant="headline"> {area} </Typography>
+        </div>
+        <div className={classes.descriptionText}>
+          <Typography variant="subtitle1"> {textAwesome} </Typography>
+        </div>
+        <div className={classes.descriptionText}>
+          <Typography variant="subtitle1"> {textCrappy} </Typography>
+        </div>
       </Paper>
     </React.Fragment>
   );
