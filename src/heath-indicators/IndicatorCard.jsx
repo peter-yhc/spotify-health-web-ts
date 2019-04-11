@@ -3,11 +3,12 @@ import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
+import CardDescription from './CardDescription';
 
 const styles = {
   paper: {
     width: 'calc(90%)',
-    height: '225px',
+    height: '250px',
     padding: '1em',
   },
   areaTitle: {
@@ -28,12 +29,8 @@ const IndicatorCard = (props) => {
         <div className={classes.areaTitle}>
           <Typography variant="headline"> {area} </Typography>
         </div>
-        <div className={classes.descriptionText}>
-          <Typography variant="subtitle1"> {textAwesome} </Typography>
-        </div>
-        <div className={classes.descriptionText}>
-          <Typography variant="subtitle1"> {textCrappy} </Typography>
-        </div>
+        <CardDescription text={textAwesome} variant="good" />
+        <CardDescription text={textCrappy} variant="bad" />
       </Paper>
     </React.Fragment>
   );

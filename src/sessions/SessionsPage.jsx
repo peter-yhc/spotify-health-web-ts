@@ -1,10 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
-import Grid from '@material-ui/core/Grid';
+import { Grid, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import IndicatorCard from '../heath-indicators/IndicatorCard';
 import indicatorStub from '../heath-indicators/health-indicators-stub';
-import { Typography } from '@material-ui/core';
 
 const styles = {
   header: {
@@ -46,7 +45,6 @@ const SessionsPage = (props) => {
         <Grid container spacing={32}>
           {generateCards()}
         </Grid>
-
       </main>
     </React.Fragment>
   );
