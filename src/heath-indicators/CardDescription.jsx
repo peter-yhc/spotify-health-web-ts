@@ -9,8 +9,9 @@ const styles = {
     padding: '0 0.5em',
     marginBottom: '0.5em',
   },
-  icon: {
-    marginTop: '2px',
+  iconContainer: {
+    display: 'inline-flex',
+    verticalAlign: 'middle',
   },
   good: {
     color: 'green',
@@ -25,15 +26,15 @@ const CardDescription = (props) => {
 
   const coloriseIcon = () => {
     if (variant === 'good') {
-      return (<Icon className={[classes.icon, classes.good].join(' ')}>wb_sunny</Icon>);
+      return (<Icon className={classes.good}>wb_sunny</Icon>);
     }
-    return (<Icon className={[classes.icon, classes.bad].join(' ')}>wb_sunny</Icon>);
+    return (<Icon className={classes.bad}>wb_sunny</Icon>);
   };
 
   return (
     <React.Fragment>
-      <Grid container className={classes.container}>
-        <Grid item xs={2}>
+      <Grid container direction="row" justify="center" alignItems="center" className={classes.container}>
+        <Grid item xs={2} className={classes.iconContainer}>
           {coloriseIcon()}
         </Grid>
         <Grid item xs={10}>
