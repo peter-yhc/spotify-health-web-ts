@@ -1,10 +1,10 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
-import LandingPage from './landing/LandingPage';
-import SessionsPage from './sessions/SessionsPage';
+import { LandingPage } from './landing';
+import { SessionsPage } from './sessions';
+import { NotFoundPage } from './error';
 import App from './App';
-import NotFoundPage from './error/NotFoundPage';
 
 test('default route is landing page', () => {
   const wrapper = mount(

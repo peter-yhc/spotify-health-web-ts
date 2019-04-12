@@ -1,8 +1,8 @@
 import { Route, Switch } from 'react-router';
 import React from 'react';
-import LandingPage from './landing/LandingPage';
-import SessionsPage from './sessions/SessionsPage';
-import NotFoundPage from './error/NotFoundPage';
+import { NotFoundPage } from './error';
+import { LandingPage } from './landing';
+import { SessionsPage } from './sessions';
 
 function App() {
   return (
