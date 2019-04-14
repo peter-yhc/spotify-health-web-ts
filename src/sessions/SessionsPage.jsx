@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import IndicatorCard from '../heath-indicators/IndicatorCard';
+import HealthIndicatorCard from '../heath-indicators/HealthIndicatorCard';
 import indicatorStub from '../heath-indicators/health-indicators-stub';
 
 const styles = {
@@ -23,7 +23,7 @@ const SessionsPage = (props) => {
     indicatorStub.forEach((stub) => {
       cards.push(
         <Grid item xs={12} sm={6} md={3} key={stub.area}>
-          <IndicatorCard
+          <HealthIndicatorCard
             area={stub.area}
             textAwesome={stub.textAwesome}
             textCrappy={stub.textCrappy}

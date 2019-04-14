@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import IndicatorCard from './IndicatorCard';
+import IndicatorCard from './HealthIndicatorCard';
 
 describe('indicator cards', () => {
   test('can show card texts', () => {

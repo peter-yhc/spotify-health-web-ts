@@ -21,7 +21,7 @@ const styles = {
   },
 };
 
-const IndicatorCard = (props) => {
+const HealthIndicatorCard = (props) => {
   const { area, textAwesome, textCrappy, classes } = props;
   return (
     <React.Fragment>
@@ -36,11 +36,11 @@ const IndicatorCard = (props) => {
   );
 };
 
-IndicatorCard.propTypes = {
+HealthIndicatorCard.propTypes = {
   classes: PropTypes.object.isRequired,
   area: PropTypes.string.isRequired,
   textAwesome: PropTypes.string.isRequired,
   textCrappy: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(IndicatorCard);
+export default withStyles(styles)(HealthIndicatorCard);
