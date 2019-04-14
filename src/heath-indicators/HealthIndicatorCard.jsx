@@ -7,8 +7,8 @@ import CardDescription from './CardDescription';
 
 const styles = {
   paper: {
-    width: 'calc(90%)',
-    height: '250px',
+    width: '250px',
+    height: '375px',
     padding: '1em',
   },
   areaTitle: {

@@ -22,7 +22,7 @@ const SessionsPage = (props) => {
     const cards = [];
     indicatorStub.forEach((stub) => {
       cards.push(
-        <Grid item xs={12} sm={6} md={3} key={stub.area}>
+        <Grid item key={stub.area}>
           <HealthIndicatorCard
             area={stub.area}
             textAwesome={stub.textAwesome}
@@ -42,7 +42,7 @@ const SessionsPage = (props) => {
         </Typography>
       </header>
       <main className={classes.main}>
-        <Grid container spacing={32}>
+        <Grid container spacing={32} direction="row" alignItems="center" justify="center">
           {generateCards()}
         </Grid>
       </main>
