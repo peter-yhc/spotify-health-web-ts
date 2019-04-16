@@ -1,7 +1,7 @@
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import SessionsPage from './SessionsPage';
-import IndicatorCard from '../heath-indicators/IndicatorCard';
+import HealthIndicatorCard from '../heath-indicators/HealthIndicatorCard';
 
 jest.mock('../heath-indicators/health-indicators-stub', () => {
   return [{
@@ -24,6 +24,6 @@ describe('SessionsPage component', () => {
   test('render indicators', () => {
     const wrapper = mount(<SessionsPage />);
 
-    expect(wrapper.find(IndicatorCard)).toHaveLength(2);
+    expect(wrapper.find(HealthIndicatorCard)).toHaveLength(2);
   });
 });

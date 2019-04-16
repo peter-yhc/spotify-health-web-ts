@@ -1,9 +1,10 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import CardDescription from './CardDescription';
+import HealthIndicatorVotingOptions from './HealthIndicatorVotingOptions';
 
 const styles = {
   paper: {
@@ -19,6 +20,15 @@ const styles = {
     padding: '0 0.5em',
     marginBottom: '0.5em',
   },
+  gridContainer: {
+    height: '100%',
+  },
+  gridTop: {
+    height: '90%',
+  },
+  gridBottom: {
+    height: '10%',
+  },
 };
 
 const HealthIndicatorCard = (props) => {
@@ -26,11 +36,18 @@ const HealthIndicatorCard = (props) => {
   return (
     <React.Fragment>
       <Paper className={classes.paper}>
-        <div className={classes.areaTitle}>
-          <Typography variant="headline"> {area} </Typography>
-        </div>
-        <CardDescription text={textAwesome} variant="good" />
-        <CardDescription text={textCrappy} variant="bad" />
+        <Grid className={classes.gridContainer} container direction="column" justify="center" alignItems="center">
+          <Grid className={classes.gridTop} item>
+            <div className={classes.areaTitle}>
+              <Typography variant="headline"> {area} </Typography>
+            </div>
+            <CardDescription text={textAwesome} variant="good" />
+            <CardDescription text={textCrappy} variant="bad" />
+          </Grid>
+          <Grid className={classes.gridBottom} item>
+            <HealthIndicatorVotingOptions />
+          </Grid>
+        </Grid>
       </Paper>
     </React.Fragment>
   );
