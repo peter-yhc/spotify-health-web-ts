@@ -15,7 +15,7 @@ const styles = {
   },
 };
 
-const SessionsPage = (props) => {
+const AdminSessionsPage = (props) => {
   const { classes } = props;
 
   const generateCards = () => {
@@ -50,8 +50,8 @@ const SessionsPage = (props) => {
   );
 };
 
-SessionsPage.propTypes = {
+AdminSessionsPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SessionsPage);
+export default withStyles(styles)(AdminSessionsPage);
