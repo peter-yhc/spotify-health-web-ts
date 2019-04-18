@@ -32,6 +32,10 @@ const styles = {
 };
 
 const HealthIndicatorCard = (props) => {
+  const onSubmit = () => {
+    // empty function
+  };
+
   const { area, textAwesome, textCrappy, classes } = props;
   return (
     <React.Fragment>
@@ -45,7 +49,7 @@ const HealthIndicatorCard = (props) => {
             <CardDescription text={textCrappy} variant="bad" />
           </Grid>
           <Grid className={classes.gridBottom} item>
-            <HealthIndicatorVotingOptions />
+            <HealthIndicatorVotingOptions onSubmit={onSubmit} />
           </Grid>
         </Grid>
       </Paper>
