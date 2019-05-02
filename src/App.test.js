@@ -1,10 +1,15 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 import { LandingPage } from './landing';
 import { AdminSessionsPage } from './admin-sessions';
 import { NotFoundPage } from './error';
 import App from './App';
+
+const mockStore = configureStore();
+const store = mockStore();
 
 test('default route is landing page', () => {
   const wrapper = mount(
@@ -19,7 +24,9 @@ test('default route is landing page', () => {
 test('has route to sessions page', () => {
   const wrapper = mount(
     <MemoryRouter initialEntries={['/sessions']}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </MemoryRouter>,
   );
   expect(wrapper.find(AdminSessionsPage)).toHaveLength(1);
