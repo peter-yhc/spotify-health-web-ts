@@ -1,16 +1,18 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Grid, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import CardDescription from './CardDescription';
 import HealthIndicatorVotingOptions from './HealthIndicatorVotingOptions';
 
 const styles = {
-  paper: {
+  indicatorCard: {
     width: '250px',
     height: '375px',
     padding: '1em',
+    display: 'grid',
+    gridTemplateRows: '15% 75% 15%',
   },
   areaTitle: {
     marginBottom: '0.75em',
@@ -39,19 +41,15 @@ const HealthIndicatorCard = (props) => {
   const { area, textAwesome, textCrappy, classes } = props;
   return (
     <React.Fragment>
-      <Paper className={classes.paper}>
-        <Grid className={classes.gridContainer} container direction="column" justify="center" alignItems="center">
-          <Grid className={classes.gridTop} item>
-            <div className={classes.areaTitle}>
-              <Typography variant="headline"> {area} </Typography>
-            </div>
-            <CardDescription text={textAwesome} variant="good" />
-            <CardDescription text={textCrappy} variant="bad" />
-          </Grid>
-          <Grid className={classes.gridBottom} item>
-            <HealthIndicatorVotingOptions onSubmit={onSubmit} />
-          </Grid>
-        </Grid>
+      <Paper className={classes.indicatorCard}>
+        <header className={classes.areaTitle}>
+          <Typography variant="headline"> {area} </Typography>
+        </header>
+        <section>
+          <CardDescription text={textAwesome} variant="good" />
+          <CardDescription text={textCrappy} variant="bad" />
+        </section>
+        <HealthIndicatorVotingOptions onSubmit={onSubmit} />
       </Paper>
     </React.Fragment>
   );

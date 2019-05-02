@@ -10,7 +10,7 @@
     "textCrappy": "Our way of working sucks"
   },
   {
-    "area": "Tech quality (code base health)",
+    "area": "Tech quality",
     "textAwesome": "We’re proud of the quality of our code! It is clean, easy to read, and has great test coverage.",
     "textCrappy": "Our code is a pile of dung, and technical debt is raging out of control"
   },
