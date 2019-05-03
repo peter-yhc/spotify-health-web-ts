@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+ import { mount } from 'enzyme';
 import { Button, Icon } from '@material-ui/core';
 import HealthIndicatorVotingOptions from './HealthIndicatorVotingOptions';
 
@@ -7,7 +7,7 @@ const onSubmitMock = jest.fn();
 
 describe('health indicator voting', () => {
   test('shows icons', () => {
-    const wrapper = shallow(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
+    const wrapper = mount(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
     const icons = wrapper.find(Icon);
 
     expect(icons.length).toBe(3);
@@ -17,7 +17,7 @@ describe('health indicator voting', () => {
   });
 
   test('submits vote with correct value when button clicked - dissatisfied', () => {
-    const wrapper = shallow(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
+    const wrapper = mount(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
 
     const dissatisfied = wrapper.find(Button).at(0);
     dissatisfied.simulate('click');
@@ -26,7 +26,7 @@ describe('health indicator voting', () => {
   });
 
   test('submits vote with correct value when button clicked - neutral', () => {
-    const wrapper = shallow(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
+    const wrapper = mount(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
 
     const dissatisfied = wrapper.find(Button).at(1);
     dissatisfied.simulate('click');
@@ -35,7 +35,7 @@ describe('health indicator voting', () => {
   });
 
   test('submits vote with correct value when button clicked - satisfied', () => {
-    const wrapper = shallow(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
+    const wrapper = mount(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
 
     const dissatisfied = wrapper.find(Button).at(2);
     dissatisfied.simulate('click');
