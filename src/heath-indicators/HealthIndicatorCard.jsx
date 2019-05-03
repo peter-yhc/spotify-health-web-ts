@@ -38,8 +38,7 @@ const styles = {
 const HealthIndicatorCard = (props) => {
   const { area, textAwesome, textCrappy, classes, dispatch } = props;
 
-  const onSubmit = value => () => {
-    console.log(area, value);
+  const onSubmit = (value) => {
     dispatch(HealthIndicatorActions.voteSubmitted(area, value));
   };
 

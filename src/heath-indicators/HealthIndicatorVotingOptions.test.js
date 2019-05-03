@@ -1,5 +1,5 @@
 import React from 'react';
- import { mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { Button, Icon } from '@material-ui/core';
 import HealthIndicatorVotingOptions from './HealthIndicatorVotingOptions';
 
@@ -28,8 +28,8 @@ describe('health indicator voting', () => {
   test('submits vote with correct value when button clicked - neutral', () => {
     const wrapper = mount(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
 
-    const dissatisfied = wrapper.find(Button).at(1);
-    dissatisfied.simulate('click');
+    const neutral = wrapper.find(Button).at(1);
+    neutral.simulate('click');
 
     expect(onSubmitMock).toBeCalledWith(3);
   });
@@ -37,9 +37,20 @@ describe('health indicator voting', () => {
   test('submits vote with correct value when button clicked - satisfied', () => {
     const wrapper = mount(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
 
-    const dissatisfied = wrapper.find(Button).at(2);
-    dissatisfied.simulate('click');
+    const satisfied = wrapper.find(Button).at(2);
+    satisfied.simulate('click');
 
     expect(onSubmitMock).toBeCalledWith(5);
+  });
+
+  test('toggles class when button clicked', () => {
+    const wrapper = mount(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
+
+    const satisfied = wrapper.find(Button).at(2);
+    satisfied.simulate('click');
+
+    expect(wrapper.find(Button).at(0).html()).not.toContain('activeDissatisfied');
+    expect(wrapper.find(Button).at(1).html()).not.toContain('activeNeutral');
+    expect(wrapper.find(Button).at(2).html()).toContain('activeSatisfied');
   });
 });
