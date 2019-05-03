@@ -7,7 +7,7 @@ const HealthIndicatorVotingOptions = (props) => {
 
   return (
     <React.Fragment>
-      <Grid container direction="row" justify="center" alignItems="center" spacing={24}>
+      <Grid container direction="row" justify="center" alignItems="center" spacing={2}>
         <Grid item>
           <Button onClick={onSubmit(0)}>
             <Icon>sentiment_very_dissatisfied</Icon>

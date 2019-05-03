@@ -37,12 +37,12 @@ const AdminSessionsPage = (props) => {
   return (
     <React.Fragment>
       <header className={classes.header}>
-        <Typography variant="title">
+        <Typography variant="h2">
           Sessions Admin
         </Typography>
       </header>
       <main className={classes.main}>
-        <Grid container spacing={32} direction="row" alignItems="center" justify="center">
+        <Grid container spacing={5} direction="row" alignItems="center" justify="center">
           {generateCards()}
         </Grid>
       </main>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
+import { Button } from '@material-ui/core';
 import HealthIndicatorCard from './HealthIndicatorCard';
 import CardDescription from './CardDescription';
 
@@ -26,6 +27,15 @@ describe('indicator cards', () => {
   });
 
   test('can dispatch on click', () => {
-
+    const wrapper = mount(
+      <HealthIndicatorCard
+        store={store}
+        area="my area"
+        textAwesome="I am awesome"
+        textCrappy="I am crappy"
+      />,
+    );
+    wrapper.find(Button).at(0).simulate('click');
+    expect(store.getActions()[0].type).toBe('VOTE_SUBMITTED');
   });
 });

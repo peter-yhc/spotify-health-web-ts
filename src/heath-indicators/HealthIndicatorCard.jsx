@@ -47,7 +47,7 @@ const HealthIndicatorCard = (props) => {
     <React.Fragment>
       <Paper className={classes.indicatorCard}>
         <header className={classes.areaTitle}>
-          <Typography variant="headline"> {area} </Typography>
+          <Typography variant="h5"> {area} </Typography>
         </header>
         <section>
           <CardDescription text={textAwesome} variant="good" />

@@ -22,7 +22,7 @@ jest.mock('../heath-indicators/health-indicators-stub', () => {
 
 describe('SessionsPage component', () => {
   test('render page', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Provider store={store}>
         <AdminSessionsPage />
       </Provider>,
