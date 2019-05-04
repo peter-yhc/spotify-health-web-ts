@@ -22,7 +22,7 @@ function LandingPage(props) {
       <main>
         <Typography className={classes.title} variant="h2">Spotify Health Checks</Typography>
         <Typography variant="h5">
-          <Link className={classes.link} href="sessions">
+          <Link className={classes.link} href="admin-sessions">
             New Session
           </Link>
         </Typography>
