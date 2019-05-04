@@ -1,8 +1,8 @@
-const displayHealthIndicator = ({ area, awesome, crappy }) => ({
+const displayHealthIndicator = ({ area, textAwesome, textCrappy }) => ({
   type: 'SHOW_HEALTH_INDICATOR',
   area,
-  awesome,
-  crappy,
+  textAwesome,
+  textCrappy,
 });
 
 export default {

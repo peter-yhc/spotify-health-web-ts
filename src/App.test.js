@@ -6,12 +6,17 @@ import { Provider } from 'react-redux';
 import { LandingPage } from './landing';
 import { AdminSessionsPage } from './admin-sessions';
 import { ClientSessionPage } from './client-sessions';
+import { initialState as healthInitialState } from './store/reducers/health-indicator-reducer';
+import { initialState as clientInitialState } from './store/reducers/client-session-reducer';
 
 import { NotFoundPage } from './error';
 import App from './App';
 
 const mockStore = configureStore();
-const store = mockStore();
+const store = mockStore({
+  clientSessionReducer: clientInitialState,
+  healthIndicatorReducer: healthInitialState,
+});
 
 describe('App router test', () => {
   test('default route is landing page', () => {

@@ -11,13 +11,13 @@ describe('heath indicator actions', () => {
   });
 
   test('display incoming health indicator', () => {
-    store.dispatch(clientSessionActions.displayHealthIndicator({ area: 'area', awesome: 'good', crappy: 'bad' }));
+    store.dispatch(clientSessionActions.displayHealthIndicator({ area: 'area', textAwesome: 'good', textCrappy: 'bad' }));
 
     expect(store.getActions()).toEqual([{
       type: 'SHOW_HEALTH_INDICATOR',
       area: 'area',
-      awesome: 'good',
-      crappy: 'bad',
+      textAwesome: 'good',
+      textCrappy: 'bad',
     }]);
   });
 });

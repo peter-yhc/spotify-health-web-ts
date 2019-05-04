@@ -6,11 +6,12 @@ describe('client session reducer test', () => {
     const dummyAction = { type: 'dummy action' };
     expect(clientSessionReducer(undefined, dummyAction)).toEqual({
       session: '',
+      cards: [],
     });
   });
 
   test('show health indicator action', () => {
-    const action = ClientSessionActions.displayHealthIndicator({ area: 'area', awesome: 'text awesome', crappy: 'text crappy' });
+    const action = ClientSessionActions.displayHealthIndicator({ area: 'area', textAwesome: 'text awesome', textCrappy: 'text crappy' });
     expect(clientSessionReducer(undefined, action)).toEqual({
       session: '',
       cards: [{
