@@ -22,9 +22,9 @@ const AdminSessionsPage = (props) => {
     const cards = [];
     indicatorStub.forEach((stub) => {
       cards.push(
-        <Grid item key={stub.area}>
+        <Grid item key={stub.indicator}>
           <HealthIndicatorCard
-            area={stub.area}
+            indicator={stub.indicator}
             textAwesome={stub.textAwesome}
             textCrappy={stub.textCrappy}
           />

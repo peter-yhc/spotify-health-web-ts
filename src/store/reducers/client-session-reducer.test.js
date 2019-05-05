@@ -1,5 +1,6 @@
 import clientSessionReducer from './client-session-reducer';
-import ClientSessionActions from '../actions/client-session-actions';
+
+jest.mock('../actions/client-session-actions')
 
 describe('client session reducer test', () => {
   test('initial state', () => {
@@ -7,18 +8,33 @@ describe('client session reducer test', () => {
     expect(clientSessionReducer(undefined, dummyAction)).toEqual({
       session: '',
       cards: [],
+      submissions: [],
     });
   });
 
   test('show health indicator action', () => {
-    const action = ClientSessionActions.displayHealthIndicator({ area: 'area', textAwesome: 'text awesome', textCrappy: 'text crappy' });
-    expect(clientSessionReducer(undefined, action)).toEqual({
-      session: '',
-      cards: [{
-        area: 'area',
-        textAwesome: 'text awesome',
-        textCrappy: 'text crappy',
-      }],
+    const newState = clientSessionReducer(undefined, {
+      type: 'SHOW_HEALTH_INDICATOR',
+      indicator: 'indicator',
+      textAwesome: 'text awesome',
+      textCrappy: 'text crappy',
     });
+    expect(newState.cards[0]).toEqual({
+      indicator: 'indicator',
+      textAwesome: 'text awesome',
+      textCrappy: 'text crappy',
+    });
+  });
+
+  test('handle submitting votes - done', () => {
+    const newState = clientSessionReducer(undefined, {
+      type: 'SUBMIT_VOTE_DONE',
+      indicator: 'is it monday?',
+      vote: 0,
+    });
+    expect(newState.submissions).toEqual([{
+      indicator: 'is it monday?',
+      vote: 0,
+    }]);
   });
 });

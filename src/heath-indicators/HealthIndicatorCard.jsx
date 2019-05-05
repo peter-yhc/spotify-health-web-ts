@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/styles';
 import { connect } from 'react-redux';
 import CardDescription from './CardDescription';
 import HealthIndicatorVotingOptions from './HealthIndicatorVotingOptions';
-import HealthIndicatorActions from '../store/actions/health-indicator-actions';
+import ClientSessionActions from '../store/actions/client-session-actions';
 
 const styles = {
   indicatorCard: {
@@ -16,7 +16,7 @@ const styles = {
     display: 'grid',
     gridTemplateRows: '15% 75% 15%',
   },
-  areaTitle: {
+  indicatorTitle: {
     marginBottom: '0.75em',
   },
   descriptionText: {
@@ -35,18 +35,18 @@ const styles = {
   },
 };
 
-const HealthIndicatorCard = (props) => {
-  const { area, textAwesome, textCrappy, classes, dispatch } = props;
+export const HealthIndicatorCard = (props) => {
+  const { indicator, textAwesome, textCrappy, classes, dispatch } = props;
 
-  const onSubmit = (value) => {
-    dispatch(HealthIndicatorActions.voteSubmitted(area, value));
+  const onSubmit = (vote) => {
+    dispatch(ClientSessionActions.submitVote('some session id to be generated', { indicator, vote }));
   };
 
   return (
     <React.Fragment>
       <Paper className={classes.indicatorCard}>
-        <header className={classes.areaTitle}>
-          <Typography variant="h5"> {area} </Typography>
+        <header className={classes.indicatorTitle}>
+          <Typography variant="h5"> {indicator} </Typography>
         </header>
         <section>
           <CardDescription text={textAwesome} variant="good" />
@@ -60,7 +60,7 @@ const HealthIndicatorCard = (props) => {
 
 HealthIndicatorCard.propTypes = {
   classes: PropTypes.object.isRequired,
-  area: PropTypes.string.isRequired,
+  indicator: PropTypes.string.isRequired,
   textAwesome: PropTypes.string.isRequired,
   textCrappy: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
