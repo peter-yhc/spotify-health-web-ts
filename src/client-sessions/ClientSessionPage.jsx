@@ -4,6 +4,7 @@ import { Grid, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import HealthIndicatorCard from '../heath-indicators/HealthIndicatorCard';
+import DebugPanel from '../debug-panel/DebugPanel';
 
 const styles = {
   header: {
@@ -44,6 +45,7 @@ export const ClientSessionPage = (props) => {
           {generateCards()}
         </Grid>
       </main>
+      <DebugPanel />
     </React.Fragment>
   );
 };
