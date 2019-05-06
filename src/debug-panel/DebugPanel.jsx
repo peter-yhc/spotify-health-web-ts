@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { withStyles } from '@material-ui/styles';
 import { Divider, Paper } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import ClientSessionActions from '../store/actions/client-session-actions';
 
 const styles = {
   container: {
@@ -10,7 +13,7 @@ const styles = {
     bottom: '20px',
     border: '1px solid #ffbebe',
     height: '270px',
-    width: '180px',
+    width: '230px',
   },
   textHistory: {
     height: '240px',
@@ -21,10 +24,14 @@ const styles = {
     fontSize: '12px',
     boxSizing: 'border-box',
     padding: '0.5em',
+    overflow: 'scroll',
+    textAlign: 'left',
   },
   textInput: {
-    // marginTop: '-1px',
     width: '165px',
+    height: '30px',
+    display: 'flex',
+    flexDirection: 'row',
   },
   inputbox: {
     '&:focus': {
@@ -33,12 +40,27 @@ const styles = {
     border: 'none',
     fontSize: '12px',
     fontFamily: 'Courier New',
+    flex: 1,
+    height: '25px',
+    marginLeft: '4px',
   },
 };
 
+const isShowIndicatorCommand = (dispatch, command) => {
+  const regex = /show "([A-Za-z@!?\\., ]+)" "([A-Za-z!?\\., ]+)" "([A-Za-z!?\\., ]+)"/g;
+  const match = regex.exec(command);
+  if (match) {
+    dispatch(ClientSessionActions.displayHealthIndicator({
+      indicator: match[1],
+      textAwesome: match[2],
+      textCrappy: match[3],
+    }));
+  }
+};
+
 const DebugPanel = (props) => {
-  const { classes } = props;
-  const [history, updateHistory] = useState([]);
+  const { classes, dispatch } = props;
+  const [history, updateHistory] = useState(['Hints:', '> show "title" "text awesome" "text crappy"']);
 
   const renderHistory = () => {
     return history.map((each) => {
@@ -47,10 +69,13 @@ const DebugPanel = (props) => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      updateHistory([...history, e.target.value]);
-      e.target.value = '';
+    const textinput = e.target.value;
+    if (e.key !== 'Enter') {
+      return; // do nothing
     }
+    updateHistory([...history, `> ${textinput}`]);
+    e.target.value = '';
+    isShowIndicatorCommand(dispatch, textinput);
   };
 
   return (
@@ -72,4 +97,13 @@ const DebugPanel = (props) => {
   );
 };
 
-export default withStyles(styles)(DebugPanel);
+DebugPanel.propTypes = {
+  classes: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = () => {
+  return {};
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(DebugPanel));

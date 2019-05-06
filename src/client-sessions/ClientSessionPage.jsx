@@ -23,9 +23,9 @@ export const ClientSessionPage = (props) => {
     const displayCards = [];
     cards.forEach((card) => {
       displayCards.push(
-        <Grid item key={card.area}>
+        <Grid item key={card.indicator}>
           <HealthIndicatorCard
-            area={card.area}
+            indicator={card.indicator}
             textAwesome={card.textAwesome}
             textCrappy={card.textCrappy}
           />

@@ -11,9 +11,11 @@ const store = mockStore({ clientSessionReducer: { cards: [] } });
 describe('SessionsPage component', () => {
   test('render page', () => {
     const wrapper = mount(
-      <ClientSessionPage classes={{ header: '', main: '' }} cards={[]} />,
+      <Provider store={store}>
+        <ClientSessionPage classes={{ header: '', main: '' }} cards={[]} />,
+      </Provider>,
     );
-    expect(wrapper.html()).toContain('Client Session');
+    expect(wrapper.find('header').text()).toContain('Client Session');
     expect(wrapper.find(HealthIndicatorCard).length).toBe(0);
   });
 
@@ -22,7 +24,7 @@ describe('SessionsPage component', () => {
       <Provider store={store}>
         <ClientSessionPage
           classes={{ header: '', main: '' }}
-          cards={[{ area: 'a', textAwesome: 'awesome', textCrappy: 'crappy' }]}
+          cards={[{ indicator: 'a', textAwesome: 'awesome', textCrappy: 'crappy' }]}
         />
       </Provider>,
     );
