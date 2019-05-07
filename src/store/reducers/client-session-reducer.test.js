@@ -1,6 +1,6 @@
 import clientSessionReducer from './client-session-reducer';
 
-jest.mock('../actions/client-session-actions')
+jest.mock('../actions/client-session-actions');
 
 describe('client session reducer test', () => {
   test('initial state', () => {
@@ -8,7 +8,7 @@ describe('client session reducer test', () => {
     expect(clientSessionReducer(undefined, dummyAction)).toEqual({
       session: '',
       cards: [],
-      submissions: [],
+      submissions: {},
     });
   });
 
@@ -32,9 +32,8 @@ describe('client session reducer test', () => {
       indicator: 'is it monday?',
       vote: 0,
     });
-    expect(newState.submissions).toEqual([{
-      indicator: 'is it monday?',
-      vote: 0,
-    }]);
+    expect(newState.submissions).toEqual({
+      'is it monday?': 0,
+    });
   });
 });

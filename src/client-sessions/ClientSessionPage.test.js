@@ -6,7 +6,10 @@ import { ClientSessionPage } from './ClientSessionPage';
 import HealthIndicatorCard from '../heath-indicators/HealthIndicatorCard';
 
 const mockStore = configureStore();
-const store = mockStore({ clientSessionReducer: { cards: [] } });
+const store = mockStore({
+  clientSessionReducer: { cards: [] },
+  debugPanelReducer: { history: [] },
+});
 
 describe('SessionsPage component', () => {
   test('render page', () => {

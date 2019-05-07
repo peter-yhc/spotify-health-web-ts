@@ -1,7 +1,7 @@
 export const initialState = {
   session: '',
   cards: [],
-  submissions: [], // not currently being used but will be useful to show summary views
+  submissions: {},
 };
 
 const clientSessionReducer = (state = initialState, action) => {
@@ -21,10 +21,9 @@ const clientSessionReducer = (state = initialState, action) => {
     case 'SUBMIT_VOTE_DONE':
       return {
         ...state,
-        submissions: [...state.submissions, {
-          indicator: action.indicator,
-          vote: action.vote,
-        }],
+        submissions: Object.assign({}, state.submissions, {
+          [action.indicator]: action.vote,
+        }),
       };
     default:
       console.log(`Ignoring action: ${action.type}`);

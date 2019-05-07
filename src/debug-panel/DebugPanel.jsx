@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import { Divider, Paper } from '@material-ui/core';
 import PropTypes from 'prop-types';
@@ -58,23 +58,29 @@ const isShowIndicatorCommand = (dispatch, command) => {
   }
 };
 
+const showDebugInput = (dispatch, textinput) => {
+  dispatch({
+    type: 'DEBUG_INPUT',
+    input: textinput,
+  });
+};
+
 const DebugPanel = (props) => {
-  const { classes, dispatch } = props;
-  const [history, updateHistory] = useState(['Hints:', '> show "title" "text awesome" "text crappy"']);
+  const { classes, history, dispatch } = props;
 
   const renderHistory = () => {
     return history.map((each) => {
-      return (<span key={Math.random()}>{each}</span>);
+      return (<span key={Math.random()}>{each.text}</span>);
     });
   };
 
   const handleKeyDown = (e) => {
     const textinput = e.target.value;
+    e.target.value = '';
     if (e.key !== 'Enter') {
       return; // do nothing
     }
-    updateHistory([...history, `> ${textinput}`]);
-    e.target.value = '';
+    showDebugInput(dispatch, textinput);
     isShowIndicatorCommand(dispatch, textinput);
   };
 
@@ -100,10 +106,13 @@ const DebugPanel = (props) => {
 DebugPanel.propTypes = {
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  history: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = (state) => {
+  return {
+    history: state.debugPanelReducer.history,
+  };
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(DebugPanel));
