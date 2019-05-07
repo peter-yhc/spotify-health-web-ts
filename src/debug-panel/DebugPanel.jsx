@@ -4,6 +4,7 @@ import { Divider, Paper } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ClientSessionActions from '../store/actions/client-session-actions';
+import { Types } from '../store/reducers/debug-panel-reducer';
 
 const styles = {
   container: {
@@ -44,6 +45,15 @@ const styles = {
     height: '25px',
     marginLeft: '4px',
   },
+  hintText: {
+    color: '#0c5d5a',
+  },
+  userText: {
+    color: '#2e46ff',
+  },
+  systemText: {
+    color: '#afafaf',
+  },
 };
 
 const isShowIndicatorCommand = (dispatch, command) => {
@@ -70,7 +80,17 @@ const DebugPanel = (props) => {
 
   const renderHistory = () => {
     return history.map((each) => {
-      return (<span key={Math.random()}>{each.text}</span>);
+      let className;
+
+      if (Types.user === each.type) {
+        className = classes.userText;
+      } else if (Types.hint === each.type) {
+        className = classes.hintText;
+      } else {
+        className = classes.systemText;
+      }
+
+      return (<span key={Math.random()} className={className}>{each.text}</span>);
     });
   };
 

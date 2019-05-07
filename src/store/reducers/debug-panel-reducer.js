@@ -1,4 +1,4 @@
-const Types = { hint: 'HINT', user: 'USER', system: 'SYSTEM' };
+export const Types = { hint: 'hint', user: 'user', system: 'system' };
 
 export const initialState = {
   history: [{
@@ -24,14 +24,14 @@ const debugPanelReducer = (state = initialState, action) => {
       return {
         history: [...state.history, {
           text: `> showing new indicator ${action.indicator}`,
-          type: Types.user,
+          type: Types.system,
         }],
       };
     }
     case 'DEBUG_INPUT': {
       return {
         history: [...state.history, {
-          text: `> user input: ${action.input}`,
+          text: `> user: ${action.input}`,
           type: Types.user,
         }],
       };
