@@ -7,6 +7,9 @@ export const initialState = {
   }, {
     text: '> show "title" "text awesome" "text crappy"',
     type: Types.hint,
+  }, {
+    text: '> vote "title" "[unhappy, neutral, happy]" "username"',
+    type: Types.hint,
   }],
 };
 
@@ -31,7 +34,7 @@ const debugPanelReducer = (state = initialState, action) => {
     case 'DEBUG_INPUT': {
       return {
         history: [...state.history, {
-          text: `> user: ${action.input}`,
+          text: `> ${action.input}`,
           type: Types.user,
         }],
       };

@@ -4,6 +4,7 @@ import { Divider, Paper } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ClientSessionActions from '../store/actions/client-session-actions';
+import AdminSessionActions from '../store/actions/admin-session-actions';
 import { Types } from '../store/reducers/debug-panel-reducer';
 
 const styles = {
@@ -68,6 +69,18 @@ const isShowIndicatorCommand = (dispatch, command) => {
   }
 };
 
+const isVoteSubmittedEvent = (dispatch, command) => {
+  const regex = /vote "([A-Za-z@!?\\., ]+)" "(\bhappy\b|\bunhappy\b|\bneutral\b)" "username"/g;
+  const match = regex.exec(command);
+  if (match) {
+    dispatch(AdminSessionActions.voteSubmitted({
+      indicator: match[1],
+      value: match[2],
+      username: match[3],
+    }));
+  }
+};
+
 const showDebugInput = (dispatch, textinput) => {
   dispatch({
     type: 'DEBUG_INPUT',
@@ -96,12 +109,13 @@ const DebugPanel = (props) => {
 
   const handleKeyDown = (e) => {
     const textinput = e.target.value;
-    e.target.value = '';
     if (e.key !== 'Enter') {
       return; // do nothing
     }
+    e.target.value = '';
     showDebugInput(dispatch, textinput);
     isShowIndicatorCommand(dispatch, textinput);
+    isVoteSubmittedEvent(dispatch, textinput);
   };
 
   return (

@@ -8,13 +8,13 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr 1fr',
   },
-  activeDissatisfied: {
+  activeunhappy: {
     color: 'red !important',
   },
   activeNeutral: {
     color: 'orange !important',
   },
-  activeSatisfied: {
+  activehappy: {
     color: 'green !important',
   },
 };
@@ -31,14 +31,14 @@ const HealthIndicatorVotingOptions = (props) => {
   const renderButtons = () => {
     return (
       <React.Fragment>
-        <Button className={activeButton === 0 ? classes.activeDissatisfied : ''} onClick={handleClick(0, 0)}>
-          <Icon>sentiment_very_dissatisfied</Icon>
+        <Button className={activeButton === 0 ? classes.activeunhappy : ''} onClick={handleClick(0, 0)}>
+          <Icon>sentiment_very_unhappy</Icon>
         </Button>
         <Button className={activeButton === 1 ? classes.activeNeutral : ''} onClick={handleClick(3, 1)}>
           <Icon>sentiment_neutral</Icon>
         </Button>
-        <Button className={activeButton === 2 ? classes.activeSatisfied : ''} onClick={handleClick(5, 2)}>
-          <Icon>sentiment_very_satisfied</Icon>
+        <Button className={activeButton === 2 ? classes.activehappy : ''} onClick={handleClick(5, 2)}>
+          <Icon>sentiment_very_happy</Icon>
         </Button>
       </React.Fragment>
     );

@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { LandingPage } from './landing';
 import { AdminSessionsPage } from './admin-sessions';
 import { ClientSessionPage } from './client-sessions';
-import { initialState as healthInitialState } from './store/reducers/health-indicator-reducer';
+import { initialState as adminInitialState } from './store/reducers/admin-session-reducer';
 import { initialState as clientInitialState } from './store/reducers/client-session-reducer';
 import { initialState as debugPanelInitialState } from './store/reducers/debug-panel-reducer';
 
@@ -16,7 +16,7 @@ import App from './App';
 const mockStore = configureStore();
 const store = mockStore({
   clientSessionReducer: clientInitialState,
-  healthIndicatorReducer: healthInitialState,
+  adminSessionReducer: adminInitialState,
   debugPanelReducer: debugPanelInitialState,
 });
 
