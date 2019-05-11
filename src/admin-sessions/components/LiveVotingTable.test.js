@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme/build';
 import configureStore from 'redux-mock-store';
-import { TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { TableBody, TableCell, TableHead, TableRow } from '@material-ui/core/index';
 import { LiveVotingTable } from './LiveVotingTable';
 
 const mockStore = configureStore();

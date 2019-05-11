@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/styles';
 import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import LiveVotingTable from './LiveVotingTable';
+import { LiveVotingTable, ProgressSelector, State } from './components';
 import DebugPanel from '../debug-panel/DebugPanel';
 
 const styles = {
@@ -26,6 +26,26 @@ const styles = {
 export const AdminSessionsPage = (props) => {
   const { classes } = props;
 
+  const [progress, updateProgress] = useState('menu');
+
+  const showPage = () => {
+    switch (progress) {
+      case State.menu: {
+        return (<span>Menu</span>);
+      }
+      case State.voting: {
+        return (<LiveVotingTable />);
+      }
+      case State.summary: {
+        return (<span>Summary</span>);
+      }
+      default:
+        return (<span>Unknown</span>);
+    }
+  };
+
+  const stateChange = state => () => updateProgress(state);
+
   return (
     <article className={classes.article}>
       <header className={classes.header}>
@@ -33,8 +53,9 @@ export const AdminSessionsPage = (props) => {
           Sessions Admin
         </Typography>
       </header>
+      <ProgressSelector onStateChange={stateChange} />
       <main className={classes.main}>
-        <LiveVotingTable />
+        {showPage()}
       </main>
       <DebugPanel />
     </article>

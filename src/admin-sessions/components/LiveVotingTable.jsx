@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core/index';
 import { connect } from 'react-redux';
 
 export class LiveVotingTable extends Component {
