@@ -3,9 +3,8 @@ import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
-import { connect } from 'react-redux';
-import CardDescription from './CardDescription';
-import HealthIndicatorVotingOptions from './HealthIndicatorVotingOptions';
+import CardDescription from './components/CardDescription';
+import VotingOptions from './components/VotingOptions';
 import ClientSessionActions from '../store/actions/client-session-actions';
 
 const styles = {
@@ -52,7 +51,9 @@ export const HealthIndicatorCard = (props) => {
           <CardDescription text={textAwesome} variant="good" />
           <CardDescription text={textCrappy} variant="bad" />
         </section>
-        <HealthIndicatorVotingOptions onSubmit={onSubmit} />
+        <footer>
+          <VotingOptions onSubmit={onSubmit} />
+        </footer>
       </Paper>
     </React.Fragment>
   );
@@ -66,8 +67,4 @@ HealthIndicatorCard.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return {};
-};
-
-export default connect(mapStateToProps)(withStyles(styles)(HealthIndicatorCard));
+export default withStyles(styles)(HealthIndicatorCard);

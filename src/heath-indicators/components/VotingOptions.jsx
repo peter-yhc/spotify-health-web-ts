@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-const HealthIndicatorVotingOptions = (props) => {
+const VotingOptions = (props) => {
   const { onSubmit, classes } = props;
   const [activeButton, setActiveButton] = useState(-1);
 
@@ -53,9 +53,9 @@ const HealthIndicatorVotingOptions = (props) => {
   );
 };
 
-HealthIndicatorVotingOptions.propTypes = {
+VotingOptions.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HealthIndicatorVotingOptions);
+export default withStyles(styles)(VotingOptions);

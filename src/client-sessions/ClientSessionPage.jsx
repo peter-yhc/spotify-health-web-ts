@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import HealthIndicatorCard from '../heath-indicators/HealthIndicatorCard';
+import { HealthIndicatorCard } from '../heath-indicators';
 import DebugPanel from '../debug-panel/DebugPanel';
 
 const styles = {

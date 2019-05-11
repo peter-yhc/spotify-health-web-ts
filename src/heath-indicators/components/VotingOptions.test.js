@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Button, Icon } from '@material-ui/core';
-import HealthIndicatorVotingOptions from './HealthIndicatorVotingOptions';
+import HealthIndicatorVotingOptions from './VotingOptions';
 
 const onSubmitMock = jest.fn();
 

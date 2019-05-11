@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Button } from '@material-ui/core';
 import { HealthIndicatorCard } from './HealthIndicatorCard';
-import CardDescription from './CardDescription';
+import CardDescription from './components/CardDescription';
 import ClientSessionActions from '../store/actions/client-session-actions';
 
 jest.mock('../store/actions/client-session-actions');
