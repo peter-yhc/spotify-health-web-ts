@@ -29,7 +29,7 @@ export const ProgressSelector = (props) => {
     <React.Fragment>
       <section className={classes.container}>
         <Typography className={classes.breadCrumbs} onClick={onStateChange(State.menu)}>
-          Choose Indicators
+          Selection
         </Typography>
         <Icon>chevron_right</Icon>
         <Typography className={classes.breadCrumbs} onClick={onStateChange(State.voting)}>

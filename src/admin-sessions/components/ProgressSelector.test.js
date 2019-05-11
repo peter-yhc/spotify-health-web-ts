@@ -16,7 +16,7 @@ describe('ProgressSelector test', () => {
     );
 
     const texts = wrapper.find(Typography);
-    expect(texts.at(0).text()).toBe('Choose Indicators');
+    expect(texts.at(0).text()).toBe('Selection');
     expect(texts.at(1).text()).toBe('Voting');
     expect(texts.at(2).text()).toBe('Summary');
   });
