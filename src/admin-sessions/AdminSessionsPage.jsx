@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { withStyles } from '@material-ui/styles';
 import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { LiveVotingTable, ProgressSelector, State } from './components';
+import { ProgressSelector, State } from './components';
 import DebugPanel from '../debug-panel/DebugPanel';
+
+const LiveVotingTable = lazy(() => import('./components/LiveVotingTable'));
 
 const styles = {
   article: {
@@ -34,7 +36,11 @@ export const AdminSessionsPage = (props) => {
         return (<span>Menu</span>);
       }
       case State.voting: {
-        return (<LiveVotingTable />);
+        return (
+          <Suspense fallback={<div>Loading...</div>}>
+            <LiveVotingTable />
+          </Suspense>
+        );
       }
       case State.summary: {
         return (<span>Summary</span>);
