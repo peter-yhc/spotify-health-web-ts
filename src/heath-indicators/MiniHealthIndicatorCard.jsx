@@ -4,8 +4,6 @@ import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import CardDescription from './components/CardDescription';
-import VotingOptions from './components/VotingOptions';
-import ClientSessionActions from '../store/actions/client-session-actions';
 
 const styles = {
   indicatorCard: {
@@ -25,12 +23,8 @@ const styles = {
   },
 };
 
-export const HealthIndicatorCard = (props) => {
-  const { indicator, textAwesome, textCrappy, classes, dispatch } = props;
-
-  const onSubmit = (vote) => {
-    dispatch(ClientSessionActions.submitVote('some session id to be generated', { indicator, vote }));
-  };
+export const MiniHealthIndicatorCard = (props) => {
+  const { indicator, textAwesome, textCrappy, classes } = props;
 
   return (
     <React.Fragment>
@@ -42,20 +36,16 @@ export const HealthIndicatorCard = (props) => {
           <CardDescription text={textAwesome} variant="good" />
           <CardDescription text={textCrappy} variant="bad" />
         </section>
-        <footer>
-          <VotingOptions onSubmit={onSubmit} />
-        </footer>
       </Paper>
     </React.Fragment>
   );
 };
 
-HealthIndicatorCard.propTypes = {
+MiniHealthIndicatorCard.propTypes = {
   classes: PropTypes.object.isRequired,
   indicator: PropTypes.string.isRequired,
   textAwesome: PropTypes.string.isRequired,
   textCrappy: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(HealthIndicatorCard);
+export default withStyles(styles)(MiniHealthIndicatorCard);

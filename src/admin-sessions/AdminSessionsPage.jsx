@@ -1,46 +1,39 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/styles';
 import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { ProgressSelector, State } from './components';
+import { LiveVotingTable, ProgressSelector, SelectionMenu, State } from './components';
 import DebugPanel from '../debug-panel/DebugPanel';
-
-const LiveVotingTable = lazy(() => import('./components/LiveVotingTable'));
 
 const styles = {
   article: {
     display: 'grid',
-    gridTemplateColumns: '100%',
+    gridTemplateColumns: '40px 50px auto 50px 40px',
     gridTemplateRows: '15% auto',
   },
   header: {
     marginTop: '1em',
     marginBottom: '1em',
+    gridColumn: '1 / 6',
   },
   main: {
     padding: '1em',
     display: 'grid',
-    gridTemplateColumns: '50% 50%',
-    gridTemplateRows: '1fr 2fr',
+    gridColumn: '2 / 5',
   },
 };
 
 export const AdminSessionsPage = (props) => {
   const { classes } = props;
-
-  const [progress, updateProgress] = useState('menu');
+  const [progress, updateProgress] = useState(State.menu);
 
   const showPage = () => {
     switch (progress) {
       case State.menu: {
-        return (<span>Menu</span>);
+        return (<SelectionMenu />);
       }
       case State.voting: {
-        return (
-          <Suspense fallback={<div>Loading...</div>}>
-            <LiveVotingTable />
-          </Suspense>
-        );
+        return (<LiveVotingTable />);
       }
       case State.summary: {
         return (<span>Summary</span>);
@@ -58,8 +51,8 @@ export const AdminSessionsPage = (props) => {
         <Typography variant="h2">
           Sessions Admin
         </Typography>
+        <ProgressSelector onStateChange={stateChange} />
       </header>
-      <ProgressSelector onStateChange={stateChange} />
       <main className={classes.main}>
         {showPage()}
       </main>
