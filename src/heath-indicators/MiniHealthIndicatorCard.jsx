@@ -7,11 +7,12 @@ import CardDescription from './components/CardDescription';
 
 const styles = {
   indicatorCard: {
-    width: '250px',
-    height: '375px',
-    padding: '1em',
+    width: '275px',
+    height: '350px',
+    padding: '1vw',
     display: 'grid',
     gridTemplateRows: '15% 75% 15%',
+    boxSizing: 'border-box',
   },
   indicatorTitle: {
     marginBottom: '0.75em',

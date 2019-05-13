@@ -13,9 +13,10 @@ const styles = {
     display: 'grid',
     alignItems: 'center',
     gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    justifyContent: 'space-evenly',
   },
   card: {
-    marginBottom: '1em',
+    marginBottom: '3vh',
   },
 };
 
