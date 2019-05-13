@@ -21,7 +21,7 @@ const styles = {
   },
 };
 
-const CardDescription = (props) => {
+const CardText = (props) => {
   const { text, variant, classes } = props;
 
   const coloriseIcon = () => {
@@ -38,17 +38,17 @@ const CardDescription = (props) => {
           {coloriseIcon()}
         </Grid>
         <Grid item xs={10}>
-          <p> {text} </p>
+          <p>{text}</p>
         </Grid>
       </Grid>
     </React.Fragment>
   );
 };
 
-CardDescription.propTypes = {
+CardText.propTypes = {
   classes: PropTypes.object.isRequired,
   text: PropTypes.string.isRequired,
   variant: PropTypes.oneOf(['good', 'bad']).isRequired,
 };
 
-export default withStyles(styles)(CardDescription);
+export default withStyles(styles)(CardText);

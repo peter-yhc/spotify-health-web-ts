@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Button } from '@material-ui/core';
 import { HealthIndicatorCard } from './HealthIndicatorCard';
-import CardDescription from './components/CardDescription';
+import CardText from './components/CardText';
 import ClientSessionActions from '../store/actions/client-session-actions';
 
 jest.mock('../store/actions/client-session-actions');
@@ -21,7 +21,7 @@ describe('indicator cards', () => {
 
     expect(wrapper.find('header').text()).toContain('my indicator');
 
-    const descriptions = wrapper.find(CardDescription);
+    const descriptions = wrapper.find(CardText);
     expect(descriptions.at(0).text()).toContain('I am awesome');
     expect(descriptions.at(1).text()).toContain('I am crappy');
   });

@@ -1,21 +1,20 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
-import CardDescription from './components/CardDescription';
+import CardText from './components/CardText';
 
 const styles = {
   indicatorCard: {
-    width: '275px',
-    height: '350px',
-    padding: '1vw',
+    width: '250px',
+    height: '250px',
+    padding: '1vw 0.2vw',
     display: 'grid',
-    gridTemplateRows: '15% 75% 15%',
+    gridTemplateRows: '20% auto',
     boxSizing: 'border-box',
   },
   indicatorTitle: {
-    marginBottom: '0.75em',
+    marginBottom: '32px',
   },
   descriptionText: {
     textAlign: 'left',
@@ -28,17 +27,15 @@ export const MiniHealthIndicatorCard = (props) => {
   const { indicator, textAwesome, textCrappy, classes } = props;
 
   return (
-    <React.Fragment>
-      <Paper className={classes.indicatorCard}>
-        <header className={classes.indicatorTitle}>
-          <Typography variant="h5"> {indicator} </Typography>
-        </header>
-        <section>
-          <CardDescription text={textAwesome} variant="good" />
-          <CardDescription text={textCrappy} variant="bad" />
-        </section>
-      </Paper>
-    </React.Fragment>
+    <Paper className={classes.indicatorCard}>
+      <header className={classes.indicatorTitle}>
+        <h5> {indicator} </h5>
+      </header>
+      <section>
+        <CardText text={textAwesome} variant="good" />
+        <CardText text={textCrappy} variant="bad" />
+      </section>
+    </Paper>
   );
 };
 

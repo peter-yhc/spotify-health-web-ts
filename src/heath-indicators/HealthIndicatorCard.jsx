@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
-import CardDescription from './components/CardDescription';
+import CardText from './components/CardText';
 import VotingOptions from './components/VotingOptions';
 import ClientSessionActions from '../store/actions/client-session-actions';
 
@@ -39,8 +39,8 @@ export const HealthIndicatorCard = (props) => {
           <Typography variant="h5"> {indicator} </Typography>
         </header>
         <section>
-          <CardDescription text={textAwesome} variant="good" />
-          <CardDescription text={textCrappy} variant="bad" />
+          <CardText text={textAwesome} variant="good" />
+          <CardText text={textCrappy} variant="bad" />
         </section>
         <footer>
           <VotingOptions onSubmit={onSubmit} />
