@@ -10,9 +10,9 @@ const styles = {
     gridTemplateColumns: '3fr 1fr',
   },
   cardContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
+    display: 'grid',
+    alignItems: 'center',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
   },
   card: {
     marginBottom: '1em',
