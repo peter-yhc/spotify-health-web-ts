@@ -1,7 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-import { Typography } from '@material-ui/core/index';
 import Icon from '@material-ui/core/Icon/index';
 import State from './State';
 
@@ -19,6 +18,7 @@ const styles = {
   },
   breadCrumbs: {
     display: 'inline-block',
+    fontWeight: 500,
   },
 };
 
@@ -28,17 +28,21 @@ export const ProgressSelector = (props) => {
   return (
     <React.Fragment>
       <section className={classes.container}>
-        <Typography className={classes.breadCrumbs} onClick={onStateChange(State.menu)}>
+        <span className={classes.breadCrumbs}>
+          Admin Panel
+        </span>
+        <Icon>chevron_right</Icon>
+        <span className={classes.breadCrumbs} onClick={onStateChange(State.menu)}>
           Selection
-        </Typography>
+        </span>
         <Icon>chevron_right</Icon>
-        <Typography className={classes.breadCrumbs} onClick={onStateChange(State.voting)}>
+        <span className={classes.breadCrumbs} onClick={onStateChange(State.voting)}>
           Voting
-        </Typography>
+        </span>
         <Icon>chevron_right</Icon>
-        <Typography className={classes.breadCrumbs} onClick={onStateChange(State.summary)}>
+        <span className={classes.breadCrumbs} onClick={onStateChange(State.summary)}>
           Summary
-        </Typography>
+        </span>
       </section>
     </React.Fragment>
   );

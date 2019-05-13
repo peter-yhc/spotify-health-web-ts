@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { withStyles } from '@material-ui/styles';
-import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { LiveVotingTable, ProgressSelector, SelectionMenu, State } from './components';
 import DebugPanel from '../debug-panel/DebugPanel';
@@ -12,7 +11,6 @@ const styles = {
     gridTemplateRows: '15% auto',
   },
   header: {
-    marginTop: '1em',
     marginBottom: '1em',
     gridColumn: '1 / 6',
   },
@@ -48,7 +46,6 @@ export const AdminSessionsPage = (props) => {
   return (
     <article className={classes.article}>
       <header className={classes.header}>
-        <h2>Sessions Admin</h2>
         <ProgressSelector onStateChange={stateChange} />
       </header>
       <main className={classes.main}>
