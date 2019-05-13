@@ -48,9 +48,7 @@ export const AdminSessionsPage = (props) => {
   return (
     <article className={classes.article}>
       <header className={classes.header}>
-        <Typography variant="h2">
-          Sessions Admin
-        </Typography>
+        <h2>Sessions Admin</h2>
         <ProgressSelector onStateChange={stateChange} />
       </header>
       <main className={classes.main}>

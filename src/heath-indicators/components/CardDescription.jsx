@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Icon, Typography } from '@material-ui/core';
+import { Grid, Icon } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 
@@ -38,7 +38,7 @@ const CardDescription = (props) => {
           {coloriseIcon()}
         </Grid>
         <Grid item xs={10}>
-          <Typography variant="subtitle1"> {text} </Typography>
+          <p> {text} </p>
         </Grid>
       </Grid>
     </React.Fragment>

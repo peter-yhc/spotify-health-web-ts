@@ -1,5 +1,4 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import PropTypes from 'prop-types';
@@ -20,12 +19,12 @@ function LandingPage(props) {
   return (
     <React.Fragment>
       <main>
-        <Typography className={classes.title} variant="h2">Spotify Health Checks</Typography>
-        <Typography variant="h5">
+        <h2>Spotify Health Checks</h2>
+        <h5>
           <Link className={classes.link} href="admin-sessions">
             New Session
           </Link>
-        </Typography>
+        </h5>
       </main>
     </React.Fragment>
   );
