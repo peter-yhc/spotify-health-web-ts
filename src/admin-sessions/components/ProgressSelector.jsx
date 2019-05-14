@@ -2,13 +2,14 @@ import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import Icon from '@material-ui/core/Icon/index';
+import Theme from '../../Theme';
 
 const styles = {
   container: {
     width: '100%',
     height: '2em',
-    backgroundColor: 'hsl(0, 0%, 30%)',
-    color: 'hsl(0, 0%, 90%)',
+    backgroundColor: Theme.BLACK,
+    color: Theme.WHITE,
     textAlign: 'left',
     display: 'flex',
     flexDirection: 'row',

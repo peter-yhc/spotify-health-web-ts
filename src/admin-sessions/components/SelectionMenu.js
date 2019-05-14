@@ -1,9 +1,10 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import stubData from '../../heath-indicators/health-indicators-stub';
 import { MiniHealthIndicatorCard } from '../../heath-indicators';
-import Button from '@material-ui/core/Button'
+import Theme from '../../Theme';
 
 const styles = {
   container: {
@@ -36,7 +37,8 @@ const styles = {
     lineHeight: '28px',
   },
   startButton: {
-    backgroundColor: 'hsl(170 55% 30% ) !important',
+    backgroundColor: Theme.GREEN_OVERRIDE,
+    color: Theme.WHITE_OVERRIDE,
     marginTop: '3vh !important',
   },
 };
