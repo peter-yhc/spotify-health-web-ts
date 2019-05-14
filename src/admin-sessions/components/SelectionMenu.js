@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import stubData from '../../heath-indicators/health-indicators-stub';
 import { MiniHealthIndicatorCard } from '../../heath-indicators';
+import Button from '@material-ui/core/Button'
 
 const styles = {
   container: {
@@ -33,6 +34,10 @@ const styles = {
   },
   text: {
     lineHeight: '28px',
+  },
+  startButton: {
+    backgroundColor: 'hsl(170 55% 30% ) !important',
+    marginTop: '3vh !important',
   },
 };
 
@@ -89,7 +94,7 @@ export const SelectionMenu = (props) => {
             Praesent faucibus nisi at vehicula iaculis. Phasellus vel erat eget mi maximus molestie vel et magna.
             Maecenas sagittis dui eu lectus mollis rutrum.
           </p>
-          <h5>Lets get started!</h5>
+          <Button className={classes.startButton} variant="contained">Lets get started</Button>
         </section>
         <section className={classes.cardContainer}>
           {showCards()}
