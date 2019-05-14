@@ -15,7 +15,7 @@ describe('ProgressSelector test', () => {
       />,
     );
 
-    const texts = wrapper.find(Typography);
+    const texts = wrapper.find('span');
     expect(texts.at(0).text()).toBe('Admin Panel');
     expect(texts.at(1).text()).toBe('Selection');
     expect(texts.at(2).text()).toBe('Voting');
@@ -28,13 +28,13 @@ describe('ProgressSelector test', () => {
       <ProgressSelector classes={mockStyles} onStateChange={mockOnStateChange} />,
     );
 
-    wrapper.find(Typography).at(0).simulate('click');
+    wrapper.find('span').at(1).simulate('click');
     expect(mockOnStateChange).toBeCalledWith(State.menu);
 
-    wrapper.find(Typography).at(1).simulate('click');
+    wrapper.find('span').at(2).simulate('click');
     expect(mockOnStateChange).toBeCalledWith(State.voting);
 
-    wrapper.find(Typography).at(2).simulate('click');
+    wrapper.find('span').at(3).simulate('click');
     expect(mockOnStateChange).toBeCalledWith(State.summary);
   });
 });

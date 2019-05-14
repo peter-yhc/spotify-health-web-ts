@@ -13,12 +13,6 @@ const styles = {
     display: 'inline-flex',
     verticalAlign: 'middle',
   },
-  good: {
-    color: 'green',
-  },
-  bad: {
-    color: 'red',
-  },
 };
 
 const CardText = (props) => {
@@ -26,9 +20,9 @@ const CardText = (props) => {
 
   const coloriseIcon = () => {
     if (variant === 'good') {
-      return (<Icon className={classes.good}>wb_sunny</Icon>);
+      return (<Icon>arrow_upward</Icon>);
     }
-    return (<Icon className={classes.bad}>wb_sunny</Icon>);
+    return (<Icon>arrow_downward</Icon>);
   };
 
   return (

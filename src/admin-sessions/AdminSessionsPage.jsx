@@ -51,7 +51,6 @@ export const AdminSessionsPage = (props) => {
       <main className={classes.main}>
         {showPage()}
       </main>
-      <DebugPanel />
     </article>
   );
 };
