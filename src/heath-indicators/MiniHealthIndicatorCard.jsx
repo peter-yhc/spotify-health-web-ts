@@ -6,9 +6,9 @@ import CardText from './components/CardText';
 
 const styles = {
   indicatorCard: {
-    width: '250px',
+    width: '210px',
     height: '250px',
-    padding: '1vw 0.2vw',
+    padding: '1vw 0',
     display: 'grid',
     gridTemplateRows: '20% auto',
     boxSizing: 'border-box',

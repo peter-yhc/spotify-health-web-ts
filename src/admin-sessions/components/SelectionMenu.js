@@ -14,7 +14,7 @@ const styles = {
   cardContainer: {
     display: 'grid',
     alignItems: 'center',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
     gridColumn: '3 / 4',
     justifyContent: 'space-evenly',
   },

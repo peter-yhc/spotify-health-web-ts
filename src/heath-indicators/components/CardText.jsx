@@ -12,6 +12,7 @@ const styles = {
   iconContainer: {
     display: 'inline-flex',
     verticalAlign: 'middle',
+    marginLeft: '-5px !important',
   },
 };
 

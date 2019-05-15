@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import { LiveVotingTable, ProgressSelector, SelectionMenu } from './components';
@@ -22,7 +22,13 @@ const styles = {
 };
 
 export const AdminSessionsPage = (props) => {
-  const { classes } = props;
+  const { classes, match } = props;
+
+  console.log(match);
+
+  if (match.isExact) {
+    return (<Redirect to="/admin-sessions/instructions" />);
+  }
 
   return (
     <article className={classes.article}>
@@ -33,7 +39,6 @@ export const AdminSessionsPage = (props) => {
         <Switch>
           <Route path="/admin-sessions/instructions" component={SelectionMenu} />
           <Route path="/admin-sessions/voting" component={LiveVotingTable} />
-          <Route path="/admin-sessions/summary" component={<span>Summary</span>} />
         </Switch>
       </main>
     </article>
