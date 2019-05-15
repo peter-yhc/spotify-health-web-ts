@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { withStyles } from '@material-ui/styles';
+import React from 'react';
+import { Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
-import { LiveVotingTable, ProgressSelector, SelectionMenu, State } from './components';
-import DebugPanel from '../debug-panel/DebugPanel';
+import { withStyles } from '@material-ui/styles';
+import { LiveVotingTable, ProgressSelector, SelectionMenu } from './components';
 
 const styles = {
   article: {
@@ -23,33 +23,18 @@ const styles = {
 
 export const AdminSessionsPage = (props) => {
   const { classes } = props;
-  const [progress, updateProgress] = useState(State.menu);
-
-  const showPage = () => {
-    switch (progress) {
-      case State.menu: {
-        return (<SelectionMenu />);
-      }
-      case State.voting: {
-        return (<LiveVotingTable />);
-      }
-      case State.summary: {
-        return (<span>Summary</span>);
-      }
-      default:
-        return (<span>Unknown</span>);
-    }
-  };
-
-  const stateChange = state => () => updateProgress(state);
 
   return (
     <article className={classes.article}>
       <header className={classes.header}>
-        <ProgressSelector onStateChange={stateChange} />
+        <ProgressSelector />
       </header>
       <main className={classes.main}>
-        {showPage()}
+        <Switch>
+          <Route path="/admin-sessions/instructions" component={SelectionMenu} />
+          <Route path="/admin-sessions/voting" component={LiveVotingTable} />
+          <Route path="/admin-sessions/summary" component={<span>Summary</span>} />
+        </Switch>
       </main>
     </article>
   );

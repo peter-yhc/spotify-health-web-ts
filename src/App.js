@@ -10,7 +10,7 @@ function App() {
     <React.Fragment>
       <Switch>
         <Route path="/" exact component={LandingPage} />
-        <Route path="/admin-sessions" exact component={AdminSessionsPage} />
+        <Route path="/admin-sessions" component={AdminSessionsPage} />
         <Route path="/sessions" exact component={ClientSessionPage} />
         <Route component={NotFoundPage} />
       </Switch>

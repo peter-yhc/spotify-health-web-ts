@@ -2,7 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import Icon from '@material-ui/core/Icon/index';
-import State from './State';
 
 const styles = {
   container: {
@@ -23,7 +22,7 @@ const styles = {
 };
 
 export const ProgressSelector = (props) => {
-  const { classes, onStateChange } = props;
+  const { classes } = props;
 
   return (
     <React.Fragment>
@@ -32,15 +31,15 @@ export const ProgressSelector = (props) => {
           Admin Panel
         </span>
         <Icon>chevron_right</Icon>
-        <span className={classes.breadCrumbs} onClick={onStateChange(State.menu)}>
+        <span className={classes.breadCrumbs}>
           Selection
         </span>
         <Icon>chevron_right</Icon>
-        <span className={classes.breadCrumbs} onClick={onStateChange(State.voting)}>
+        <span className={classes.breadCrumbs}>
           Voting
         </span>
         <Icon>chevron_right</Icon>
-        <span className={classes.breadCrumbs} onClick={onStateChange(State.summary)}>
+        <span className={classes.breadCrumbs}>
           Summary
         </span>
       </section>
@@ -50,7 +49,6 @@ export const ProgressSelector = (props) => {
 
 ProgressSelector.propTypes = {
   classes: PropTypes.object.isRequired,
-  onStateChange: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(ProgressSelector);
