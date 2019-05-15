@@ -49,8 +49,8 @@ describe('health indicator voting', () => {
     const happy = wrapper.find(Button).at(2);
     happy.simulate('click');
 
-    expect(wrapper.find(Button).at(0).html()).not.toContain('activeunhappy');
+    expect(wrapper.find(Button).at(0).html()).not.toContain('activeUnhappy');
     expect(wrapper.find(Button).at(1).html()).not.toContain('activeNeutral');
-    expect(wrapper.find(Button).at(2).html()).toContain('activehappy');
+    expect(wrapper.find(Button).at(2).html()).toContain('activeHappy');
   });
 });
