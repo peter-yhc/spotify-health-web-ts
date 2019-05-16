@@ -15,12 +15,12 @@ const styles = {
   cardContainer: {
     display: 'grid',
     alignItems: 'center',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(12vw, 1fr))',
     gridColumn: '3 / 4',
     justifyContent: 'space-evenly',
   },
   card: {
-    marginBottom: '3vh',
+    margin: '0 4px 3vh 4px',
   },
   instructions: {
     gridColumn: '2 / 3',

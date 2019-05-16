@@ -6,7 +6,6 @@ import CardText from './components/CardText';
 
 const styles = {
   indicatorCard: {
-    width: '210px',
     height: '250px',
     padding: '1vw 0',
     display: 'grid',
