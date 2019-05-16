@@ -1,10 +1,9 @@
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import configureStore from 'redux-mock-store';
-import { MemoryRouter } from 'react-router';
+import { Route } from 'react-router';
 import { AdminSessionsPage } from './AdminSessionsPage';
-import { LiveVotingTable, ProgressSelector, SelectionMenu, ResultSummary } from './components';
-import { Provider } from 'react-redux'
+import { ProgressSelector } from './components';
 
 const mockStore = configureStore();
 const store = mockStore({
@@ -25,50 +24,22 @@ const mockMatch = {
 
 describe('SessionsPage component', () => {
   test('can show progress selector', () => {
-    const wrapper = mount(
-      <MemoryRouter>
-        <AdminSessionsPage store={store} classes={classes} match={mockMatch} />
-      </MemoryRouter>,
+    const wrapper = shallow(
+      <AdminSessionsPage store={store} classes={classes} match={mockMatch} />,
     );
 
     expect(wrapper.find(ProgressSelector)).toHaveLength(1);
   });
 
-  test('can show instructions page', () => {
-    const wrapper = mount(
-      <MemoryRouter initialEntries={['/admin-sessions/instructions']}>
-        <AdminSessionsPage store={store} classes={classes} match={mockMatch} />,
-      </MemoryRouter>,
+  test('has correct routes', () => {
+    const wrapper = shallow(
+      <AdminSessionsPage store={store} classes={classes} match={mockMatch} />,
     );
 
-    expect(wrapper.find(SelectionMenu)).toHaveLength(1);
-    expect(wrapper.find(LiveVotingTable)).toHaveLength(0);
-    expect(wrapper.find(ResultSummary)).toHaveLength(0);
-  });
-
-  test('can show voting page', () => {
-    const wrapper = mount(
-      <MemoryRouter initialEntries={['/admin-sessions/voting']}>
-        <Provider store={store}>
-          <AdminSessionsPage classes={classes} match={mockMatch} />,
-        </Provider>
-      </MemoryRouter>,
-    );
-
-    expect(wrapper.find(SelectionMenu)).toHaveLength(0);
-    expect(wrapper.find(LiveVotingTable)).toHaveLength(1);
-    expect(wrapper.find(ResultSummary)).toHaveLength(0);
-  });
-
-  test('can show summary page', () => {
-    const wrapper = mount(
-      <MemoryRouter initialEntries={['/admin-sessions/results']}>
-        <AdminSessionsPage store={store} classes={classes} match={mockMatch} />,
-      </MemoryRouter>,
-    );
-
-    expect(wrapper.find(SelectionMenu)).toHaveLength(0);
-    expect(wrapper.find(LiveVotingTable)).toHaveLength(0);
-    expect(wrapper.find(ResultSummary)).toHaveLength(1);
+    const routes = wrapper.find(Route);
+    expect(routes.length).toBe(3);
+    expect(routes.at(0).props().path).toBe('/admin-sessions/instructions');
+    expect(routes.at(1).props().path).toBe('/admin-sessions/voting');
+    expect(routes.at(2).props().path).toBe('/admin-sessions/results');
   });
 });
