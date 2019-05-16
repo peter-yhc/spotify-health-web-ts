@@ -14,7 +14,7 @@ const indicatorVotesStub = [{
   happyVotes: 11,
 }];
 
-describe('LiveVotingTable tests', () => {
+describe('VotingPage tests', () => {
   test('can render table with correct headers', () => {
     const wrapper = shallow(<LiveVotingTable store={store} indicatorVotes={indicatorVotesStub} />);
 
