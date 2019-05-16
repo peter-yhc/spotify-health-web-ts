@@ -48,7 +48,9 @@ span {
     font-weight: 400;
     font-size: 0.9rem;
 }
-
+a {
+    text-decoration: none;
+}
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

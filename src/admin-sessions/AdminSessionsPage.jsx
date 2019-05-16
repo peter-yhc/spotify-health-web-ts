@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
-import { LiveVotingTable, ProgressSelector, SelectionMenu } from './components';
+import { LiveVotingTable, ProgressSelector, ResultSummary, SelectionMenu } from './components'
 
 const styles = {
   article: {
@@ -39,6 +39,7 @@ export const AdminSessionsPage = (props) => {
         <Switch>
           <Route path="/admin-sessions/instructions" component={SelectionMenu} />
           <Route path="/admin-sessions/voting" component={LiveVotingTable} />
+          <Route path="/admin-sessions/results" component={ResultSummary} />
         </Switch>
       </main>
     </article>
