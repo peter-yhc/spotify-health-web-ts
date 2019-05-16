@@ -3,10 +3,10 @@ import { mount } from 'enzyme';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { MemoryRouter } from 'react-router';
-import SelectionMenu from './SelectionMenu';
+import SelectionMenu from './InstructionPage';
 import { MiniHealthIndicatorCard } from '../../heath-indicators';
 
-describe('SelectionMenu tests', () => {
+describe('InstructionPage tests', () => {
   test('can show mini cards', () => {
     const wrapper = mount(
       <MemoryRouter>

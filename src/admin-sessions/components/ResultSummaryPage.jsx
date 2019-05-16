@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ResultSummary = () => {
+const ResultSummaryPage = () => {
   return (
     <React.Fragment>
       ResultSummary
@@ -8,4 +8,4 @@ const ResultSummary = () => {
   );
 };
 
-export default ResultSummary;
+export default ResultSummaryPage;

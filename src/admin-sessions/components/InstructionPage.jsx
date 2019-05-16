@@ -44,7 +44,7 @@ const styles = {
   },
 };
 
-export const SelectionMenu = (props) => {
+export const InstructionPage = (props) => {
   const { classes } = props;
 
   const showCards = () => {
@@ -109,8 +109,8 @@ export const SelectionMenu = (props) => {
   );
 };
 
-SelectionMenu.propTypes = {
+InstructionPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SelectionMenu);
+export default withStyles(styles)(InstructionPage);

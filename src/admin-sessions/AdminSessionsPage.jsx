@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
-import { LiveVotingTable, ProgressSelector, ResultSummary, SelectionMenu } from './components'
+import { LiveVotingTable, ProgressSelector, ResultSummaryPage, InstructionPage } from './components';
 
 const styles = {
   article: {
@@ -24,8 +24,6 @@ const styles = {
 export const AdminSessionsPage = (props) => {
   const { classes, match } = props;
 
-  console.log(match);
-
   if (match.isExact) {
     return (<Redirect to="/admin-sessions/instructions" />);
   }
@@ -37,9 +35,9 @@ export const AdminSessionsPage = (props) => {
       </header>
       <main className={classes.main}>
         <Switch>
-          <Route path="/admin-sessions/instructions" component={SelectionMenu} />
+          <Route path="/admin-sessions/instructions" component={InstructionPage} />
           <Route path="/admin-sessions/voting" component={LiveVotingTable} />
-          <Route path="/admin-sessions/results" component={ResultSummary} />
+          <Route path="/admin-sessions/results" component={ResultSummaryPage} />
         </Switch>
       </main>
     </article>
@@ -48,6 +46,7 @@ export const AdminSessionsPage = (props) => {
 
 AdminSessionsPage.propTypes = {
   classes: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(AdminSessionsPage);
