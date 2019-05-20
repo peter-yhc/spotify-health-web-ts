@@ -70,7 +70,7 @@ const isShowIndicatorCommand = (dispatch, command) => {
 };
 
 const isVoteSubmittedEvent = (dispatch, command) => {
-  const regex = /vote "([A-Za-z@!?\\., ]+)" "(\bhappy\b|\bunhappy\b|\bneutral\b)" "username"/g;
+  const regex = /vote "([A-Za-z0-9@!?\\., ]+)" "(\bhappy\b|\bunhappy\b|\bneutral\b)" "username"/g;
   const match = regex.exec(command);
   if (match) {
     dispatch(AdminSessionActions.voteSubmitted({

@@ -2,13 +2,13 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
-import { VotingPage, ProgressSelector, ResultSummaryPage, InstructionPage } from './components';
+import { ProgressSelector, ResultSummaryPage, InstructionPage, renderVotingPage } from './components';
 
 const styles = {
   article: {
     display: 'grid',
     gridTemplateColumns: '40px 50px auto 50px 40px',
-    gridTemplateRows: '15% auto',
+    gridTemplateRows: '100px auto',
   },
   header: {
     marginBottom: '1em',
@@ -36,7 +36,7 @@ export const AdminSessionsPage = (props) => {
       <main className={classes.main}>
         <Switch>
           <Route path="/admin-sessions/instructions" component={InstructionPage} />
-          <Route path="/admin-sessions/voting" component={VotingPage} />
+          <Route path="/admin-sessions/voting" component={renderVotingPage()} />
           <Route path="/admin-sessions/results" component={ResultSummaryPage} />
         </Switch>
       </main>
