@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router';
 import React from 'react';
 import { NotFoundPage } from './error';
 import { LandingPage } from './landing';
-import { AdminSessionsPage } from './admin-sessions';
+import { AdminPage } from './admin';
 import { ClientSessionPage } from './client-sessions';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <React.Fragment>
       <Switch>
         <Route path="/" exact component={LandingPage} />
-        <Route path="/admin-sessions" component={AdminSessionsPage} />
+        <Route path="/admin" component={AdminPage} />
         <Route path="/sessions" exact component={ClientSessionPage} />
         <Route component={NotFoundPage} />
       </Switch>

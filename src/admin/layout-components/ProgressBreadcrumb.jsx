@@ -22,7 +22,7 @@ const styles = {
   },
 };
 
-export const ProgressSelector = (props) => {
+export const ProgressBreadcrumb = (props) => {
   const { classes } = props;
 
   return (
@@ -48,8 +48,8 @@ export const ProgressSelector = (props) => {
   );
 };
 
-ProgressSelector.propTypes = {
+ProgressBreadcrumb.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ProgressSelector);
+export default withStyles(styles)(ProgressBreadcrumb);

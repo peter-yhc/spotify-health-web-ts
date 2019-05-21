@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button/index';
 import { Link } from 'react-router-dom';
 import stubData from '../../heath-indicators/health-indicators-stub';
 import { MiniHealthIndicatorCard } from '../../heath-indicators';
@@ -97,7 +97,7 @@ export const InstructionPage = (props) => {
             Praesent faucibus nisi at vehicula iaculis. Phasellus vel erat eget mi maximus molestie vel et magna.
             Maecenas sagittis dui eu lectus mollis rutrum.
           </p>
-          <Link to="/admin-sessions/voting">
+          <Link to="/admin/voting">
             <Button className={classes.startButton} variant="contained">Lets get started</Button>
           </Link>
         </section>

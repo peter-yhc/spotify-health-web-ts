@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import { LandingPage } from './landing';
-import { AdminSessionsPage } from './admin-sessions';
+import { AdminPage } from './admin';
 import { ClientSessionPage } from './client-sessions';
 import { initialState as adminInitialState } from './store/reducers/admin-session-reducer';
 import { initialState as clientInitialState } from './store/reducers/client-session-reducer';
@@ -33,13 +33,13 @@ describe('App router test', () => {
 
   test('has route to admin sessions page', () => {
     const wrapper = mount(
-      <MemoryRouter initialEntries={['/admin-sessions']}>
+      <MemoryRouter initialEntries={['/admin']}>
         <Provider store={store}>
           <App />
         </Provider>
       </MemoryRouter>,
     );
-    expect(wrapper.find(AdminSessionsPage)).toHaveLength(1);
+    expect(wrapper.find(AdminPage)).toHaveLength(1);
   });
 
   test('has route to client session page', () => {
@@ -60,7 +60,7 @@ describe('App router test', () => {
       </MemoryRouter>,
     );
     expect(wrapper.find(LandingPage)).toHaveLength(0);
-    expect(wrapper.find(AdminSessionsPage)).toHaveLength(0);
+    expect(wrapper.find(AdminPage)).toHaveLength(0);
     expect(wrapper.find(NotFoundPage)).toHaveLength(1);
   });
 });

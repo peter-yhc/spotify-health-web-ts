@@ -2,8 +2,8 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import configureStore from 'redux-mock-store';
 import { Route } from 'react-router';
-import { AdminSessionsPage } from './AdminSessionsPage';
-import { ProgressSelector } from './components';
+import { AdminPageLayout } from './AdminPageLayout';
+import { ProgressBreadcrumb } from './layout-components';
 
 const mockStore = configureStore();
 const store = mockStore({
@@ -25,21 +25,21 @@ const mockMatch = {
 describe('SessionsPage component', () => {
   test('can show progress selector', () => {
     const wrapper = shallow(
-      <AdminSessionsPage store={store} classes={classes} match={mockMatch} />,
+      <AdminPageLayout store={store} classes={classes} match={mockMatch} />,
     );
 
-    expect(wrapper.find(ProgressSelector)).toHaveLength(1);
+    expect(wrapper.find(ProgressBreadcrumb)).toHaveLength(1);
   });
 
   test('has correct routes', () => {
     const wrapper = shallow(
-      <AdminSessionsPage store={store} classes={classes} match={mockMatch} />,
+      <AdminPageLayout store={store} classes={classes} match={mockMatch} />,
     );
 
     const routes = wrapper.find(Route);
     expect(routes.length).toBe(3);
-    expect(routes.at(0).props().path).toBe('/admin-sessions/instructions');
-    expect(routes.at(1).props().path).toBe('/admin-sessions/voting');
-    expect(routes.at(2).props().path).toBe('/admin-sessions/results');
+    expect(routes.at(0).props().path).toBe('/admin/instructions');
+    expect(routes.at(1).props().path).toBe('/admin/voting');
+    expect(routes.at(2).props().path).toBe('/admin/results');
   });
 });

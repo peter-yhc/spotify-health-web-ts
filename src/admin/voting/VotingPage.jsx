@@ -26,6 +26,4 @@ VotingPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default function renderVotingPage() {
-  return withStyles(styles)(VotingPage);
-}
+export default withStyles(styles)(VotingPage);

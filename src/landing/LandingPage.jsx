@@ -21,7 +21,7 @@ function LandingPage(props) {
       <main>
         <h2>Spotify Health Checks</h2>
         <h5>
-          <Link className={classes.link} href="admin-sessions">
+          <Link className={classes.link} href="admin">
             New Session
           </Link>
         </h5>

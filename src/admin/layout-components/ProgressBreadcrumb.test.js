@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ProgressSelector } from './ProgressSelector';
+import { ProgressBreadcrumb } from './ProgressBreadcrumb';
 
 const mockStyles = { container: '', breadCrumbs: '' };
 
-describe('ProgressSelector test', () => {
+describe('ProgressBreadcrumb test', () => {
   test('shows breadcrumbs', () => {
     const wrapper = shallow(
-      <ProgressSelector
+      <ProgressBreadcrumb
         classes={mockStyles}
         onStateChange={jest.fn()}
       />,

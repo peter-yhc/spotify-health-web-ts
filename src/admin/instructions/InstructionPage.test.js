@@ -1,6 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { Button } from '@material-ui/core';
+import { mount } from 'enzyme/build';
+import { Button } from '@material-ui/core/index';
 import { Link } from 'react-router-dom';
 import { MemoryRouter } from 'react-router';
 import SelectionMenu from './InstructionPage';
@@ -25,7 +25,7 @@ describe('InstructionPage tests', () => {
     );
 
     const link = wrapper.find(Link);
-    expect(link.props().to).toBe('/admin-sessions/voting');
+    expect(link.props().to).toBe('/admin/voting');
     const button = link.find(Button);
     expect(button.text()).toBe('Lets get started');
   });

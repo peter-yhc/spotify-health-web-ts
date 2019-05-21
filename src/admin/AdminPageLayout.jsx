@@ -2,7 +2,10 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
-import { ProgressSelector, ResultSummaryPage, InstructionPage, renderVotingPage } from './components';
+import { ProgressBreadcrumb } from './layout-components';
+import InstructionPage from './instructions/InstructionPage';
+import VotingPage from './voting/VotingPage';
+import ResultSummaryPage from './summary/ResultSummaryPage';
 
 const styles = {
   article: {
@@ -21,32 +24,32 @@ const styles = {
   },
 };
 
-export const AdminSessionsPage = (props) => {
+export const AdminPageLayout = (props) => {
   const { classes, match } = props;
 
   if (match.isExact) {
-    return (<Redirect to="/admin-sessions/instructions" />);
+    return (<Redirect to="/admin/instructions" />);
   }
 
   return (
     <article className={classes.article}>
       <header className={classes.header}>
-        <ProgressSelector />
+        <ProgressBreadcrumb />
       </header>
       <main className={classes.main}>
         <Switch>
-          <Route path="/admin-sessions/instructions" component={InstructionPage} />
-          <Route path="/admin-sessions/voting" component={renderVotingPage()} />
-          <Route path="/admin-sessions/results" component={ResultSummaryPage} />
+          <Route path="/admin/instructions" component={InstructionPage} />
+          <Route path="/admin/voting" component={VotingPage} />
+          <Route path="/admin/results" component={ResultSummaryPage} />
         </Switch>
       </main>
     </article>
   );
 };
 
-AdminSessionsPage.propTypes = {
+AdminPageLayout.propTypes = {
   classes: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AdminSessionsPage);
+export default withStyles(styles)(AdminPageLayout);
