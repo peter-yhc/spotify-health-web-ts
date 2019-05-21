@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import LiveVotingTable from './LiveVotingTable';
-import DebugPanel from '../../debug-panel/DebugPanel';
 
 const styles = {
   container: {
@@ -19,7 +18,6 @@ export const VotingPage = (props) => {
       <section className={classes.container}>
         <LiveVotingTable />
       </section>
-      <DebugPanel />
     </React.Fragment>
   );
 };
