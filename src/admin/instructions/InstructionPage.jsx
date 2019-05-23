@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';

@@ -2,11 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import LiveVotingTable from './LiveVotingTable';
+import SessionGenerator from './SessionGenerator';
 
 const styles = {
   container: {
     display: 'grid',
-    gridTemplateColumns: '2fr 1fr',
+    gridTemplateColumns: 'minmax(auto, 100px) 3fr 50px 2fr minmax(auto, 100px)',
+  },
+  main: {
+    gridColumn: '2 / 3',
+  },
+  aside: {
+    gridColumn: '4 / 5',
   },
 };
 
@@ -16,7 +23,12 @@ export const VotingPage = (props) => {
   return (
     <React.Fragment>
       <section className={classes.container}>
-        <LiveVotingTable />
+        <div className={classes.main}>
+          <LiveVotingTable />
+        </div>
+        <div className={classes.aside}>
+          <SessionGenerator />
+        </div>
       </section>
     </React.Fragment>
   );
