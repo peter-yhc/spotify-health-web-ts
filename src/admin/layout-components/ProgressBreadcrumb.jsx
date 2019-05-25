@@ -20,10 +20,20 @@ const styles = {
     display: 'inline-block',
     fontWeight: 500,
   },
+  active: {
+    color: Theme.BLUE,
+  },
 };
 
 export const ProgressBreadcrumb = (props) => {
-  const { classes } = props;
+  const { classes, location } = props;
+
+  const isActive = (name) => {
+    if (location.includes(name)) {
+      return [classes.breadCrumbs, classes.active].join(' ');
+    }
+    return classes.breadCrumbs;
+  };
 
   return (
     <React.Fragment>
@@ -32,15 +42,15 @@ export const ProgressBreadcrumb = (props) => {
           Admin Panel
         </span>
         <Icon>chevron_right</Icon>
-        <span className={classes.breadCrumbs}>
+        <span className={isActive('instructions')}>
           Selection
         </span>
         <Icon>chevron_right</Icon>
-        <span className={classes.breadCrumbs}>
+        <span className={isActive('voting')}>
           Voting
         </span>
         <Icon>chevron_right</Icon>
-        <span className={classes.breadCrumbs}>
+        <span className={isActive('summary')}>
           Summary
         </span>
       </section>
@@ -50,6 +60,7 @@ export const ProgressBreadcrumb = (props) => {
 
 ProgressBreadcrumb.propTypes = {
   classes: PropTypes.object.isRequired,
+  location: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(ProgressBreadcrumb);

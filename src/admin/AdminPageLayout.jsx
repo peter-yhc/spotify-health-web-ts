@@ -25,8 +25,7 @@ const styles = {
 };
 
 export const AdminPageLayout = (props) => {
-  const { classes, match } = props;
-
+  const { classes, match, location } = props;
   if (match.isExact) {
     return (<Redirect to="/admin/instructions" />);
   }
@@ -34,7 +33,7 @@ export const AdminPageLayout = (props) => {
   return (
     <article className={classes.article}>
       <header className={classes.header}>
-        <ProgressBreadcrumb />
+        <ProgressBreadcrumb location={location.pathname} />
       </header>
       <main className={classes.main}>
         <Switch>
@@ -50,6 +49,7 @@ export const AdminPageLayout = (props) => {
 AdminPageLayout.propTypes = {
   classes: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(AdminPageLayout);
