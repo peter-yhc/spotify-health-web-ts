@@ -25,7 +25,7 @@ const mockMatch = {
 describe('SessionsPage component', () => {
   test('can show progress selector', () => {
     const wrapper = shallow(
-      <AdminPageLayout store={store} classes={classes} match={mockMatch} />,
+      <AdminPageLayout store={store} classes={classes} match={mockMatch} location={{ pathName: '' }} />,
     );
 
     expect(wrapper.find(ProgressBreadcrumb)).toHaveLength(1);
@@ -33,7 +33,7 @@ describe('SessionsPage component', () => {
 
   test('has correct routes', () => {
     const wrapper = shallow(
-      <AdminPageLayout store={store} classes={classes} match={mockMatch} />,
+      <AdminPageLayout store={store} classes={classes} match={mockMatch} location={{ pathName: '' }} />,
     );
 
     const routes = wrapper.find(Route);

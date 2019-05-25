@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { ProgressBreadcrumb } from './ProgressBreadcrumb';
 
-const mockStyles = { container: '', breadCrumbs: '' };
+const mockStyles = { container: '', breadCrumbs: '', active: 'active' };
 
 describe('ProgressBreadcrumb test', () => {
   test('shows breadcrumbs', () => {
@@ -10,6 +10,7 @@ describe('ProgressBreadcrumb test', () => {
       <ProgressBreadcrumb
         classes={mockStyles}
         onStateChange={jest.fn()}
+        location=""
       />,
     );
 
@@ -18,5 +19,21 @@ describe('ProgressBreadcrumb test', () => {
     expect(texts.at(1).text()).toBe('Selection');
     expect(texts.at(2).text()).toBe('Voting');
     expect(texts.at(3).text()).toBe('Summary');
+  });
+
+  test('crumb should be active if location matches crumb', () => {
+    const wrapper = shallow(
+      <ProgressBreadcrumb
+        classes={mockStyles}
+        onStateChange={jest.fn()}
+        location="voting"
+      />,
+    );
+
+    const crumbs = wrapper.find('span');
+    expect(crumbs.at(0).props().className).toBe('');
+    expect(crumbs.at(1).props().className).toBe('');
+    expect(crumbs.at(2).props().className).toBe(' active');
+    expect(crumbs.at(3).props().className).toBe('');
   });
 });
