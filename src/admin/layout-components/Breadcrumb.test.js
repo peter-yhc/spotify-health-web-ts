@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ProgressBreadcrumb } from './ProgressBreadcrumb';
+import { Breadcrumb } from './Breadcrumb';
 
 const mockStyles = { container: '', breadCrumbs: '', active: 'active' };
 
-describe('ProgressBreadcrumb test', () => {
+describe('Breadcrumb test', () => {
   test('shows breadcrumbs', () => {
     const wrapper = shallow(
-      <ProgressBreadcrumb
+      <Breadcrumb
         classes={mockStyles}
         onStateChange={jest.fn()}
         location=""
@@ -23,7 +23,7 @@ describe('ProgressBreadcrumb test', () => {
 
   test('crumb should be active if location matches crumb', () => {
     const wrapper = shallow(
-      <ProgressBreadcrumb
+      <Breadcrumb
         classes={mockStyles}
         onStateChange={jest.fn()}
         location="voting"

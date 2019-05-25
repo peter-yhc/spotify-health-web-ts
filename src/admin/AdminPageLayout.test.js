@@ -3,7 +3,7 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import { Route } from 'react-router';
 import { AdminPageLayout } from './AdminPageLayout';
-import { ProgressBreadcrumb } from './layout-components';
+import { Breadcrumb } from './layout-components';
 
 const mockStore = configureStore();
 const store = mockStore({
@@ -28,7 +28,7 @@ describe('SessionsPage component', () => {
       <AdminPageLayout store={store} classes={classes} match={mockMatch} location={{ pathName: '' }} />,
     );
 
-    expect(wrapper.find(ProgressBreadcrumb)).toHaveLength(1);
+    expect(wrapper.find(Breadcrumb)).toHaveLength(1);
   });
 
   test('has correct routes', () => {

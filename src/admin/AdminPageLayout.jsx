@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
-import { ProgressBreadcrumb } from './layout-components';
+import { Breadcrumb } from './layout-components';
 import InstructionPage from './instructions/InstructionPage';
 import VotingPage from './voting/VotingPage';
 import ResultSummaryPage from './summary/ResultSummaryPage';
@@ -33,7 +33,7 @@ export const AdminPageLayout = (props) => {
   return (
     <article className={classes.article}>
       <header className={classes.header}>
-        <ProgressBreadcrumb location={location.pathname} />
+        <Breadcrumb location={location.pathname} />
       </header>
       <main className={classes.main}>
         <Switch>

@@ -25,7 +25,7 @@ const styles = {
   },
 };
 
-export const ProgressBreadcrumb = (props) => {
+export const Breadcrumb = (props) => {
   const { classes, location } = props;
 
   const isActive = (name) => {
@@ -58,9 +58,9 @@ export const ProgressBreadcrumb = (props) => {
   );
 };
 
-ProgressBreadcrumb.propTypes = {
+Breadcrumb.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(ProgressBreadcrumb);
+export default withStyles(styles)(Breadcrumb);
