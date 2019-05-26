@@ -1,0 +1,16 @@
+#session-link-field {
+    font-size: 0.9rem;
+}
+
+.popup-animate {
+    animation: slide 1s linear;
+}
+
+@keyframes slide {
+    from {
+        opacity: 100;
+    }
+    to {
+        opacity: 0;
+    }
+}
