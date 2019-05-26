@@ -44,7 +44,7 @@ describe('App router test', () => {
 
   test('has route to client session page', () => {
     const wrapper = mount(
-      <MemoryRouter initialEntries={['/sessions']}>
+      <MemoryRouter initialEntries={['/clients']}>
         <Provider store={store}>
           <App />
         </Provider>

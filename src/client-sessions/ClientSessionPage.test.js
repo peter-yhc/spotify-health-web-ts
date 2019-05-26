@@ -3,10 +3,12 @@ import React from 'react';
 import { ClientSessionPage } from './ClientSessionPage';
 import HealthIndicatorCard from '../heath-indicators/HealthIndicatorCard';
 
+const mockClasses = { header: '', main: '', location: '' };
+
 describe('SessionsPage component', () => {
   test('render page', () => {
     const wrapper = shallow(
-      <ClientSessionPage classes={{ header: '', main: '' }} cards={[]} />,
+      <ClientSessionPage classes={mockClasses} cards={[]} />,
     );
     expect(wrapper.find('header').text()).toContain('Client Session');
     expect(wrapper.find(HealthIndicatorCard).length).toBe(0);
@@ -15,7 +17,7 @@ describe('SessionsPage component', () => {
   test('can render indicators if card present', () => {
     const wrapper = shallow(
       <ClientSessionPage
-        classes={{ header: '', main: '' }}
+        classes={mockClasses}
         cards={[{ indicator: 'a', textAwesome: 'awesome', textCrappy: 'crappy' }]}
       />,
     );

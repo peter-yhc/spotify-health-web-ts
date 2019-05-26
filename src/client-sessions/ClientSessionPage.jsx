@@ -17,7 +17,9 @@ const styles = {
 };
 
 export const ClientSessionPage = (props) => {
-  const { classes, cards } = props;
+  const { classes, cards, location } = props;
+
+  console.log(location);
 
   const generateCards = () => {
     const displayCards = [];
@@ -53,6 +55,7 @@ export const ClientSessionPage = (props) => {
 ClientSessionPage.propTypes = {
   classes: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
