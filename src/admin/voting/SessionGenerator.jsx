@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import { InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-import { ServerApi } from '../api';
+import { ServerApi } from '../../api';
 import './SessionGenerator.css';
 
 const styles = {

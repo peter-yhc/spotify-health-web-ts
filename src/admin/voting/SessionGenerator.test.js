@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { SessionGenerator } from './SessionGenerator';
-import { ServerApi } from '../api';
+import { ServerApi } from '../../api';
 
-jest.mock('../api');
+jest.mock('../../api');
 
 const mockClasses = { textField: '' };
 
