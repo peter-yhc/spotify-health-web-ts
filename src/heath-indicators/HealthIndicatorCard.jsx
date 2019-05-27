@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
+import { connect } from 'react-redux';
 import CardText from './components/CardText';
 import VotingOptions from './components/VotingOptions';
 import { clientStoreActions } from '../store/client';
@@ -58,4 +59,4 @@ HealthIndicatorCard.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(HealthIndicatorCard);
+export default connect()(withStyles(styles)(HealthIndicatorCard));
