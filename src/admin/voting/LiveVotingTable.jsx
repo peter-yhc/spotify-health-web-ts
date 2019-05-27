@@ -48,7 +48,7 @@ LiveVotingTable.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    indicatorVotes: Object.values(state.adminSessionReducer.indicatorVotes),
+    indicatorVotes: Object.values(state.adminStoreReducer.indicatorVotes),
   };
 };
 

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import CardText from './components/CardText';
 import VotingOptions from './components/VotingOptions';
-import ClientSessionActions from '../store/actions/client-session-actions';
+import { clientStoreActions } from '../store/client';
 
 const styles = {
   indicatorCard: {
@@ -29,7 +29,7 @@ export const HealthIndicatorCard = (props) => {
   const { indicator, textAwesome, textCrappy, classes, dispatch } = props;
 
   const onSubmit = (vote) => {
-    dispatch(ClientSessionActions.submitVote('some session id to be generated', { indicator, vote }));
+    dispatch(clientStoreActions.submitVote('some session id to be generated', { indicator, vote }));
   };
 
   return (

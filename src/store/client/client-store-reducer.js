@@ -4,7 +4,7 @@ export const initialState = {
   submissions: {},
 };
 
-const clientSessionReducer = (state = initialState, action) => {
+const clientStoreReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SHOW_HEALTH_INDICATOR':
       return {
@@ -31,4 +31,4 @@ const clientSessionReducer = (state = initialState, action) => {
   }
 };
 
-export default clientSessionReducer;
+export default clientStoreReducer;

@@ -3,9 +3,9 @@ import { mount } from 'enzyme';
 import { Button } from '@material-ui/core';
 import { HealthIndicatorCard } from './HealthIndicatorCard';
 import CardText from './components/CardText';
-import ClientSessionActions from '../store/actions/client-session-actions';
+import { clientStoreActions } from '../store/client';
 
-jest.mock('../store/actions/client-session-actions');
+jest.mock('../store/client/client-store-actions');
 
 describe('indicator cards', () => {
   test('can show card texts', () => {
@@ -28,7 +28,7 @@ describe('indicator cards', () => {
 
   test('can dispatch on click', (done) => {
     const mockDispatch = () => {
-      expect(ClientSessionActions.submitVote).toBeCalled();
+      expect(clientStoreActions.submitVote).toBeCalled();
       done();
     };
     const wrapper = mount(

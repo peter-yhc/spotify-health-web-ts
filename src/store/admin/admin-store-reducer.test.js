@@ -1,10 +1,10 @@
-import adminSessionReducer from './admin-session-reducer';
+import adminStoreReducer from './admin-store-reducer';
 
 describe('health indicator reducer', () => {
   test('initial state', () => {
     const action = { type: 'dummy action' };
 
-    expect(adminSessionReducer(undefined, action)).toEqual({
+    expect(adminStoreReducer(undefined, action)).toEqual({
       indicatorVotes: {},
     });
   });
@@ -12,7 +12,7 @@ describe('health indicator reducer', () => {
   test('vote submitted', () => {
     const action = { type: 'VOTE_SUBMITTED', value: 'happy', indicator: 'indicate here', username: 'username' };
 
-    expect(adminSessionReducer(undefined, action)).toEqual({
+    expect(adminStoreReducer(undefined, action)).toEqual({
       indicatorVotes: {
         'indicate here': {
           indicator: 'indicate here',

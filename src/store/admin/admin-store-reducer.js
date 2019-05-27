@@ -3,7 +3,7 @@ export const initialState = {
   indicatorVotes: {},
 };
 
-const adminSessionReducer = (state = initialState, action) => {
+const adminStoreReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'VOTE_SUBMITTED': {
       const unhappyChange = action.value === 'unhappy' ? 1 : 0;
@@ -29,4 +29,4 @@ const adminSessionReducer = (state = initialState, action) => {
   }
 };
 
-export default adminSessionReducer;
+export default adminStoreReducer;

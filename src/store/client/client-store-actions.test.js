@@ -1,6 +1,6 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import clientSessionActions from './client-session-actions';
+import clientStoreActions from './client-store-actions';
 
 const mockStore = configureStore([thunk]);
 const store = mockStore();
@@ -11,7 +11,7 @@ describe('heath indicator actions', () => {
   });
 
   test('display incoming health indicator', () => {
-    store.dispatch(clientSessionActions.displayHealthIndicator({ indicator: 'making sense?', textAwesome: 'good', textCrappy: 'bad' }));
+    store.dispatch(clientStoreActions.displayHealthIndicator({ indicator: 'making sense?', textAwesome: 'good', textCrappy: 'bad' }));
 
     expect(store.getActions()).toEqual([{
       type: 'SHOW_HEALTH_INDICATOR',
@@ -22,7 +22,7 @@ describe('heath indicator actions', () => {
   });
 
   test('submit vote', async () => {
-    await store.dispatch(clientSessionActions.submitVote('session id', { indicator: 'making sense?', vote: 400 }));
+    await store.dispatch(clientStoreActions.submitVote('session id', { indicator: 'making sense?', vote: 400 }));
 
     expect(store.getActions()[0]).toEqual({
       type: 'SUBMIT_VOTE_START',

@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import App from './App';
-import rootReducer from './store/reducers';
+import rootReducer from './store';
 import * as serviceWorker from './serviceWorker';
 
 // eslint-disable-next-line no-underscore-dangle

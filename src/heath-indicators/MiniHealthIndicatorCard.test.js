@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { MiniHealthIndicatorCard } from './MiniHealthIndicatorCard';
 import CardText from './components/CardText';
 
-jest.mock('../store/actions/client-session-actions');
+jest.mock('../store/client/client-store-actions');
 
 describe('indicator cards', () => {
   test('can show card texts', () => {

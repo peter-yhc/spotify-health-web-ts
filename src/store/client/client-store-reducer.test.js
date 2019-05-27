@@ -1,11 +1,9 @@
-import clientSessionReducer from './client-session-reducer';
-
-jest.mock('../actions/client-session-actions');
+import clientStoreReducer from './client-store-reducer';
 
 describe('client session reducer test', () => {
   test('initial state', () => {
     const dummyAction = { type: 'dummy action' };
-    expect(clientSessionReducer(undefined, dummyAction)).toEqual({
+    expect(clientStoreReducer(undefined, dummyAction)).toEqual({
       session: '',
       cards: [],
       submissions: {},
@@ -13,7 +11,7 @@ describe('client session reducer test', () => {
   });
 
   test('show health indicator action', () => {
-    const newState = clientSessionReducer(undefined, {
+    const newState = clientStoreReducer(undefined, {
       type: 'SHOW_HEALTH_INDICATOR',
       indicator: 'indicator',
       textAwesome: 'text awesome',
@@ -27,7 +25,7 @@ describe('client session reducer test', () => {
   });
 
   test('handle submitting votes - done', () => {
-    const newState = clientSessionReducer(undefined, {
+    const newState = clientStoreReducer(undefined, {
       type: 'SUBMIT_VOTE_DONE',
       indicator: 'is it monday?',
       vote: 0,

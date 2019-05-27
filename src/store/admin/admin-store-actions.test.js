@@ -1,6 +1,6 @@
 import configureStore from 'redux-mock-store';
 
-import actions from './admin-session-actions';
+import actions from './admin-store-actions';
 
 const mockStore = configureStore();
 const store = mockStore();

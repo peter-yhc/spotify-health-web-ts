@@ -3,9 +3,9 @@ import { withStyles } from '@material-ui/styles';
 import { Divider, Paper } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ClientSessionActions from '../store/actions/client-session-actions';
-import AdminSessionActions from '../store/actions/admin-session-actions';
-import { Types } from '../store/reducers/debug-panel-reducer';
+import ClientSessionActions from '../store/client/client-store-actions';
+import AdminSessionActions from '../store/admin/admin-store-actions';
+import { Types } from '../store/debug/debug-panel-reducer';
 
 const styles = {
   container: {
