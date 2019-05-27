@@ -15,8 +15,8 @@ import App from './App';
 
 const mockStore = configureStore();
 const store = mockStore({
-  clientSessionReducer: clientInitialState,
-  adminSessionReducer: adminInitialState,
+  clientStoreReducer: clientInitialState,
+  adminStoreReducer: adminInitialState,
   debugPanelReducer: debugPanelInitialState,
 });
 
