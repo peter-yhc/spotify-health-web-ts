@@ -32,13 +32,13 @@ const VotingOptions = (props) => {
     return (
       <React.Fragment>
         <Button className={activeButton === 0 ? classes.activeUnhappy : ''} onClick={handleClick(0, 0)}>
-          <Icon>sentiment_very_unhappy</Icon>
+          <Icon>sentiment_very_dissatisfied</Icon>
         </Button>
         <Button className={activeButton === 1 ? classes.activeNeutral : ''} onClick={handleClick(3, 1)}>
           <Icon>sentiment_neutral</Icon>
         </Button>
         <Button className={activeButton === 2 ? classes.activeHappy : ''} onClick={handleClick(5, 2)}>
-          <Icon>sentiment_very_happy</Icon>
+          <Icon>sentiment_very_satisfied</Icon>
         </Button>
       </React.Fragment>
     );

@@ -11,16 +11,16 @@ describe('health indicator voting', () => {
     const icons = wrapper.find(Icon);
 
     expect(icons.length).toBe(3);
-    expect(icons.get(0).props.children).toBe('sentiment_very_unhappy');
+    expect(icons.get(0).props.children).toBe('sentiment_very_dissatisfied');
     expect(icons.get(1).props.children).toBe('sentiment_neutral');
-    expect(icons.get(2).props.children).toBe('sentiment_very_happy');
+    expect(icons.get(2).props.children).toBe('sentiment_very_satisfied');
   });
 
-  test('submits vote with correct value when button clicked - unhappy', () => {
+  test('submits vote with correct value when button clicked - dissatisfied', () => {
     const wrapper = mount(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
 
-    const unhappy = wrapper.find(Button).at(0);
-    unhappy.simulate('click');
+    const dissatisfied = wrapper.find(Button).at(0);
+    dissatisfied.simulate('click');
 
     expect(onSubmitMock).toBeCalledWith(0);
   });
@@ -34,11 +34,11 @@ describe('health indicator voting', () => {
     expect(onSubmitMock).toBeCalledWith(3);
   });
 
-  test('submits vote with correct value when button clicked - happy', () => {
+  test('submits vote with correct value when button clicked - satisfied', () => {
     const wrapper = mount(<HealthIndicatorVotingOptions onSubmit={onSubmitMock} />);
 
-    const happy = wrapper.find(Button).at(2);
-    happy.simulate('click');
+    const satisfied = wrapper.find(Button).at(2);
+    satisfied.simulate('click');
 
     expect(onSubmitMock).toBeCalledWith(5);
   });
