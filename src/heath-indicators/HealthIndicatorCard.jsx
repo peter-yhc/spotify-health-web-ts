@@ -10,11 +10,12 @@ import { clientStoreActions } from '../store/client';
 
 const styles = {
   indicatorCard: {
-    width: '250px',
-    height: '375px',
+    width: '300px',
+    height: '400px',
     padding: '1em',
     display: 'grid',
     gridTemplateRows: '15% 75% 15%',
+    boxSizing: 'border-box',
   },
   indicatorTitle: {
     marginBottom: '0.75em',

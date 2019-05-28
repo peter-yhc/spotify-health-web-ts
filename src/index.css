@@ -9,6 +9,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+    min-height: 100vh;
+}
+
 h1 {
     font-weight: 300;
     font-size: 6rem;

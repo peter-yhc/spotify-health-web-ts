@@ -1,19 +1,33 @@
 import React, { useEffect } from 'react';
 import { withStyles } from '@material-ui/styles';
-import { Grid, Typography } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { HealthIndicatorCard } from '../heath-indicators';
-import DebugPanel from '../debug-panel/DebugPanel';
 import { clientStoreActions } from '../store/client';
 
 const styles = {
+  container: {
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    gridTemplateRows: '100px calc(100vh - 100px)',
+  },
   header: {
-    marginTop: '1em',
-    marginBottom: '1em',
+    gridRow: '1 / 2',
+  },
+  title: {
+    marginTop: '30px',
   },
   main: {
     padding: '1em',
+    gridRow: '2 / 3',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))',
+    gridAutoRows: '420px',
+    gridRowGap: '10px',
+    justifyItems: 'center',
+    alignItems: 'center',
+    marginBottom: 'auto',
   },
 };
 
@@ -30,30 +44,35 @@ export const ClientSessionPage = (props) => {
     const displayCards = [];
     cards.forEach((card) => {
       displayCards.push(
-        <Grid item key={card.indicator}>
-          <HealthIndicatorCard
-            indicator={card.indicator}
-            textAwesome={card.textAwesome}
-            textCrappy={card.textCrappy}
-          />
-        </Grid>,
+        <HealthIndicatorCard
+          key={card.indicator}
+          indicator={card.indicator}
+          textAwesome={card.textAwesome}
+          textCrappy={card.textCrappy}
+        />,
       );
     });
     return displayCards;
   };
 
+  const awaitData = () => {
+    if (!cards || cards.length === 0) {
+      return (
+        <CircularProgress />
+      );
+    }
+    return generateCards();
+  };
+
   return (
-    <React.Fragment>
+    <article className={classes.container}>
       <header className={classes.header}>
-        <Typography variant="h2">Client Session</Typography>
+        <h2 className={classes.title}>Client Session</h2>
       </header>
       <main className={classes.main}>
-        <Grid container spacing={5} direction="row" alignItems="center" justify="center">
-          {generateCards()}
-        </Grid>
+        {awaitData()}
       </main>
-      <DebugPanel />
-    </React.Fragment>
+    </article>
   );
 };
 

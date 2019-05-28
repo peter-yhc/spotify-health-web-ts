@@ -3,6 +3,7 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { CircularProgress } from '@material-ui/core';
 import ConnectedClientSessionPage, { ClientSessionPage } from './ClientSessionPage';
 import HealthIndicatorCard from '../heath-indicators/HealthIndicatorCard';
 import { clientStoreActions } from '../store/client';
@@ -32,6 +33,19 @@ describe('SessionsPage component', () => {
     );
     expect(wrapper.find('header').text()).toContain('Client Session');
     expect(wrapper.find(HealthIndicatorCard).length).toBe(0);
+  });
+
+  test('can render progress if cards not present', () => {
+    const wrapper = shallow(
+      <ClientSessionPage
+        classes={mockClasses}
+        cards={[]}
+        location={{}}
+        dispatch={jest.fn()}
+      />,
+    );
+
+    expect(wrapper.find(CircularProgress).length).toBe(1);
   });
 
   test('can render indicators if card present', () => {
