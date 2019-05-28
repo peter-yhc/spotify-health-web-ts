@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { HealthIndicatorCard } from '../heath-indicators';
 import { clientStoreActions } from '../store/client';
+import Theme from '../Theme';
 
 const styles = {
   container: {
@@ -28,6 +29,9 @@ const styles = {
     justifyItems: 'center',
     alignItems: 'center',
     marginBottom: 'auto',
+  },
+  progress: {
+    color: Theme.BLUE,
   },
 };
 
@@ -58,7 +62,7 @@ export const ClientSessionPage = (props) => {
   const awaitData = () => {
     if (!cards || cards.length === 0) {
       return (
-        <CircularProgress />
+        <CircularProgress className={classes.progress} />
       );
     }
     return generateCards();
