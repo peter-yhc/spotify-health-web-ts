@@ -36,4 +36,14 @@ describe('heath indicator actions', () => {
       vote: 400,
     });
   });
+
+  test('retrieves health indicators', async () => {
+    await store.dispatch(clientStoreActions.retrieveHealthIndicators());
+
+    const action = store.getActions()[0];
+    expect(action.type).toBe('SHOW_INDICATORS');
+    expect(action.indicators[0].indicator).not.toBeFalsy();
+    expect(action.indicators[0].textAwesome).not.toBeFalsy();
+    expect(action.indicators[0].textCrappy).not.toBeFalsy();
+  });
 });

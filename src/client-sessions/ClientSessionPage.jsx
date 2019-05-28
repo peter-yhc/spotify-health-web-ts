@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { HealthIndicatorCard } from '../heath-indicators';
 import DebugPanel from '../debug-panel/DebugPanel';
+import { clientStoreActions } from '../store/client';
 
 const styles = {
   header: {
@@ -17,9 +18,13 @@ const styles = {
 };
 
 export const ClientSessionPage = (props) => {
-  const { classes, cards, location } = props;
+  const { classes, cards, location, dispatch } = props;
 
   console.log(location);
+
+  useEffect(() => {
+    dispatch(clientStoreActions.retrieveHealthIndicators());
+  }, []);
 
   const generateCards = () => {
     const displayCards = [];
@@ -56,11 +61,12 @@ ClientSessionPage.propTypes = {
   classes: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
   location: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    cards: state.clientSessionReducer.cards,
+    cards: state.clientStoreReducer.cards,
   };
 };
 

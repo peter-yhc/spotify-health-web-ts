@@ -25,6 +25,11 @@ const clientStoreReducer = (state = initialState, action) => {
           [action.indicator]: action.vote,
         }),
       };
+    case 'SHOW_INDICATORS':
+      return {
+        ...state,
+        cards: action.indicators,
+      };
     default:
       console.log(`Ignoring action: ${action.type}`);
       return state;

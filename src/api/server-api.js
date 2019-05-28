@@ -1,3 +1,5 @@
+import stub from '../heath-indicators/health-indicators-stub';
+
 const createSession = async () => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -6,6 +8,15 @@ const createSession = async () => {
   });
 };
 
+const retrieveHealthIndicators = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(stub);
+    }, 1000);
+  });
+};
+
 export default {
   createSession,
+  retrieveHealthIndicators,
 };
