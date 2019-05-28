@@ -37,11 +37,10 @@ const styles = {
 
 export const ClientSessionPage = (props) => {
   const { classes, cards, location, dispatch } = props;
-
-  console.log(location);
+  const sessionId = location.search.split('sessionId=')[1];
 
   useEffect(() => {
-    dispatch(clientStoreActions.retrieveHealthIndicators());
+    dispatch(clientStoreActions.retrieveHealthIndicators(sessionId));
   }, []);
 
   const generateCards = () => {

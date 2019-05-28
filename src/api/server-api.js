@@ -8,7 +8,8 @@ const createSession = async () => {
   });
 };
 
-const retrieveHealthIndicators = async () => {
+const retrieveHealthIndicators = async (sessionId) => {
+  console.log(`SessionId: ${sessionId}`);
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(stub);

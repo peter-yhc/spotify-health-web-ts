@@ -22,8 +22,8 @@ const submitVote = (session, { indicator, vote }) => async (dispatch) => {
   });
 };
 
-const retrieveHealthIndicators = () => async (dispatch) => {
-  const indicators = await ServerApi.retrieveHealthIndicators();
+const retrieveHealthIndicators = sessionId => async (dispatch) => {
+  const indicators = await ServerApi.retrieveHealthIndicators(sessionId);
   dispatch({
     type: 'SHOW_INDICATORS',
     indicators,
