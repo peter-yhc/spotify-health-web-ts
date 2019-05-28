@@ -28,10 +28,10 @@ const styles = {
 };
 
 export const HealthIndicatorCard = (props) => {
-  const { indicator, textAwesome, textCrappy, classes, dispatch } = props;
+  const { sessionId, indicator, textAwesome, textCrappy, classes, dispatch } = props;
 
   const onSubmit = (vote) => {
-    dispatch(clientStoreActions.submitVote('some session id to be generated', { indicator, vote }));
+    dispatch(clientStoreActions.submitVote(sessionId, { indicator, vote }));
   };
 
   return (
@@ -54,10 +54,15 @@ export const HealthIndicatorCard = (props) => {
 
 HealthIndicatorCard.propTypes = {
   classes: PropTypes.object.isRequired,
+  sessionId: PropTypes.string.isRequired,
   indicator: PropTypes.string.isRequired,
   textAwesome: PropTypes.string.isRequired,
   textCrappy: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(withStyles(styles)(HealthIndicatorCard));
+const mapStateToProps = state => ({
+  sessionId: state.session,
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(HealthIndicatorCard));

@@ -16,6 +16,7 @@ describe('indicator cards', () => {
         indicator="my indicator"
         textAwesome="I am awesome"
         textCrappy="I am crappy"
+        sessionId=""
       />,
     );
 
@@ -38,6 +39,7 @@ describe('indicator cards', () => {
         indicator="my indicator"
         textAwesome="I am awesome"
         textCrappy="I am crappy"
+        sessionId=""
       />,
     );
     wrapper.find(Button).at(0).simulate('click');
