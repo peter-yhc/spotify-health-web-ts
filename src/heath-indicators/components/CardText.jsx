@@ -1,9 +1,9 @@
 import React from 'react';
 import { Grid, Icon } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { withStyles, makeStyles } from '@material-ui/styles';
 
-const styles = {
+const styles = makeStyles({
   container: {
     textAlign: 'left',
     padding: '0 0.5em',
@@ -14,10 +14,11 @@ const styles = {
     verticalAlign: 'middle',
     marginLeft: '-5px !important',
   },
-};
+});
 
 const CardText = (props) => {
-  const { text, variant, classes } = props;
+  const { text, variant } = props;
+  const classes = styles();
 
   const coloriseIcon = () => {
     if (variant === 'good') {
@@ -41,9 +42,8 @@ const CardText = (props) => {
 };
 
 CardText.propTypes = {
-  classes: PropTypes.object.isRequired,
   text: PropTypes.string.isRequired,
   variant: PropTypes.oneOf(['good', 'bad']).isRequired,
 };
 
-export default withStyles(styles)(CardText);
+export default CardText;

@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/styles';
 import { CircularProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { HealthIndicatorCard } from '../heath-indicators';
+import { VotingHealthIndicatorCard } from '../heath-indicators';
 import { clientStoreActions } from '../store/client';
 import Theme from '../Theme';
 
@@ -47,7 +47,7 @@ export const ClientSessionPage = (props) => {
     const displayCards = [];
     cards.forEach((card) => {
       displayCards.push(
-        <HealthIndicatorCard
+        <VotingHealthIndicatorCard
           key={card.indicator}
           indicator={card.indicator}
           textAwesome={card.textAwesome}

@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Typography } from '@material-ui/core';
+import { Button, Icon, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import { connect } from 'react-redux';
 import CardText from './components/CardText';
-import VotingOptions from './components/VotingOptions';
 import { clientStoreActions } from '../store/client';
 
 const styles = {
@@ -25,13 +24,28 @@ const styles = {
     padding: '0 0.5em',
     marginBottom: '0.5em',
   },
+  buttonContainer: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr',
+  },
+  activeUnhappy: {
+    color: 'red !important',
+  },
+  activeNeutral: {
+    color: 'orange !important',
+  },
+  activeHappy: {
+    color: 'green !important',
+  },
 };
 
-export const HealthIndicatorCard = (props) => {
+export const VotingHealthIndicatorCard = (props) => {
   const { sessionId, indicator, textAwesome, textCrappy, classes, dispatch } = props;
+  const [activeButton, setActiveButton] = useState(-1);
 
-  const onSubmit = (vote) => {
-    dispatch(clientStoreActions.submitVote(sessionId, { indicator, vote }));
+  const handleClick = (value, button) => () => {
+    setActiveButton(button);
+    dispatch(clientStoreActions.submitVote(sessionId, { indicator, value }));
   };
 
   return (
@@ -44,15 +58,23 @@ export const HealthIndicatorCard = (props) => {
           <CardText text={textAwesome} variant="good" />
           <CardText text={textCrappy} variant="bad" />
         </section>
-        <footer>
-          <VotingOptions onSubmit={onSubmit} />
+        <footer className={classes.buttonContainer}>
+          <Button className={activeButton === 0 ? classes.activeUnhappy : ''} onClick={handleClick(0, 0)} href="#">
+            <Icon>sentiment_very_dissatisfied</Icon>
+          </Button>
+          <Button className={activeButton === 1 ? classes.activeNeutral : ''} onClick={handleClick(3, 1)} href="#">
+            <Icon>sentiment_neutral</Icon>
+          </Button>
+          <Button className={activeButton === 2 ? classes.activeHappy : ''} onClick={handleClick(5, 2)} href="#">
+            <Icon>sentiment_very_satisfied</Icon>
+          </Button>
         </footer>
       </Paper>
     </React.Fragment>
   );
 };
 
-HealthIndicatorCard.propTypes = {
+VotingHealthIndicatorCard.propTypes = {
   classes: PropTypes.object.isRequired,
   sessionId: PropTypes.string.isRequired,
   indicator: PropTypes.string.isRequired,
@@ -65,4 +87,4 @@ const mapStateToProps = state => ({
   sessionId: state.session,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(HealthIndicatorCard));
+export default connect(mapStateToProps)(withStyles(styles)(VotingHealthIndicatorCard));

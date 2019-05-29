@@ -1,7 +1,7 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { Button } from '@material-ui/core';
-import { HealthIndicatorCard } from './HealthIndicatorCard';
+import { VotingHealthIndicatorCard } from './VotingHealthIndicatorCard';
 import CardText from './components/CardText';
 import { clientStoreActions } from '../store/client';
 
@@ -9,8 +9,8 @@ jest.mock('../store/client/client-store-actions');
 
 describe('indicator cards', () => {
   test('can show card texts', () => {
-    const wrapper = mount(
-      <HealthIndicatorCard
+    const wrapper = shallow(
+      <VotingHealthIndicatorCard
         classes={{ indicatorCard: '', indicatorTitle: '' }}
         dispatch={jest.fn()}
         indicator="my indicator"
@@ -21,10 +21,9 @@ describe('indicator cards', () => {
     );
 
     expect(wrapper.find('header').text()).toContain('my indicator');
-
-    const descriptions = wrapper.find(CardText);
-    expect(descriptions.at(0).text()).toContain('I am awesome');
-    expect(descriptions.at(1).text()).toContain('I am crappy');
+    const descriptions = wrapper.find('section').find(CardText);
+    expect(descriptions.at(0).props().text).toBe('I am awesome');
+    expect(descriptions.at(1).props().text).toBe('I am crappy');
   });
 
   test('can dispatch on click', (done) => {
@@ -33,7 +32,7 @@ describe('indicator cards', () => {
       done();
     };
     const wrapper = mount(
-      <HealthIndicatorCard
+      <VotingHealthIndicatorCard
         classes={{ indicatorCard: '', indicatorTitle: '' }}
         dispatch={mockDispatch}
         indicator="my indicator"
