@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Icon } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { withStyles, makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const styles = makeStyles({
   container: {
