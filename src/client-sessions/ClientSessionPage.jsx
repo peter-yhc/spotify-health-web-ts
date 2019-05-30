@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { withStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 import { CircularProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import { VotingHealthIndicatorCard } from '../heath-indicators';
 import { clientStoreActions } from '../store/client';
 import Theme from '../Theme';
 
-const styles = {
+const styles = makeStyles({
   container: {
     display: 'grid',
     gridTemplateColumns: '1fr',
@@ -33,15 +33,16 @@ const styles = {
   progress: {
     color: Theme.BLUE,
   },
-};
+});
 
 export const ClientSessionPage = (props) => {
-  const { classes, cards, location, dispatch } = props;
+  const { cards, location, dispatch } = props;
+  const classes = styles();
   const sessionId = location.search.split('sessionId=')[1];
 
   useEffect(() => {
     dispatch(clientStoreActions.retrieveHealthIndicators(sessionId));
-  }, []);
+  }, [dispatch, sessionId]);
 
   const generateCards = () => {
     const displayCards = [];
@@ -80,7 +81,6 @@ export const ClientSessionPage = (props) => {
 };
 
 ClientSessionPage.propTypes = {
-  classes: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
   location: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
@@ -92,4 +92,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(ClientSessionPage));
+export default connect(mapStateToProps)(ClientSessionPage);

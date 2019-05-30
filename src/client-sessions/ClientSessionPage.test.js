@@ -27,7 +27,7 @@ describe('SessionsPage component', () => {
       <ClientSessionPage
         classes={mockClasses}
         cards={[]}
-          location={{search: '?sessionId=91567904'}}
+        location={{ search: '?sessionId=91567904' }}
         dispatch={jest.fn()}
       />,
     );
@@ -40,7 +40,7 @@ describe('SessionsPage component', () => {
       <ClientSessionPage
         classes={mockClasses}
         cards={[]}
-          location={{search: '?sessionId=91567904'}}
+        location={{ search: '?sessionId=91567904' }}
         dispatch={jest.fn()}
       />,
     );
@@ -53,7 +53,7 @@ describe('SessionsPage component', () => {
       <ClientSessionPage
         classes={mockClasses}
         cards={[{ indicator: 'a', textAwesome: 'awesome', textCrappy: 'crappy' }]}
-          location={{search: '?sessionId=91567904'}}
+        location={{ search: '?sessionId=91567904' }}
         dispatch={jest.fn()}
       />,
     );
@@ -72,7 +72,7 @@ describe('SessionsPage component', () => {
         <ConnectedClientSessionPage
           classes={mockClasses}
           cards={[]}
-          location={{search: '?sessionId=91567904'}}
+          location={{ search: '?sessionId=91567904' }}
         />
       </Provider>,
     );

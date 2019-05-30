@@ -23,6 +23,7 @@ const submitVote = (session, { indicator, vote }) => async (dispatch) => {
 };
 
 const retrieveHealthIndicators = sessionId => async (dispatch) => {
+  // TODO: handle incorrect session ID
   const indicators = await ServerApi.retrieveHealthIndicators(sessionId);
   dispatch({
     type: 'SHOW_INDICATORS',
