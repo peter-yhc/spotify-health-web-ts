@@ -4,7 +4,13 @@ describe('client session reducer test', () => {
   test('initial state', () => {
     const dummyAction = { type: 'dummy action' };
     expect(clientStoreReducer(undefined, dummyAction)).toEqual({
-      session: '',
+      session: {
+        id: undefined,
+        status: 'UNCONFIRMED',
+      },
+      client: {
+        id: undefined,
+      },
       cards: [],
       submissions: {},
     });

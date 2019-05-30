@@ -8,18 +8,11 @@ import ConnectedClientSessionPage, { ClientSessionPage } from './ClientSessionPa
 import HealthIndicatorCard from '../heath-indicators/VotingHealthIndicatorCard';
 import { clientStoreActions } from '../store/client';
 import { initialState as clientInitialState } from '../store/client/client-store-reducer';
-import { initialState as adminInitialState } from '../store/admin';
-import { initialState as debugPanelInitialState } from '../store/debug/debug-panel-reducer';
 
 jest.mock('../store/client');
 
 const mockClasses = { header: '', main: '', location: '' };
 const mockStore = configureStore([thunk]);
-const store = mockStore({
-  clientStoreReducer: clientInitialState,
-  adminStoreReducer: adminInitialState,
-  debugPanelReducer: debugPanelInitialState,
-});
 
 describe('SessionsPage component', () => {
   test('render page', () => {
@@ -61,14 +54,22 @@ describe('SessionsPage component', () => {
     expect(wrapper.find(HealthIndicatorCard).length).toBe(1);
   });
 
-  test('retrieves health indicators', (done) => {
-    store.dispatch = () => {
-      expect(clientStoreActions.retrieveHealthIndicators).toBeCalledWith('91567904');
-      done();
-    };
+  test('retrieves health indicators if session is valid', (done) => {
+    const mockedStore = mockStore({
+      clientStoreReducer: Object.assign({}, clientInitialState, { client: { id: 'bleh' } }),
+    });
+
+    mockedStore.dispatch = jest.fn()
+      .mockImplementationOnce(() => {
+        expect(clientStoreActions.registerClientToSession).toBeCalledWith('91567904');
+      })
+      .mockImplementationOnce(() => {
+        expect(clientStoreActions.registerClientToSession).toBeCalledWith('91567904');
+        done();
+      });
 
     mount(
-      <Provider store={store}>
+      <Provider store={mockedStore}>
         <ConnectedClientSessionPage
           classes={mockClasses}
           cards={[]}
@@ -76,5 +77,29 @@ describe('SessionsPage component', () => {
         />
       </Provider>,
     );
+  });
+
+  test('does not retrieve health indicators if session is invalid', (done) => {
+    const mockedStore = mockStore({
+      clientStoreReducer: Object.assign({}, clientInitialState, { client: { id: undefined } }),
+    });
+
+    mockedStore.dispatch = jest.fn()
+      .mockImplementationOnce(() => {
+        expect(clientStoreActions.registerClientToSession).toBeCalledWith('91567904');
+      });
+
+    mount(
+      <Provider store={mockedStore}>
+        <ConnectedClientSessionPage
+          classes={mockClasses}
+          cards={[]}
+          location={{ search: '?sessionId=91567904' }}
+        />
+      </Provider>,
+    );
+
+    expect(mockedStore.dispatch).toBeCalledTimes(1);
+    done();
   });
 });

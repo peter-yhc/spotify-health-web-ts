@@ -14,7 +14,11 @@ describe('heath indicator actions', () => {
   });
 
   test('display incoming health indicator', () => {
-    store.dispatch(clientStoreActions.displayHealthIndicator({ indicator: 'making sense?', textAwesome: 'good', textCrappy: 'bad' }));
+    store.dispatch(clientStoreActions.displayHealthIndicator({
+      indicator: 'making sense?',
+      textAwesome: 'good',
+      textCrappy: 'bad',
+    }));
 
     expect(store.getActions()).toEqual([{
       type: 'SHOW_HEALTH_INDICATOR',
@@ -59,5 +63,22 @@ describe('heath indicator actions', () => {
     expect(action.indicators[0].indicator).toBe('1');
     expect(action.indicators[0].textAwesome).toBe('2');
     expect(action.indicators[0].textCrappy).toBe('3');
+  });
+
+  test('registers clients', async () => {
+    let clientIdSpy;
+    ServerApi.registerClient.mockImplementation(async (sessionId, clientId) => {
+      expect(sessionId).toBe('155239283');
+      expect(clientId).toBeTruthy();
+      clientIdSpy = clientId;
+    });
+
+    await store.dispatch(clientStoreActions.registerClientToSession('155239283'));
+
+    const action = store.getActions()[0];
+    expect(action.type).toBe('CLIENT_REGISTERED');
+    expect(action.sessionId).toBe('155239283');
+    expect(action.clientId).toBe(clientIdSpy);
+    expect(clientIdSpy).toBeTruthy();
   });
 });

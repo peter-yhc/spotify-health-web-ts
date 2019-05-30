@@ -1,7 +1,13 @@
 export const initialState = {
-  session: '',
   cards: [],
   submissions: {},
+  session: {
+    id: undefined,
+    status: 'UNCONFIRMED',
+  },
+  client: {
+    id: undefined,
+  },
 };
 
 const clientStoreReducer = (state = initialState, action) => {
@@ -30,6 +36,19 @@ const clientStoreReducer = (state = initialState, action) => {
         ...state,
         cards: action.indicators,
       };
+    case 'CLIENT_REGISTERED': {
+      return {
+        ...state,
+        client: {
+          ...state.client,
+          id: action.clientId,
+        },
+        session: {
+          ...state.session,
+          id: action.sessionId,
+        },
+      };
+    }
     default:
       console.log(`Ignoring action: ${action.type}`);
       return state;

@@ -22,6 +22,16 @@ const submitVote = (session, { indicator, vote }) => async (dispatch) => {
   });
 };
 
+const registerClientToSession = sessionId => async (dispatch) => {
+  const clientId = 'bleh';
+  await ServerApi.registerClient(sessionId, clientId);
+  dispatch({
+    type: 'CLIENT_REGISTERED',
+    sessionId,
+    clientId,
+  });
+};
+
 const retrieveHealthIndicators = sessionId => async (dispatch) => {
   // TODO: handle incorrect session ID
   const indicators = await ServerApi.retrieveHealthIndicators(sessionId);
@@ -34,5 +44,6 @@ const retrieveHealthIndicators = sessionId => async (dispatch) => {
 export default {
   displayHealthIndicator,
   submitVote,
+  registerClientToSession,
   retrieveHealthIndicators,
 };

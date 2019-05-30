@@ -17,7 +17,17 @@ const retrieveHealthIndicators = async (sessionId) => {
   });
 };
 
+const registerClient = async (sessionId, clientId) => {
+  console.log(`Registering client: ${clientId} to session ${sessionId}`);
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 1000);
+  });
+};
+
 export default {
   createSession,
   retrieveHealthIndicators,
+  registerClient,
 };

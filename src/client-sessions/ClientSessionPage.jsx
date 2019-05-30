@@ -35,14 +35,20 @@ const styles = makeStyles({
   },
 });
 
-export const ClientSessionPage = (props) => {
-  const { cards, location, dispatch } = props;
+export const ClientSessionPage = ({ cards, location, dispatch, clientId }) => {
   const classes = styles();
   const sessionId = location.search.split('sessionId=')[1];
 
   useEffect(() => {
-    dispatch(clientStoreActions.retrieveHealthIndicators(sessionId));
+    dispatch(clientStoreActions.registerClientToSession(sessionId));
   }, [dispatch, sessionId]);
+
+  useEffect(() => {
+    if (!clientId) {
+      return;
+    }
+    dispatch(clientStoreActions.retrieveHealthIndicators(sessionId));
+  }, [dispatch, clientId]);
 
   const generateCards = () => {
     const displayCards = [];
@@ -84,11 +90,18 @@ ClientSessionPage.propTypes = {
   cards: PropTypes.array.isRequired,
   location: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  clientId: PropTypes.string,
+};
+
+ClientSessionPage.defaultProps = {
+  clientId: undefined,
 };
 
 const mapStateToProps = (state) => {
   return {
     cards: state.clientStoreReducer.cards,
+    clientId: state.clientStoreReducer.client.id,
+    sessionId: state.clientStoreReducer.session.id,
   };
 };
 
