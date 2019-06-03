@@ -66,11 +66,9 @@ describe('heath indicator actions', () => {
   });
 
   test('registers clients', async () => {
-    let clientIdSpy;
-    ServerApi.registerClient.mockImplementation(async (sessionId, clientId) => {
+    ServerApi.registerClient.mockImplementation(async (sessionId) => {
       expect(sessionId).toBe('155239283');
-      expect(clientId).toBeTruthy();
-      clientIdSpy = clientId;
+      return ({ id: 'some client id' });
     });
 
     await store.dispatch(clientStoreActions.registerClientToSession('155239283'));
@@ -78,7 +76,6 @@ describe('heath indicator actions', () => {
     const action = store.getActions()[0];
     expect(action.type).toBe('CLIENT_REGISTERED');
     expect(action.sessionId).toBe('155239283');
-    expect(action.clientId).toBe(clientIdSpy);
-    expect(clientIdSpy).toBeTruthy();
+    expect(action.clientId).toBe('some client id');
   });
 });

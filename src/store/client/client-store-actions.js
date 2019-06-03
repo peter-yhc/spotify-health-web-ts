@@ -23,12 +23,11 @@ const submitVote = (session, { indicator, vote }) => async (dispatch) => {
 };
 
 const registerClientToSession = sessionId => async (dispatch) => {
-  const clientId = 'bleh';
-  await ServerApi.registerClient(sessionId, clientId);
+  const client = await ServerApi.registerClient(sessionId);
   dispatch({
     type: 'CLIENT_REGISTERED',
     sessionId,
-    clientId,
+    clientId: client.id,
   });
 };
 

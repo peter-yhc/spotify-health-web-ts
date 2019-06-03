@@ -6,6 +6,10 @@ jest.mock('axios');
 jest.mock('socket.io-client');
 
 describe('Server API tests', () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
   test('can create new sessions', async (done) => {
     axios
       .mockImplementationOnce((params) => {
@@ -23,14 +27,34 @@ describe('Server API tests', () => {
     await ServerApi.createSession();
   });
 
-  test('can open new socket after session created', async (done) => {
-    axios.mockImplementation(async () => ({ data: { id: 'sbndfgjkg' } }));
+  test('can open new socket after session created', async () => {
+    axios.mockImplementation(() => ({ data: { id: 'sbndfgjkg' } }));
 
     io.mockImplementation((params) => {
       expect(params).toBe(':3000/sessions/sbndfgjkg');
-      done();
     });
 
     await ServerApi.createSession();
+  });
+
+  test('can register a new client', async () => {
+    axios.mockImplementation((params) => {
+      expect(params.method).toBe('PUT');
+      expect(params.url).toContain('sessions/bleh/participants');
+      expect(params.data.name).toBeTruthy();
+      return ({ data: { id: 'client id', name: 'client name' } });
+    });
+
+    await ServerApi.registerClient('bleh');
+  });
+
+  test('can retrieve indicators', async () => {
+    axios.get.mockImplementation((url) => {
+      expect(url).toContain('sessions/bleh');
+      return ({ data: { indicators: [1, 2] } });
+    });
+
+    const result = await ServerApi.retrieveHealthIndicators('bleh');
+    expect(result).toEqual([1, 2]);
   });
 });

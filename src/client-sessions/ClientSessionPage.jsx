@@ -37,7 +37,7 @@ const styles = makeStyles({
 
 export const ClientSessionPage = ({ cards, location, dispatch, clientId }) => {
   const classes = styles();
-  const sessionId = location.search.split('sessionId=')[1];
+  const sessionId = location.search.split('session=')[1];
 
   useEffect(() => {
     dispatch(clientStoreActions.registerClientToSession(sessionId));
@@ -51,18 +51,14 @@ export const ClientSessionPage = ({ cards, location, dispatch, clientId }) => {
   }, [dispatch, clientId]);
 
   const generateCards = () => {
-    const displayCards = [];
-    cards.forEach((card) => {
-      displayCards.push(
-        <VotingHealthIndicatorCard
-          key={card.indicator}
-          indicator={card.indicator}
-          textAwesome={card.textAwesome}
-          textCrap={card.textCrap}
-        />,
-      );
-    });
-    return displayCards;
+    return cards.map(card => (
+      <VotingHealthIndicatorCard
+        key={card.indicator}
+        indicator={card.indicator}
+        textAwesome={card.textAwesome}
+        textCrap={card.textCrap}
+      />
+    ));
   };
 
   const awaitData = () => {

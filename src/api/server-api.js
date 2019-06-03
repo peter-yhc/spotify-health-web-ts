@@ -1,6 +1,5 @@
 import io from 'socket.io-client';
 import axios from 'axios';
-import stub from '../heath-indicators/health-indicators-stub';
 
 let socket;
 
@@ -33,21 +32,20 @@ const createSession = async () => {
 };
 
 const retrieveHealthIndicators = async (sessionId) => {
-  console.log(`SessionId: ${sessionId}`);
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(stub);
-    }, 1000);
-  });
+  return (await axios.get(`http://localhost:3000/sessions/${sessionId}`)).data.indicators;
 };
 
-const registerClient = async (sessionId, clientId) => {
-  console.log(`Registering client: ${clientId} to session ${sessionId}`);
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
+const registerClient = async (sessionId) => {
+  const response = await axios({
+    method: 'PUT',
+    url: `http://localhost:3000/sessions/${sessionId}/participants`,
+    data: {
+      name: Math.random().toString(36).slice(2),
+    },
   });
+
+  await connectSocket(sessionId);
+  return response.data;
 };
 
 export default {
