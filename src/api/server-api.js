@@ -9,17 +9,22 @@ const connectSocket = async (sessionId) => {
 };
 
 const createSession = async () => {
-  let response;
   try {
-    response = await axios({
+    const sessionId = (await axios({
       method: 'POST',
       url: 'http://localhost:3000/creator/new',
       data: {
         name: Math.random().toString(36).slice(2),
       },
+    })).data.id;
+
+    await axios({
+      method: 'POST',
+      url: `http://localhost:3000/creator/${sessionId}/done`,
     });
-    await connectSocket(response.data.id);
-    return `http://${window.location.hostname}:${window.location.port}/clients?session=${response.data.id}`;
+    await connectSocket(sessionId);
+
+    return `http://${window.location.hostname}:${window.location.port}/clients?session=${sessionId}`;
   } catch (err) {
     // TODO: handle
     console.log(err);

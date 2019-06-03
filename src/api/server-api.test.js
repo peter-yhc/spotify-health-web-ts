@@ -7,25 +7,27 @@ jest.mock('socket.io-client');
 
 describe('Server API tests', () => {
   test('can create new sessions', async (done) => {
-    axios.mockImplementation((params) => {
-      expect(params.method).toBe('POST');
-      expect(params.data.name).toBeTruthy();
-      expect(params.url).toContain('/creator/new');
-      done();
-    });
-
-    io.mockImplementation((params) => {
-      expect(params).toBe('asdfsad');
-    });
+    axios
+      .mockImplementationOnce((params) => {
+        expect(params.method).toBe('POST');
+        expect(params.data.name).toBeTruthy();
+        expect(params.url).toContain('/creator/new');
+        return ({ data: { id: '199191' } });
+      })
+      .mockImplementationOnce((params) => {
+        expect(params.method).toBe('POST');
+        expect(params.url).toContain('/creator/199191/done');
+        done();
+      });
 
     await ServerApi.createSession();
   });
 
   test('can open new socket after session created', async (done) => {
-    axios.mockImplementation(async () => ({ data: { id: '199191' } }));
+    axios.mockImplementation(async () => ({ data: { id: 'sbndfgjkg' } }));
 
     io.mockImplementation((params) => {
-      expect(params).toBe(':3000/sessions/199191');
+      expect(params).toBe(':3000/sessions/sbndfgjkg');
       done();
     });
 
