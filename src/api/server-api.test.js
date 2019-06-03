@@ -31,7 +31,7 @@ describe('Server API tests', () => {
     axios.mockImplementation(() => ({ data: { id: 'sbndfgjkg' } }));
 
     io.mockImplementation((params) => {
-      expect(params).toBe(':3000/sessions/sbndfgjkg');
+      expect(params).toBe(':3001/sessions/sbndfgjkg');
     });
 
     await ServerApi.createSession();
