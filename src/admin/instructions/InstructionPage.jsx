@@ -54,7 +54,7 @@ export const InstructionPage = (props) => {
         <MiniHealthIndicatorCard
           indicator={data.indicator}
           textAwesome={data.textAwesome}
-          textCrappy={data.textCrappy}
+          textCrap={data.textCrap}
         />
       </div>
     ));

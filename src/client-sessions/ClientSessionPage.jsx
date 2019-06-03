@@ -58,7 +58,7 @@ export const ClientSessionPage = ({ cards, location, dispatch, clientId }) => {
           key={card.indicator}
           indicator={card.indicator}
           textAwesome={card.textAwesome}
-          textCrappy={card.textCrappy}
+          textCrap={card.textCrap}
         />,
       );
     });

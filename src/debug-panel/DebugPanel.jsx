@@ -64,7 +64,7 @@ const isShowIndicatorCommand = (dispatch, command) => {
     dispatch(ClientSessionActions.displayHealthIndicator({
       indicator: match[1],
       textAwesome: match[2],
-      textCrappy: match[3],
+      textCrap: match[3],
     }));
   }
 };

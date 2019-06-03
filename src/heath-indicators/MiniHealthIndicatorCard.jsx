@@ -23,7 +23,7 @@ const styles = {
 };
 
 export const MiniHealthIndicatorCard = (props) => {
-  const { indicator, textAwesome, textCrappy, classes } = props;
+  const { indicator, textAwesome, textCrap, classes } = props;
 
   return (
     <Paper className={classes.indicatorCard}>
@@ -32,7 +32,7 @@ export const MiniHealthIndicatorCard = (props) => {
       </header>
       <section>
         <CardText text={textAwesome} variant="good" />
-        <CardText text={textCrappy} variant="bad" />
+        <CardText text={textCrap} variant="bad" />
       </section>
     </Paper>
   );
@@ -42,7 +42,7 @@ MiniHealthIndicatorCard.propTypes = {
   classes: PropTypes.object.isRequired,
   indicator: PropTypes.string.isRequired,
   textAwesome: PropTypes.string.isRequired,
-  textCrappy: PropTypes.string.isRequired,
+  textCrap: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(MiniHealthIndicatorCard);

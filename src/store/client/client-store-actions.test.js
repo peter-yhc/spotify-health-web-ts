@@ -17,14 +17,14 @@ describe('heath indicator actions', () => {
     store.dispatch(clientStoreActions.displayHealthIndicator({
       indicator: 'making sense?',
       textAwesome: 'good',
-      textCrappy: 'bad',
+      textCrap: 'bad',
     }));
 
     expect(store.getActions()).toEqual([{
       type: 'SHOW_HEALTH_INDICATOR',
       indicator: 'making sense?',
       textAwesome: 'good',
-      textCrappy: 'bad',
+      textCrap: 'bad',
     }]);
   });
 
@@ -51,7 +51,7 @@ describe('heath indicator actions', () => {
         {
           indicator: '1',
           textAwesome: '2',
-          textCrappy: '3',
+          textCrap: '3',
         },
       ];
     });
@@ -62,7 +62,7 @@ describe('heath indicator actions', () => {
     expect(action.type).toBe('SHOW_INDICATORS');
     expect(action.indicators[0].indicator).toBe('1');
     expect(action.indicators[0].textAwesome).toBe('2');
-    expect(action.indicators[0].textCrappy).toBe('3');
+    expect(action.indicators[0].textCrap).toBe('3');
   });
 
   test('registers clients', async () => {

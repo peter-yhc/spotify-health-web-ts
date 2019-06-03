@@ -18,7 +18,7 @@ const clientStoreReducer = (state = initialState, action) => {
         cards: [...state.cards, {
           indicator: action.indicator,
           textAwesome: action.textAwesome,
-          textCrappy: action.textCrappy,
+          textCrap: action.textCrap,
         }],
       };
     case 'SUBMIT_VOTE_START':

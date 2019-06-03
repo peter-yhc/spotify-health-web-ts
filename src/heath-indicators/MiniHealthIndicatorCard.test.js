@@ -12,7 +12,7 @@ describe('indicator cards', () => {
         classes={{ indicatorCard: '', indicatorTitle: '' }}
         indicator="my indicator"
         textAwesome="I am awesome"
-        textCrappy="I am crappy"
+        textCrap="I am crappy"
       />,
     );
 

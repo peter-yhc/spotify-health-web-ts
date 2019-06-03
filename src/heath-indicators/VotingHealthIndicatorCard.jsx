@@ -40,7 +40,7 @@ const styles = {
 };
 
 export const VotingHealthIndicatorCard = (props) => {
-  const { sessionId, indicator, textAwesome, textCrappy, classes, dispatch } = props;
+  const { sessionId, indicator, textAwesome, textCrap, classes, dispatch } = props;
   const [activeButton, setActiveButton] = useState(-1);
 
   const handleClick = (value, button) => () => {
@@ -56,7 +56,7 @@ export const VotingHealthIndicatorCard = (props) => {
         </header>
         <section>
           <CardText text={textAwesome} variant="good" />
-          <CardText text={textCrappy} variant="bad" />
+          <CardText text={textCrap} variant="bad" />
         </section>
         <footer className={classes.buttonContainer}>
           <Button className={activeButton === 0 ? classes.activeUnhappy : ''} onClick={handleClick(0, 0)} href="#">
@@ -79,7 +79,7 @@ VotingHealthIndicatorCard.propTypes = {
   sessionId: PropTypes.string.isRequired,
   indicator: PropTypes.string.isRequired,
   textAwesome: PropTypes.string.isRequired,
-  textCrappy: PropTypes.string.isRequired,
+  textCrap: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

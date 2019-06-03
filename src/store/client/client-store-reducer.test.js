@@ -21,12 +21,12 @@ describe('client session reducer test', () => {
       type: 'SHOW_HEALTH_INDICATOR',
       indicator: 'indicator',
       textAwesome: 'text awesome',
-      textCrappy: 'text crappy',
+      textCrap: 'text crappy',
     });
     expect(newState.cards[0]).toEqual({
       indicator: 'indicator',
       textAwesome: 'text awesome',
-      textCrappy: 'text crappy',
+      textCrap: 'text crappy',
     });
   });
 

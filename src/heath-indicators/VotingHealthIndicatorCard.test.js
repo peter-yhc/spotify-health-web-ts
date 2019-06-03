@@ -15,7 +15,7 @@ describe('indicator cards', () => {
         dispatch={jest.fn()}
         indicator="my indicator"
         textAwesome="I am awesome"
-        textCrappy="I am crappy"
+        textCrap="I am crappy"
         sessionId=""
       />,
     );
@@ -37,7 +37,7 @@ describe('indicator cards', () => {
         dispatch={mockDispatch}
         indicator="my indicator"
         textAwesome="I am awesome"
-        textCrappy="I am crappy"
+        textCrap="I am crappy"
         sessionId=""
       />,
     );

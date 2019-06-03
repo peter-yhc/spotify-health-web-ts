@@ -45,7 +45,7 @@ describe('SessionsPage component', () => {
     const wrapper = shallow(
       <ClientSessionPage
         classes={mockClasses}
-        cards={[{ indicator: 'a', textAwesome: 'awesome', textCrappy: 'crappy' }]}
+        cards={[{ indicator: 'a', textAwesome: 'awesome', textCrap: 'crappy' }]}
         location={{ search: '?sessionId=91567904' }}
         dispatch={jest.fn()}
       />,

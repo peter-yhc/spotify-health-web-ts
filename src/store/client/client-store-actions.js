@@ -1,11 +1,11 @@
 import { submitVoteToSocket } from '../../sockets/socket-io';
 import { ServerApi } from '../../api';
 
-const displayHealthIndicator = ({ indicator, textAwesome, textCrappy }) => ({
+const displayHealthIndicator = ({ indicator, textAwesome, textCrap }) => ({
   type: 'SHOW_HEALTH_INDICATOR',
   indicator,
   textAwesome,
-  textCrappy,
+  textCrap,
 });
 
 const submitVote = (session, { indicator, vote }) => async (dispatch) => {
