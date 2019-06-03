@@ -4,14 +4,14 @@ import axios from 'axios';
 let socket;
 
 const connectSocket = async (sessionId) => {
-  socket = await io(`:3000/sessions/${sessionId}`);
+  socket = await io(`:3001/sessions/${sessionId}`);
 };
 
 const createSession = async () => {
   try {
     const sessionId = (await axios({
       method: 'POST',
-      url: 'http://localhost:3000/creator/new',
+      url: 'http://localhost:3001/creator/new',
       data: {
         name: Math.random().toString(36).slice(2),
       },
@@ -19,7 +19,7 @@ const createSession = async () => {
 
     await axios({
       method: 'POST',
-      url: `http://localhost:3000/creator/${sessionId}/done`,
+      url: `http://localhost:3001/creator/${sessionId}/done`,
     });
     await connectSocket(sessionId);
 
@@ -32,13 +32,13 @@ const createSession = async () => {
 };
 
 const retrieveHealthIndicators = async (sessionId) => {
-  return (await axios.get(`http://localhost:3000/sessions/${sessionId}`)).data.indicators;
+  return (await axios.get(`http://localhost:3001/sessions/${sessionId}`)).data.indicators;
 };
 
 const registerClient = async (sessionId) => {
   const response = await axios({
     method: 'PUT',
-    url: `http://localhost:3000/sessions/${sessionId}/participants`,
+    url: `http://localhost:3001/sessions/${sessionId}/participants`,
     data: {
       name: Math.random().toString(36).slice(2),
     },
