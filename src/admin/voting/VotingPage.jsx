@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 import LiveVotingTable from './LiveVotingTable';
 import SessionGenerator from './SessionGenerator';
 
-const styles = {
+const styles = makeStyles({
   container: {
     display: 'grid',
     gridTemplateColumns: 'minmax(auto, 100px) 3fr 50px 2fr minmax(auto, 100px)',
@@ -15,10 +15,10 @@ const styles = {
   aside: {
     gridColumn: '4 / 5',
   },
-};
+});
 
-export const VotingPage = (props) => {
-  const { classes } = props;
+export const VotingPage = () => {
+  const classes = styles();
 
   return (
     <React.Fragment>
@@ -35,7 +35,6 @@ export const VotingPage = (props) => {
 };
 
 VotingPage.propTypes = {
-  classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(VotingPage);
+export default VotingPage;
