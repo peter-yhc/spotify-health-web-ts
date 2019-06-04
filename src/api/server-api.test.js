@@ -1,9 +1,7 @@
 import axios from 'axios';
-import io from 'socket.io-client';
 import ServerApi from './server-api';
 
 jest.mock('axios');
-jest.mock('socket.io-client');
 
 describe('Server API tests', () => {
   beforeEach(() => {
@@ -23,16 +21,6 @@ describe('Server API tests', () => {
         expect(params.url).toContain('/creator/199191/done');
         done();
       });
-
-    await ServerApi.createSession();
-  });
-
-  test('can open new socket after session created', async () => {
-    axios.mockImplementation(() => ({ data: { id: 'sbndfgjkg' } }));
-
-    io.mockImplementation((params) => {
-      expect(params).toBe(':3001/sessions/sbndfgjkg');
-    });
 
     await ServerApi.createSession();
   });
