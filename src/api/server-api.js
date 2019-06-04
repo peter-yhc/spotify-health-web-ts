@@ -23,7 +23,10 @@ const createSession = async () => {
     });
     await connectSocket(sessionId);
 
-    return `http://${window.location.hostname}:${window.location.port}/clients?session=${sessionId}`;
+    return {
+      link: `http://${window.location.hostname}:${window.location.port}/clients?session=${sessionId}`,
+      sessionId,
+    };
   } catch (err) {
     // TODO: handle
     console.log(err);

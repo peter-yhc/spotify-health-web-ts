@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import { InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-import { ServerApi } from '../../api';
+import { ServerApi, SocketApi } from '../../api';
 import './SessionGenerator.css';
 
 const styles = {
@@ -43,8 +43,9 @@ export const SessionGenerator = (props) => {
 
   useEffect(() => {
     const createSession = async () => {
-      const sessionLink = await ServerApi.createSession();
-      dispatch({ type: 'complete', sessionLink });
+      const { link, sessionId } = await ServerApi.createSession();
+      SocketApi.initSocket(sessionId);
+      dispatch({ type: 'complete', link });
     };
     createSession();
   }, []);
