@@ -1,17 +1,10 @@
-import io from 'socket.io-client';
 import axios from 'axios';
-
-let socket;
-
-const connectSocket = async (sessionId) => {
-  socket = await io(`:3001/sessions/${sessionId}`);
-};
 
 const createSession = async () => {
   try {
     const sessionId = (await axios({
       method: 'POST',
-      url: 'http://localhost:3001/creator/new',
+      url: `http://${window.location.hostname}:${3001}/creator/new`,
       data: {
         name: Math.random().toString(36).slice(2),
       },
@@ -19,9 +12,8 @@ const createSession = async () => {
 
     await axios({
       method: 'POST',
-      url: `http://localhost:3001/creator/${sessionId}/done`,
+      url: `http://${window.location.hostname}:${3001}/creator/${sessionId}/done`,
     });
-    await connectSocket(sessionId);
 
     return `http://${window.location.hostname}:${window.location.port}/clients?session=${sessionId}`;
   } catch (err) {
@@ -32,19 +24,17 @@ const createSession = async () => {
 };
 
 const retrieveHealthIndicators = async (sessionId) => {
-  return (await axios.get(`http://localhost:3001/sessions/${sessionId}`)).data.indicators;
+  return (await axios.get(`http://${window.location.hostname}:${3001}/sessions/${sessionId}`)).data.indicators;
 };
 
 const registerClient = async (sessionId) => {
   const response = await axios({
     method: 'PUT',
-    url: `http://localhost:3001/sessions/${sessionId}/participants`,
+    url: `http://${window.location.hostname}:${3001}/sessions/${sessionId}/participants`,
     data: {
       name: Math.random().toString(36).slice(2),
     },
   });
-
-  await connectSocket(sessionId);
   return response.data;
 };
 

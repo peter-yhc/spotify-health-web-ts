@@ -1,5 +1,5 @@
-import { submitVoteToSocket } from '../../sockets/socket-io';
-import { ServerApi } from '../../api';
+import { ServerApi, ServerSocket } from '../../api';
+import store from '..';
 
 const displayHealthIndicator = ({ indicator, textAwesome, textCrap }) => ({
   type: 'SHOW_HEALTH_INDICATOR',
@@ -8,13 +8,10 @@ const displayHealthIndicator = ({ indicator, textAwesome, textCrap }) => ({
   textCrap,
 });
 
-const submitVote = (session, { indicator, vote }) => async (dispatch) => {
-  dispatch({
-    type: 'SUBMIT_VOTE_START',
-    indicator,
-    vote,
-  });
-  await submitVoteToSocket(session, { indicator, vote });
+const submitVote = ({ indicator, vote }) => async (dispatch) => {
+  const sessionId = store.getState().clientStoreReducer.session.id;
+  const clientId = store.getState().clientStoreReducer.client.id;
+  await ServerSocket.submitVote(sessionId, clientId, { indicator, vote });
   dispatch({
     type: 'SUBMIT_VOTE_DONE',
     indicator,

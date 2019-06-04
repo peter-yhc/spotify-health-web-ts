@@ -40,12 +40,12 @@ const styles = {
 };
 
 export const VotingHealthIndicatorCard = (props) => {
-  const { sessionId, indicator, textAwesome, textCrap, classes, dispatch } = props;
+  const { indicator, textAwesome, textCrap, classes, dispatch } = props;
   const [activeButton, setActiveButton] = useState(-1);
 
-  const handleClick = (value, button) => () => {
+  const handleClick = (vote, button) => () => {
     setActiveButton(button);
-    dispatch(clientStoreActions.submitVote(sessionId, { indicator, value }));
+    dispatch(clientStoreActions.submitVote({ indicator, vote }));
   };
 
   return (
@@ -59,13 +59,13 @@ export const VotingHealthIndicatorCard = (props) => {
           <CardText text={textCrap} variant="bad" />
         </section>
         <footer className={classes.buttonContainer}>
-          <Button className={activeButton === 0 ? classes.activeUnhappy : ''} onClick={handleClick(0, 0)} href="#">
+          <Button className={activeButton === 0 ? classes.activeUnhappy : ''} onClick={handleClick('unhappy', 0)} href="#">
             <Icon>sentiment_very_dissatisfied</Icon>
           </Button>
-          <Button className={activeButton === 1 ? classes.activeNeutral : ''} onClick={handleClick(3, 1)} href="#">
+          <Button className={activeButton === 1 ? classes.activeNeutral : ''} onClick={handleClick('neutral', 1)} href="#">
             <Icon>sentiment_neutral</Icon>
           </Button>
-          <Button className={activeButton === 2 ? classes.activeHappy : ''} onClick={handleClick(5, 2)} href="#">
+          <Button className={activeButton === 2 ? classes.activeHappy : ''} onClick={handleClick('happy', 2)} href="#">
             <Icon>sentiment_very_satisfied</Icon>
           </Button>
         </footer>
@@ -76,7 +76,6 @@ export const VotingHealthIndicatorCard = (props) => {
 
 VotingHealthIndicatorCard.propTypes = {
   classes: PropTypes.object.isRequired,
-  sessionId: PropTypes.string.isRequired,
   indicator: PropTypes.string.isRequired,
   textAwesome: PropTypes.string.isRequired,
   textCrap: PropTypes.string.isRequired,
