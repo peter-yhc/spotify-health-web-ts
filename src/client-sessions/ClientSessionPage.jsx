@@ -53,8 +53,8 @@ export const ClientSessionPage = ({ cards, location, dispatch, clientId }) => {
   const generateCards = () => {
     return cards.map(card => (
       <VotingHealthIndicatorCard
-        key={card.indicator}
-        indicator={card.indicator}
+        key={card.name}
+        name={card.name}
         textAwesome={card.textAwesome}
         textCrap={card.textCrap}
       />

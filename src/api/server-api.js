@@ -1,11 +1,4 @@
-import io from 'socket.io-client';
 import axios from 'axios';
-
-let socket;
-
-const connectSocket = async (sessionId) => {
-  socket = await io(`:3001/sessions/${sessionId}`);
-};
 
 const createSession = async () => {
   try {
@@ -21,12 +14,8 @@ const createSession = async () => {
       method: 'POST',
       url: `http://localhost:3001/creator/${sessionId}/done`,
     });
-    await connectSocket(sessionId);
 
-    return {
-      link: `http://${window.location.hostname}:${window.location.port}/clients?session=${sessionId}`,
-      sessionId,
-    };
+    return sessionId;
   } catch (err) {
     // TODO: handle
     console.log(err);
@@ -46,8 +35,6 @@ const registerClient = async (sessionId) => {
       name: Math.random().toString(36).slice(2),
     },
   });
-
-  await connectSocket(sessionId);
   return response.data;
 };
 

@@ -1,4 +1,5 @@
 import adminStoreReducer from './admin-store-reducer';
+import adminStoreActions from './admin-store-actions';
 
 describe('health indicator reducer', () => {
   test('initial state', () => {
@@ -20,6 +21,18 @@ describe('health indicator reducer', () => {
           neutralVotes: 0,
           happyVotes: 1,
         },
+      },
+    });
+  });
+
+  test('session registered', () => {
+    const action = adminStoreActions.sessionRegistered({ link: 'http', id: 'for you' });
+
+    expect(adminStoreReducer(undefined, action)).toEqual({
+      indicatorVotes: {},
+      session: {
+        id: 'for you',
+        link: 'http',
       },
     });
   });

@@ -1,11 +1,12 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect } from 'react';
 import { InputBase, Paper } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-import { ServerApi, SocketApi } from '../../api';
+import { connect } from 'react-redux';
 import './SessionGenerator.css';
+import { adminStoreActions } from '../../store/admin';
 
-const styles = {
+const styles = makeStyles({
   container: {
     padding: '0.5rem 0.5rem 0 0.5rem',
     position: 'relative',
@@ -24,34 +25,18 @@ const styles = {
     right: '0.5rem',
     opacity: 0,
   },
-};
+});
 
-const stateReducer = (state, action) => {
-  switch (action.type) {
-    case 'complete': {
-      return { status: 1, sessionLink: action.sessionLink };
-    }
-    default:
-      return state;
-  }
-};
-
-export const SessionGenerator = (props) => {
-  const { classes } = props;
-  const [state, dispatch] = useReducer(stateReducer, { status: 0, sessionLink: 'Retrieving...' });
+export const SessionGenerator = ({ dispatch, sessionId, sessionLink }) => {
   const popup = React.createRef();
+  const classes = styles();
 
   useEffect(() => {
-    const createSession = async () => {
-      const { link, sessionId } = await ServerApi.createSession();
-      SocketApi.initSocket(sessionId);
-      dispatch({ type: 'complete', link });
-    };
-    createSession();
+    dispatch(adminStoreActions.registerSession());
   }, []);
 
   const handleClick = () => {
-    if (state.status === 0) {
+    if (!sessionId) {
       return;
     }
 
@@ -70,7 +55,7 @@ export const SessionGenerator = (props) => {
       <span>Session Link</span>
       <InputBase
         id="session-link-field"
-        value={state.sessionLink}
+        value={sessionLink}
         className={classes.textField}
       />
     </Paper>
@@ -78,7 +63,18 @@ export const SessionGenerator = (props) => {
 };
 
 SessionGenerator.propTypes = {
-  classes: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  sessionId: PropTypes.string,
+  sessionLink: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(SessionGenerator);
+SessionGenerator.defaultProps = {
+  sessionId: undefined,
+};
+
+const mapStateToProps = state => ({
+  sessionId: state.adminStoreReducer.session.id,
+  sessionLink: state.adminStoreReducer.session.link,
+});
+
+export default connect(mapStateToProps)(SessionGenerator);

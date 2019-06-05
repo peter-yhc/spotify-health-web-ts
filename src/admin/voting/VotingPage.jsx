@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import LiveVotingTable from './LiveVotingTable';
 import SessionGenerator from './SessionGenerator';
@@ -32,9 +31,6 @@ export const VotingPage = () => {
       </section>
     </React.Fragment>
   );
-};
-
-VotingPage.propTypes = {
 };
 
 export default VotingPage;

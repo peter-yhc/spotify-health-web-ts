@@ -1,10 +1,23 @@
 /* eslint-disable max-len */
 export const initialState = {
   indicatorVotes: {},
+  session: {
+    id: undefined,
+    link: 'Retrieving...',
+  },
 };
 
 const adminStoreReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'SESSION_REGISTERED': {
+      return {
+        ...state,
+        session: {
+          id: action.id,
+          link: action.link,
+        },
+      };
+    }
     case 'VOTE_SUBMITTED': {
       const unhappyChange = action.value === 'unhappy' ? 1 : 0;
       const neutralChange = action.value === 'neutral' ? 1 : 0;
