@@ -1,10 +1,13 @@
 import axios from 'axios';
 
+const HOSTNAME = window.location.hostname
+const PORT = window.location.port ? `:${+window.location.port + 1}` : '';
+
 const createSession = async () => {
   try {
     const sessionId = (await axios({
       method: 'POST',
-      url: `http://${window.location.hostname}:${3001}/creator/new`,
+      url: `http://${HOSTNAME}${PORT}/creator/new`,
       data: {
         name: Math.random().toString(36).slice(2),
       },
@@ -12,7 +15,7 @@ const createSession = async () => {
 
     await axios({
       method: 'POST',
-      url: `http://${window.location.hostname}:${3001}/creator/${sessionId}/done`,
+      url: `http://${HOSTNAME}${PORT}/creator/${sessionId}/done`,
     });
 
     return sessionId;
@@ -24,13 +27,13 @@ const createSession = async () => {
 };
 
 const retrieveHealthIndicators = async (sessionId) => {
-  return (await axios.get(`http://${window.location.hostname}:${3001}/sessions/${sessionId}`)).data.indicators;
+  return (await axios.get(`http://${HOSTNAME}${PORT}/sessions/${sessionId}`)).data.indicators;
 };
 
 const registerClient = async (sessionId) => {
   const response = await axios({
     method: 'PUT',
-    url: `http://${window.location.hostname}:${3001}/sessions/${sessionId}/participants`,
+    url: `http://${HOSTNAME}${PORT}/sessions/${sessionId}/participants`,
     data: {
       name: Math.random().toString(36).slice(2),
     },
