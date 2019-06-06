@@ -1,10 +1,15 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import clientStoreActions from './client-store-actions';
-import { ServerApi } from '../../api';
+import { ServerApi, SocketApi } from '../../api';
 
 const mockStore = configureStore([thunk]);
-const store = mockStore();
+const store = mockStore({
+  clientStoreReducer: {
+    client: { id: '' },
+    session: { id: '' },
+  },
+});
 
 jest.mock('../../api');
 
@@ -29,15 +34,9 @@ describe('heath indicator actions', () => {
   });
 
   test('submit vote', async () => {
-    await store.dispatch(clientStoreActions.submitVote('session id', { indicator: 'making sense?', vote: 400 }));
+    await store.dispatch(clientStoreActions.submitVote({ indicator: 'making sense?', vote: 400 }));
 
     expect(store.getActions()[0]).toEqual({
-      type: 'SUBMIT_VOTE_START',
-      indicator: 'making sense?',
-      vote: 400,
-    });
-
-    expect(store.getActions()[1]).toEqual({
       type: 'SUBMIT_VOTE_DONE',
       indicator: 'making sense?',
       vote: 400,

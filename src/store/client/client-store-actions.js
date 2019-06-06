@@ -8,10 +8,10 @@ const displayHealthIndicator = ({ indicator, textAwesome, textCrap }) => ({
   textCrap,
 });
 
-const submitVote = ({ indicator, vote }) => async (dispatch) => {
+const submitVote = ({ indicator, vote }) => (dispatch) => {
   const sessionId = store.getState().clientStoreReducer.session.id;
   const clientId = store.getState().clientStoreReducer.client.id;
-  await SocketApi.submitVote(sessionId, clientId, { indicator, vote });
+  SocketApi.submitVote(sessionId, clientId, { indicator, vote });
   dispatch({
     type: 'SUBMIT_VOTE_DONE',
     indicator,

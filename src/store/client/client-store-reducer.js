@@ -21,9 +21,6 @@ const clientStoreReducer = (state = initialState, action) => {
           textCrap: action.textCrap,
         }],
       };
-    case 'SUBMIT_VOTE_START':
-      console.log('yes yes this is a useless state... but is it?... yes it is... but it could be useful later');
-      return state;
     case 'SUBMIT_VOTE_DONE':
       return {
         ...state,
@@ -50,7 +47,6 @@ const clientStoreReducer = (state = initialState, action) => {
       };
     }
     default:
-      console.log(`Ignoring action: ${action.type}`);
       return state;
   }
 };

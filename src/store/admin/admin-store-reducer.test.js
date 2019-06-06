@@ -7,6 +7,10 @@ describe('health indicator reducer', () => {
 
     expect(adminStoreReducer(undefined, action)).toEqual({
       indicatorVotes: {},
+      session: {
+        id: undefined,
+        link: 'Retrieving...',
+      },
     });
   });
 
@@ -26,7 +30,7 @@ describe('health indicator reducer', () => {
   });
 
   test('session registered', () => {
-    const action = adminStoreActions.sessionRegistered({ link: 'http', id: 'for you' });
+    const action = adminStoreActions.registerSession({ link: 'http', id: 'for you' });
 
     expect(adminStoreReducer(undefined, action)).toEqual({
       indicatorVotes: {},

@@ -37,7 +37,6 @@ const adminStoreReducer = (state = initialState, action) => {
       };
     }
     default:
-      console.log(`Unknown action: ${JSON.stringify(action)}`);
       return state;
   }
 };

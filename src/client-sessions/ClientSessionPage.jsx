@@ -54,7 +54,7 @@ export const ClientSessionPage = ({ cards, location, dispatch, clientId }) => {
     return cards.map(card => (
       <VotingHealthIndicatorCard
         key={card.name}
-        name={card.name}
+        indicator={card.name}
         textAwesome={card.textAwesome}
         textCrap={card.textCrap}
       />
