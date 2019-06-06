@@ -28,13 +28,13 @@ describe('heath indicator actions', () => {
     }]);
   });
 
-  test('registering session', () => {
-    ServerApi.registerClient.mockImplementation(async () => 'id id');
-    store.dispatch(actions.registerSession());
+  test('registering session', async () => {
+    ServerApi.createSession.mockImplementation(async () => 'id id');
+    await store.dispatch(actions.registerSession());
 
     expect(store.getActions()).toEqual([{
       type: 'SESSION_REGISTERED',
-      link: 'http bleh',
+      link: 'http://localhost:/clients?session=id id',
       id: 'id id',
     }]);
   });
