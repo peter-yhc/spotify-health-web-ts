@@ -18,21 +18,6 @@ describe('heath indicator actions', () => {
     store.clearActions();
   });
 
-  test('display incoming health indicator', () => {
-    store.dispatch(clientStoreActions.displayHealthIndicator({
-      indicator: 'making sense?',
-      textAwesome: 'good',
-      textCrap: 'bad',
-    }));
-
-    expect(store.getActions()).toEqual([{
-      type: 'SHOW_HEALTH_INDICATOR',
-      indicator: 'making sense?',
-      textAwesome: 'good',
-      textCrap: 'bad',
-    }]);
-  });
-
   test('submit vote', async () => {
     await store.dispatch(clientStoreActions.submitVote({ indicator: 'making sense?', vote: 400 }));
 

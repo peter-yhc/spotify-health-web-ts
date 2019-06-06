@@ -1,5 +1,8 @@
 import adminStoreReducer from './admin-store-reducer';
 import adminStoreActions from './admin-store-actions';
+import { ServerApi } from '../../api';
+
+jest.mock('../../api');
 
 describe('health indicator reducer', () => {
   test('initial state', () => {
@@ -15,28 +18,30 @@ describe('health indicator reducer', () => {
   });
 
   test('vote submitted', () => {
-    const action = { type: 'VOTE_SUBMITTED', value: 'happy', indicator: 'indicate here', username: 'username' };
+    const action = adminStoreActions.voteSubmitted({ indicator: 'indicate here', value: 'happy', username: 'user123' });
 
-    expect(adminStoreReducer(undefined, action)).toEqual({
-      indicatorVotes: {
-        'indicate here': {
-          indicator: 'indicate here',
-          unhappyVotes: 0,
-          neutralVotes: 0,
-          happyVotes: 1,
-        },
+    expect(adminStoreReducer(undefined, action).indicatorVotes).toEqual({
+      'indicate here': {
+        indicator: 'indicate here',
+        unhappyVotes: 0,
+        neutralVotes: 0,
+        happyVotes: 1,
       },
     });
   });
 
-  test('session registered', () => {
-    const action = adminStoreActions.registerSession({ link: 'http', id: 'for you' });
+  test('session registered', async () => {
+    const dispatchSpy = jest.fn();
+    ServerApi.createSession.mockImplementation(async () => 'session id');
 
-    expect(adminStoreReducer(undefined, action)).toEqual({
+    await (adminStoreActions.registerSession()(dispatchSpy));
+    const reducerAction = dispatchSpy.mock.calls[0][0];
+
+    expect(adminStoreReducer(undefined, reducerAction)).toEqual({
       indicatorVotes: {},
       session: {
-        id: 'for you',
-        link: 'http',
+        id: 'session id',
+        link: 'http://localhost:/clients?session=session id',
       },
     });
   });

@@ -32,6 +32,7 @@ describe('heath indicator actions', () => {
     ServerApi.createSession.mockImplementation(async () => 'id id');
     await store.dispatch(actions.registerSession());
 
+    expect(SocketApi.initSocket).toBeCalledWith('id id');
     expect(store.getActions()).toEqual([{
       type: 'SESSION_REGISTERED',
       link: 'http://localhost:/clients?session=id id',

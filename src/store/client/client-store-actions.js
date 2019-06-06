@@ -1,13 +1,6 @@
 import { ServerApi, SocketApi } from '../../api';
 import store from '..';
 
-const displayHealthIndicator = ({ indicator, textAwesome, textCrap }) => ({
-  type: 'SHOW_HEALTH_INDICATOR',
-  indicator,
-  textAwesome,
-  textCrap,
-});
-
 const submitVote = ({ indicator, vote }) => (dispatch) => {
   const sessionId = store.getState().clientStoreReducer.session.id;
   const clientId = store.getState().clientStoreReducer.client.id;
@@ -30,7 +23,6 @@ const registerClientToSession = sessionId => async (dispatch) => {
 };
 
 const retrieveHealthIndicators = sessionId => async (dispatch) => {
-  // TODO: handle incorrect session ID
   const indicators = await ServerApi.retrieveHealthIndicators(sessionId);
   dispatch({
     type: 'SHOW_INDICATORS',
@@ -39,7 +31,6 @@ const retrieveHealthIndicators = sessionId => async (dispatch) => {
 };
 
 export default {
-  displayHealthIndicator,
   submitVote,
   registerClientToSession,
   retrieveHealthIndicators,

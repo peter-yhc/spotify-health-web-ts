@@ -1,9 +1,12 @@
 import clientStoreReducer from './client-store-reducer';
+import clientStoreActions from './client-store-actions';
+import { ServerApi } from '../../api';
+
+jest.mock('../../api');
 
 describe('client session reducer test', () => {
   test('initial state', () => {
-    const dummyAction = { type: 'dummy action' };
-    expect(clientStoreReducer(undefined, dummyAction)).toEqual({
+    expect(clientStoreReducer(undefined, {})).toEqual({
       session: {
         id: undefined,
         status: 'UNCONFIRMED',
@@ -16,28 +19,28 @@ describe('client session reducer test', () => {
     });
   });
 
-  test('show health indicator action', () => {
-    const newState = clientStoreReducer(undefined, {
-      type: 'SHOW_HEALTH_INDICATOR',
-      indicator: 'indicator',
-      textAwesome: 'text awesome',
-      textCrap: 'text crappy',
-    });
-    expect(newState.cards[0]).toEqual({
-      indicator: 'indicator',
-      textAwesome: 'text awesome',
-      textCrap: 'text crappy',
-    });
-  });
-
-  test('handle submitting votes - done', () => {
+  test('handle submitting votes', () => {
     const newState = clientStoreReducer(undefined, {
       type: 'SUBMIT_VOTE_DONE',
       indicator: 'is it monday?',
-      vote: 0,
+      vote: 'happy',
     });
     expect(newState.submissions).toEqual({
-      'is it monday?': 0,
+      'is it monday?': 'happy',
     });
+  });
+
+  test('handle showing indicators', async () => {
+    ServerApi.retrieveHealthIndicators.mockImplementation(() => ({
+      name: 'some mock object here, doesnt matter',
+    }));
+
+    const dispatchSpy = jest.fn();
+    await (clientStoreActions.retrieveHealthIndicators()(dispatchSpy));
+
+    expect(clientStoreReducer(undefined, dispatchSpy.mock.calls[0][0]).cards)
+      .toEqual({
+        name: 'some mock object here, doesnt matter',
+      });
   });
 });

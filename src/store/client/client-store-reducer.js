@@ -12,15 +12,6 @@ export const initialState = {
 
 const clientStoreReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SHOW_HEALTH_INDICATOR':
-      return {
-        ...state,
-        cards: [...state.cards, {
-          indicator: action.indicator,
-          textAwesome: action.textAwesome,
-          textCrap: action.textCrap,
-        }],
-      };
     case 'SUBMIT_VOTE_DONE':
       return {
         ...state,
