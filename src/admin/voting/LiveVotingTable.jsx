@@ -10,11 +10,10 @@ const LiveVotingTable = ({ dispatch, sessionId, indicatorVotes }) => {
   useEffect(() => {
     if (sessionId) {
       SocketApi.registerHook('vote accepted', (data) => {
-        console.log(data);
         dispatch(adminStoreActions.voteSubmitted({
           indicator: data.indicator,
           value: data.vote,
-          username: data.client,
+          client: data.client,
         }));
       });
     }
