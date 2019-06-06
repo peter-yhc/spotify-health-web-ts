@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { SocketApi } from '../../api';
 import { adminStoreActions } from '../../store/admin';
 
-const LiveVotingTable = ({ dispatch, sessionId, indicatorVotes }) => {
+export const LiveVotingTable = ({ dispatch, sessionId, indicatorVotes }) => {
   useEffect(() => {
     if (sessionId) {
       SocketApi.registerHook('vote accepted', (data) => {

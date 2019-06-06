@@ -1,11 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme/build';
+import { mount, shallow } from 'enzyme/build';
 import configureStore from 'redux-mock-store';
 import { TableBody, TableCell, TableHead, TableRow } from '@material-ui/core/index';
-import { LiveVotingTable } from './LiveVotingTable';
+import ConnectedLiveVotingTable, { LiveVotingTable } from './LiveVotingTable';
+import { SocketApi } from '../../api';
+import { adminStoreActions } from '../../store/admin';
 
 const mockStore = configureStore();
 const store = mockStore();
+
+jest.mock('../../api');
+jest.mock('../../store/admin');
 
 const indicatorVotesStub = [{
   indicator: 'Are you enjoying this app?',
@@ -33,5 +38,25 @@ describe('VotingPage tests', () => {
     expect(cells.at(1).text()).toBe('6');
     expect(cells.at(2).text()).toBe('9');
     expect(cells.at(3).text()).toBe('11');
+  });
+
+  test('registers hook to accept votes', () => {
+    const testStore = mockStore({
+      adminStoreReducer: {
+        indicatorVotes: indicatorVotesStub,
+        session: { id: '12312' },
+      },
+    });
+    testStore.dispatch = jest.fn();
+
+    mount(<ConnectedLiveVotingTable store={testStore} />);
+
+    // test name of hook
+    const callSpy = SocketApi.registerHook.mock.calls[0];
+    expect(callSpy[0]).toBe('vote accepted');
+
+    // test function used to register hook
+    callSpy[1]({ indicator: '', vote: '', client: '' });
+    expect(adminStoreActions.voteSubmitted).toBeCalled();
   });
 });
