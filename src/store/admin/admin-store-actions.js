@@ -1,10 +1,10 @@
 import { ServerApi, SocketApi } from '../../api';
 
-const voteSubmitted = ({ indicator, value, username }) => ({
+const voteSubmitted = ({ indicator, value, client }) => ({
   type: 'VOTE_SUBMITTED',
   indicator,
   value,
-  username,
+  client,
 });
 
 const registerSession = () => async (dispatch) => {

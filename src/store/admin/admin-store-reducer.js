@@ -1,10 +1,21 @@
 /* eslint-disable max-len */
 export const initialState = {
   indicatorVotes: {},
+  clientVoteHistory: new Map(),
   session: {
     id: undefined,
     link: 'Retrieving...',
   },
+};
+
+const deriveVoteKey = action => `${action.client} - ${action.indicator}`;
+
+const calculateChange = indicator => (old, current) => {
+  if (old === current) return 0;
+  let change = 0;
+  if (indicator === old) change -= 1;
+  if (indicator === current) change = 1;
+  return change;
 };
 
 const adminStoreReducer = (state = initialState, action) => {
@@ -19,9 +30,16 @@ const adminStoreReducer = (state = initialState, action) => {
       };
     }
     case 'VOTE_SUBMITTED': {
-      const unhappyChange = action.value === 'unhappy' ? 1 : 0;
-      const neutralChange = action.value === 'neutral' ? 1 : 0;
-      const happyChange = action.value === 'happy' ? 1 : 0;
+      const voteKey = deriveVoteKey(action);
+      const oldVote = state.clientVoteHistory.get(voteKey) || undefined;
+      const currentVote = action.value;
+
+      const unhappyChange = calculateChange('unhappy')(oldVote, currentVote);
+      const neutralChange = calculateChange('neutral')(oldVote, currentVote);
+      const happyChange = calculateChange('happy')(oldVote, currentVote);
+
+      const dirtyVoteHistory = new Map(state.clientVoteHistory);
+      dirtyVoteHistory.set(voteKey, action.value);
 
       const votes = state.indicatorVotes;
       return {
@@ -34,11 +52,13 @@ const adminStoreReducer = (state = initialState, action) => {
             happyVotes: happyChange + (votes[action.indicator] ? votes[action.indicator].happyVotes : 0),
           },
         }),
+        clientVoteHistory: dirtyVoteHistory,
       };
     }
     default:
       return state;
   }
 };
+
 
 export default adminStoreReducer;
