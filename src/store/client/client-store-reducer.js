@@ -12,13 +12,6 @@ export const initialState = {
 
 const clientStoreReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SUBMIT_VOTE_DONE':
-      return {
-        ...state,
-        submissions: Object.assign({}, state.submissions, {
-          [action.indicator]: action.vote,
-        }),
-      };
     case 'SHOW_INDICATORS':
       return {
         ...state,

@@ -3,19 +3,20 @@ import { mount, shallow } from 'enzyme';
 import { Button } from '@material-ui/core';
 import { VotingHealthIndicatorCard } from './VotingHealthIndicatorCard';
 import CardText from './components/CardText';
-import { clientStoreActions } from '../store/client';
+import { SocketApi } from '../api';
 
-jest.mock('../store/client/client-store-actions');
+jest.mock('../api');
 
 describe('indicator cards', () => {
   test('can show card texts', () => {
     const wrapper = shallow(
       <VotingHealthIndicatorCard
         classes={{ indicatorCard: '', indicatorTitle: '' }}
-        dispatch={jest.fn()}
         indicator="my indicator"
         textAwesome="I am awesome"
         textCrap="I am crappy"
+        sessionId=""
+        clientId=""
       />,
     );
 
@@ -25,20 +26,19 @@ describe('indicator cards', () => {
     expect(descriptions.at(1).props().text).toBe('I am crappy');
   });
 
-  test('can dispatch on click', (done) => {
-    const mockDispatch = () => {
-      expect(clientStoreActions.submitVote).toBeCalled();
-      done();
-    };
+  test('can submit vote to socket on click', () => {
     const wrapper = mount(
       <VotingHealthIndicatorCard
         classes={{ indicatorCard: '', indicatorTitle: '' }}
-        dispatch={mockDispatch}
-        indicator="my indicator"
-        textAwesome="I am awesome"
-        textCrap="I am crappy"
+        indicator=""
+        textAwesome=""
+        textCrap=""
+        sessionId=""
+        clientId=""
       />,
     );
     wrapper.find(Button).at(0).simulate('click');
+
+    expect(SocketApi.submitVote).toBeCalled();
   });
 });

@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import { Button, Icon, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 import { connect } from 'react-redux';
 import CardText from './components/CardText';
 import { clientStoreActions } from '../store/client';
+import { SocketApi } from '../api';
 
-const styles = {
+const styles = makeStyles({
   indicatorCard: {
     width: '300px',
     height: '400px',
@@ -37,15 +38,18 @@ const styles = {
   activeHappy: {
     color: 'green !important',
   },
-};
+});
 
-export const VotingHealthIndicatorCard = (props) => {
-  const { indicator, textAwesome, textCrap, classes, dispatch } = props;
+export const VotingHealthIndicatorCard = ({
+  indicator, textAwesome, textCrap, sessionId, clientId,
+}) => {
+  const classes = styles();
   const [activeButton, setActiveButton] = useState(-1);
 
-  const handleClick = (vote, button) => () => {
+  const handleClick = (vote, button) => (e) => {
+    e.preventDefault();
     setActiveButton(button);
-    dispatch(clientStoreActions.submitVote({ indicator, vote }));
+    SocketApi.submitVote(sessionId, clientId, { indicator, vote });
   };
 
   return (
@@ -73,15 +77,16 @@ export const VotingHealthIndicatorCard = (props) => {
 };
 
 VotingHealthIndicatorCard.propTypes = {
-  classes: PropTypes.object.isRequired,
   indicator: PropTypes.string.isRequired,
   textAwesome: PropTypes.string.isRequired,
   textCrap: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  sessionId: PropTypes.string.isRequired,
+  clientId: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  sessionId: state.session,
+  sessionId: state.clientStoreReducer.session.id,
+  clientId: state.clientStoreReducer.client.id,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(VotingHealthIndicatorCard));
+export default connect(mapStateToProps)(VotingHealthIndicatorCard);

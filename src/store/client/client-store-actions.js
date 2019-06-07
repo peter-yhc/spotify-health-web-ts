@@ -1,16 +1,5 @@
 import { ServerApi, SocketApi } from '../../api';
-import store from '..';
 
-const submitVote = ({ indicator, vote }) => (dispatch) => {
-  const sessionId = store.getState().clientStoreReducer.session.id;
-  const clientId = store.getState().clientStoreReducer.client.id;
-  SocketApi.submitVote(sessionId, clientId, { indicator, vote });
-  dispatch({
-    type: 'SUBMIT_VOTE_DONE',
-    indicator,
-    vote,
-  });
-};
 
 const registerClientToSession = sessionId => async (dispatch) => {
   const client = await ServerApi.registerClient(sessionId);
@@ -31,7 +20,6 @@ const retrieveHealthIndicators = sessionId => async (dispatch) => {
 };
 
 export default {
-  submitVote,
   registerClientToSession,
   retrieveHealthIndicators,
 };

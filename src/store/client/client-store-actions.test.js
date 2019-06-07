@@ -18,16 +18,6 @@ describe('heath indicator actions', () => {
     store.clearActions();
   });
 
-  test('submit vote', async () => {
-    await store.dispatch(clientStoreActions.submitVote({ indicator: 'making sense?', vote: 400 }));
-
-    expect(store.getActions()[0]).toEqual({
-      type: 'SUBMIT_VOTE_DONE',
-      indicator: 'making sense?',
-      vote: 400,
-    });
-  });
-
   test('retrieves health indicators', async () => {
     ServerApi.retrieveHealthIndicators.mockImplementation(async (param) => {
       expect(param).toBe('066161150');

@@ -19,17 +19,6 @@ describe('client session reducer test', () => {
     });
   });
 
-  test('handle submitting votes', () => {
-    const newState = clientStoreReducer(undefined, {
-      type: 'SUBMIT_VOTE_DONE',
-      indicator: 'is it monday?',
-      vote: 'happy',
-    });
-    expect(newState.submissions).toEqual({
-      'is it monday?': 'happy',
-    });
-  });
-
   test('handle showing indicators', async () => {
     ServerApi.retrieveHealthIndicators.mockImplementation(() => ({
       name: 'some mock object here, doesnt matter',
