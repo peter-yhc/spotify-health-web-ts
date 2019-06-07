@@ -13,7 +13,7 @@ const deriveVoteKey = action => `${action.client} - ${action.indicator}`;
 const calculateChange = indicator => (old, current) => {
   if (old === current) return 0;
   let change = 0;
-  if (indicator === old) change -= 1;
+  if (indicator === old) change = -1;
   if (indicator === current) change = 1;
   return change;
 };
@@ -44,14 +44,14 @@ const adminStoreReducer = (state = initialState, action) => {
       const votes = state.indicatorVotes;
       return {
         ...state,
-        indicatorVotes: Object.assign({}, votes, {
+        indicatorVotes: { ...votes,
           [action.indicator]: {
             indicator: action.indicator,
             unhappyVotes: unhappyChange + (votes[action.indicator] ? votes[action.indicator].unhappyVotes : 0),
             neutralVotes: neutralChange + (votes[action.indicator] ? votes[action.indicator].neutralVotes : 0),
             happyVotes: happyChange + (votes[action.indicator] ? votes[action.indicator].happyVotes : 0),
           },
-        }),
+        },
         clientVoteHistory: dirtyVoteHistory,
       };
     }

@@ -20,16 +20,14 @@ export const LiveVotingTable = ({ dispatch, sessionId, indicatorVotes }) => {
   }, [sessionId]);
 
   const generateTableBody = () => {
-    return indicatorVotes.map((result) => {
-      return (
-        <TableRow key={result.indicator}>
-          <TableCell>{result.indicator}</TableCell>
-          <TableCell>{result.unhappyVotes}</TableCell>
-          <TableCell>{result.neutralVotes}</TableCell>
-          <TableCell>{result.happyVotes}</TableCell>
-        </TableRow>
-      );
-    });
+    return indicatorVotes.map(result => (
+      <TableRow key={result.indicator}>
+        <TableCell>{result.indicator}</TableCell>
+        <TableCell>{result.unhappyVotes}</TableCell>
+        <TableCell>{result.neutralVotes}</TableCell>
+        <TableCell>{result.happyVotes}</TableCell>
+      </TableRow>
+    ));
   };
 
   return (
