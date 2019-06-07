@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { CircularProgress } from '@material-ui/core';
 import ConnectedClientSessionPage, { ClientSessionPage } from './ClientSessionPage';
-import HealthIndicatorCard from '../heath-indicators/VotingHealthIndicatorCard';
+import HealthIndicatorCard from '../health-indicators/VotingHealthIndicatorCard';
 import { clientStoreActions } from '../store/client';
 import { initialState as clientInitialState } from '../store/client/client-store-reducer';
 

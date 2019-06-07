@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import { CircularProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { VotingHealthIndicatorCard } from '../heath-indicators';
+import { VotingHealthIndicatorCard } from '../health-indicators';
 import { clientStoreActions } from '../store/client';
 import Theme from '../Theme';
 

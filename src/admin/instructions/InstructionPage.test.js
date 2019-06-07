@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core/index';
 import { Link } from 'react-router-dom';
 import { MemoryRouter } from 'react-router';
 import SelectionMenu from './InstructionPage';
-import { MiniHealthIndicatorCard } from '../../heath-indicators';
+import { MiniHealthIndicatorCard } from '../../health-indicators';
 
 describe('InstructionPage tests', () => {
   test('can show mini cards', () => {

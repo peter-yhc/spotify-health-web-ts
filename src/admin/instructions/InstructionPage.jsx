@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button/index';
 import { Link } from 'react-router-dom';
-import stubData from '../../heath-indicators/health-indicators-stub';
-import { MiniHealthIndicatorCard } from '../../heath-indicators';
+import stubData from '../../health-indicators/health-indicators-stub';
+import { MiniHealthIndicatorCard } from '../../health-indicators';
 import Theme from '../../Theme';
 
 const styles = {
