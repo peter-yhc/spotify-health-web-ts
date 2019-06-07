@@ -17,14 +17,14 @@ describe('heath indicator actions', () => {
     store.dispatch(actions.voteSubmitted({
       indicator: 'how are you feeling?',
       value: 'happy',
-      username: 'anon123',
+      client: 'anon123',
     }));
 
     expect(store.getActions()).toEqual([{
       type: 'VOTE_SUBMITTED',
       indicator: 'how are you feeling?',
       value: 'happy',
-      username: 'anon123',
+      client: 'anon123',
     }]);
   });
 
