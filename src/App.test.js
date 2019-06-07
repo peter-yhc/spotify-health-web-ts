@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { LandingPage } from './landing';
 import { AdminPage } from './admin';
-import { ClientSessionPage } from './client-sessions';
+import { ClientSessionPage } from './client';
 import { initialState as adminInitialState } from './store/admin/admin-store-reducer';
 import { initialState as clientInitialState } from './store/client/client-store-reducer';
 import { NotFoundPage } from './error';

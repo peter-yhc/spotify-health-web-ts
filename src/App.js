@@ -3,7 +3,7 @@ import React from 'react';
 import { NotFoundPage } from './error';
 import { LandingPage } from './landing';
 import { AdminPage } from './admin';
-import { ClientSessionPage } from './client-sessions';
+import { ClientSessionPage } from './client';
 
 function App() {
   return (
