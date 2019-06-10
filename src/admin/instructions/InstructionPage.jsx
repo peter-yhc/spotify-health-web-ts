@@ -42,7 +42,9 @@ const styles = makeStyles({
     backgroundColor: Theme.GREEN_OVERRIDE,
     color: Theme.WHITE_OVERRIDE,
     marginTop: '3vh !important',
-    fontWeight: 500,
+    '& span': {
+      fontWeight: 500,
+    },
   },
 });
 
