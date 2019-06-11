@@ -60,7 +60,7 @@ LiveVotingTable.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  indicatorVotes: Object.values(state.adminStoreReducer.indicatorVotes),
+  indicatorVotes: Object.values(state.adminStoreReducer.clientVotes),
   sessionId: state.adminStoreReducer.session.id,
 });
 

@@ -29,7 +29,7 @@ describe('heath indicator actions', () => {
   });
 
   test('registering session', async () => {
-    ServerApi.createSession.mockImplementation(async () => 'id id');
+    ServerApi.createSession.mockImplementation(async () => ({ sessionId: 'id id', indicators: [] }));
     await store.dispatch(actions.registerSession());
 
     expect(SocketApi.initSocket).toBeCalledWith('id id');
@@ -37,6 +37,7 @@ describe('heath indicator actions', () => {
       type: 'SESSION_REGISTERED',
       link: 'http://localhost:/clients?session=id id',
       id: 'id id',
+      indicators: [],
     }]);
   });
 });

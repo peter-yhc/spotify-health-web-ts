@@ -8,12 +8,13 @@ const voteSubmitted = ({ indicator, value, client }) => ({
 });
 
 const registerSession = () => async (dispatch) => {
-  const sessionId = await ServerApi.createSession();
+  const { sessionId, indicators } = await ServerApi.createSession();
   SocketApi.initSocket(sessionId);
 
   dispatch({
     type: 'SESSION_REGISTERED',
     id: sessionId,
+    indicators,
     link: `http://${window.location.hostname}:${window.location.port}/clients?session=${sessionId}`,
   });
 };

@@ -43,7 +43,7 @@ describe('VotingPage tests', () => {
   test('registers hook to accept votes', () => {
     const testStore = mockStore({
       adminStoreReducer: {
-        indicatorVotes: indicatorVotesStub,
+        clientVotes: indicatorVotesStub,
         session: { id: '12312' },
       },
     });

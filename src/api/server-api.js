@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const HOSTNAME = window.location.hostname
+const HOSTNAME = window.location.hostname;
 const PORT = window.location.port ? `:${+window.location.port + 1}` : '';
 
 const createSession = async () => {
@@ -13,12 +13,15 @@ const createSession = async () => {
       },
     })).data.id;
 
-    await axios({
+    const response = await axios({
       method: 'POST',
       url: `http://${HOSTNAME}${PORT}/creator/${sessionId}/done`,
     });
 
-    return sessionId;
+    return {
+      sessionId: response.data.id,
+      indicators: response.data.indicators,
+    };
   } catch (err) {
     // TODO: handle
     console.log(err);

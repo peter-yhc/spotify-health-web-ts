@@ -9,7 +9,7 @@ describe('health indicator reducer', () => {
     const action = { type: 'dummy action' };
 
     expect(adminStoreReducer(undefined, action)).toEqual({
-      indicatorVotes: {},
+      clientVotes: {},
       clientVoteHistory: new Map(),
       session: {
         id: undefined,
@@ -22,7 +22,7 @@ describe('health indicator reducer', () => {
     const action = adminStoreActions.voteSubmitted({ indicator: 'indicate here', value: 'happy', client: 'user123' });
 
     const state = adminStoreReducer(undefined, action);
-    expect(state.indicatorVotes).toEqual({
+    expect(state.clientVotes).toEqual({
       'indicate here': {
         indicator: 'indicate here',
         unhappyVotes: 0,
@@ -43,7 +43,7 @@ describe('health indicator reducer', () => {
     });
 
     const state = adminStoreReducer(adminStoreReducer(undefined, action1), action2);
-    expect(state.indicatorVotes).toEqual({
+    expect(state.clientVotes).toEqual({
       'indicate here': {
         indicator: 'indicate here',
         unhappyVotes: 0,
@@ -57,7 +57,10 @@ describe('health indicator reducer', () => {
 
   test('session registered', async () => {
     const dispatchSpy = jest.fn();
-    ServerApi.createSession.mockImplementation(async () => 'session id');
+    ServerApi.createSession.mockImplementation(async () => ({
+      sessionId: 'session id',
+      indicators: [{ name: 'abc' }, { name: 'xyz' }],
+    }));
 
     await (adminStoreActions.registerSession()(dispatchSpy));
     const reducerAction = dispatchSpy.mock.calls[0][0];
@@ -65,6 +68,21 @@ describe('health indicator reducer', () => {
     expect(adminStoreReducer(undefined, reducerAction).session).toEqual({
       id: 'session id',
       link: 'http://localhost:/clients?session=session id',
+    });
+
+    expect(adminStoreReducer(undefined, reducerAction).clientVotes).toEqual({
+      abc: {
+        indicator: 'abc',
+        happyVotes: 0,
+        neutralVotes: 0,
+        unhappyVotes: 0,
+      },
+      xyz: {
+        indicator: 'xyz',
+        happyVotes: 0,
+        neutralVotes: 0,
+        unhappyVotes: 0,
+      },
     });
   });
 });
