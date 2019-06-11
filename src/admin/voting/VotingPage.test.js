@@ -11,7 +11,6 @@ describe('voting page tests', () => {
     const wrapper = shallow(
       <VotingPage classes={classes} />,
     );
-
     expect(wrapper.find('Connect(LiveVotingTable)').length).toBe(1);
   });
 });
