@@ -11,7 +11,6 @@ const styles = makeStyles({
     padding: '0.5rem 0.5rem 0 0.5rem',
     position: 'relative',
     height: '50px',
-    width: '410px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',

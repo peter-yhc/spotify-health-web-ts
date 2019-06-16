@@ -19,7 +19,6 @@ const styles = {
   },
   main: {
     padding: '1em',
-    display: 'grid',
     gridColumn: '2 / 5',
   },
 };
