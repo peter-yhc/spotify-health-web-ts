@@ -8,7 +8,7 @@ import { Breadcrumb } from './layout-components';
 const mockStore = configureStore();
 const store = mockStore({
   adminSessionReducer: {
-    clientVotes: {},
+    voteTally: {},
   },
 });
 

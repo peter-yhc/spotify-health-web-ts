@@ -9,7 +9,7 @@ describe('health indicator reducer', () => {
     const action = { type: 'dummy action' };
 
     expect(adminStoreReducer(undefined, action)).toEqual({
-      clientVotes: {},
+      voteTally: {},
       clientVoteHistory: new Map(),
       session: {
         id: undefined,
@@ -22,7 +22,7 @@ describe('health indicator reducer', () => {
     const action = adminStoreActions.voteSubmitted({ indicator: 'indicate here', value: 'happy', client: 'user123' });
 
     const state = adminStoreReducer(undefined, action);
-    expect(state.clientVotes).toEqual({
+    expect(state.voteTally).toEqual({
       'indicate here': {
         indicator: 'indicate here',
         unhappyVotes: 0,
@@ -43,7 +43,7 @@ describe('health indicator reducer', () => {
     });
 
     const state = adminStoreReducer(adminStoreReducer(undefined, action1), action2);
-    expect(state.clientVotes).toEqual({
+    expect(state.voteTally).toEqual({
       'indicate here': {
         indicator: 'indicate here',
         unhappyVotes: 0,
@@ -70,7 +70,7 @@ describe('health indicator reducer', () => {
       link: 'http://localhost:/clients?session=session id',
     });
 
-    expect(adminStoreReducer(undefined, reducerAction).clientVotes).toEqual({
+    expect(adminStoreReducer(undefined, reducerAction).voteTally).toEqual({
       abc: {
         indicator: 'abc',
         happyVotes: 0,

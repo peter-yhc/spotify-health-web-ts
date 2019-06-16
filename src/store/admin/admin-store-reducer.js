@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 export const initialState = {
-  clientVotes: {},
+  voteTally: {},
   clientVoteHistory: new Map(),
   session: {
     id: undefined,
@@ -27,7 +27,7 @@ const adminStoreReducer = (state = initialState, action) => {
           id: action.id,
           link: action.link,
         },
-        clientVotes: action.indicators.reduce((acc, indicator) => {
+        voteTally: action.indicators.reduce((acc, indicator) => {
           acc[indicator.name] = {
             indicator: indicator.name,
             unhappyVotes: 0,
@@ -50,10 +50,10 @@ const adminStoreReducer = (state = initialState, action) => {
       const dirtyVoteHistory = new Map(state.clientVoteHistory);
       dirtyVoteHistory.set(voteKey, action.value);
 
-      const votes = state.clientVotes;
+      const votes = state.voteTally;
       return {
         ...state,
-        clientVotes: { ...votes,
+        voteTally: { ...votes,
           [action.indicator]: {
             indicator: action.indicator,
             unhappyVotes: unhappyChange + (votes[action.indicator] ? votes[action.indicator].unhappyVotes : 0),
