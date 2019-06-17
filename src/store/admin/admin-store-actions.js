@@ -19,7 +19,15 @@ const registerSession = () => async (dispatch) => {
   });
 };
 
+const clientJoined = ({ id, name }) => ({
+  type: 'CLIENT_JOINED',
+  id,
+  name,
+});
+
+
 export default {
   registerSession,
   voteSubmitted,
+  clientJoined,
 };

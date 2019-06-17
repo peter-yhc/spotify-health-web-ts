@@ -10,7 +10,7 @@ describe('health indicator reducer', () => {
 
     expect(adminStoreReducer(undefined, action)).toEqual({
       voteTally: {},
-      clientVoteHistory: new Map(),
+      previousVotes: new Map(),
       session: {
         id: undefined,
         link: 'Retrieving...',
@@ -31,7 +31,7 @@ describe('health indicator reducer', () => {
       },
     });
 
-    expect(state.clientVoteHistory).toEqual(new Map([['user123 - indicate here', 'happy']]));
+    expect(state.previousVotes).toEqual(new Map([['user123 - indicate here', 'happy']]));
   });
 
   test('correctly identifies when client changes his vote', () => {
@@ -52,7 +52,7 @@ describe('health indicator reducer', () => {
       },
     });
 
-    expect(state.clientVoteHistory).toEqual(new Map([['user123 - indicate here', 'neutral']]));
+    expect(state.previousVotes).toEqual(new Map([['user123 - indicate here', 'neutral']]));
   });
 
   test('session registered', async () => {

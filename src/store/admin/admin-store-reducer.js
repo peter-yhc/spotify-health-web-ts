@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 export const initialState = {
+  clients: {},
   voteTally: {},
-  clientVoteHistory: new Map(),
+  previousVotes: new Map(),
   session: {
     id: undefined,
     link: 'Retrieving...',
@@ -40,14 +41,14 @@ const adminStoreReducer = (state = initialState, action) => {
     }
     case 'VOTE_SUBMITTED': {
       const voteKey = deriveVoteKey(action);
-      const oldVote = state.clientVoteHistory.get(voteKey) || undefined;
+      const oldVote = state.previousVotes.get(voteKey) || undefined;
       const currentVote = action.value;
 
       const unhappyChange = calculateChange('unhappy')(oldVote, currentVote);
       const neutralChange = calculateChange('neutral')(oldVote, currentVote);
       const happyChange = calculateChange('happy')(oldVote, currentVote);
 
-      const dirtyVoteHistory = new Map(state.clientVoteHistory);
+      const dirtyVoteHistory = new Map(state.previousVotes);
       dirtyVoteHistory.set(voteKey, action.value);
 
       const votes = state.voteTally;
@@ -61,7 +62,13 @@ const adminStoreReducer = (state = initialState, action) => {
             happyVotes: happyChange + (votes[action.indicator] ? votes[action.indicator].happyVotes : 0),
           },
         },
-        clientVoteHistory: dirtyVoteHistory,
+        previousVotes: dirtyVoteHistory,
+      };
+    }
+    case 'CLIENT_JOINED': {
+      return {
+        ...state,
+        clients: { ...state.clients, [action.id]: { id: action.id, name: action.name } },
       };
     }
     default:

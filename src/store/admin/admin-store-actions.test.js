@@ -40,4 +40,14 @@ describe('heath indicator actions', () => {
       indicators: [],
     }]);
   });
+
+  test('client joined', () => {
+    store.dispatch(actions.clientJoined({ id: 18421, name: 'Agent Smith' }));
+
+    expect(store.getActions()).toEqual([{
+      type: 'CLIENT_JOINED',
+      id: 18421,
+      name: 'Agent Smith',
+    }]);
+  });
 });
