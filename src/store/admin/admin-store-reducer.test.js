@@ -9,6 +9,7 @@ describe('health indicator reducer', () => {
     const action = { type: 'dummy action' };
 
     expect(adminStoreReducer(undefined, action)).toEqual({
+      clients: {},
       voteTally: {},
       previousVotes: new Map(),
       session: {
@@ -67,7 +68,7 @@ describe('health indicator reducer', () => {
 
     expect(adminStoreReducer(undefined, reducerAction).session).toEqual({
       id: 'session id',
-      link: 'http://localhost:/clients?session=session id',
+      link: 'http://localhost:/clients/voting?session=session id',
     });
 
     expect(adminStoreReducer(undefined, reducerAction).voteTally).toEqual({

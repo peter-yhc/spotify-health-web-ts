@@ -11,7 +11,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/admin" component={AdminPage} />
-        <Route path="/clients" exact component={ClientSessionPage} />
+        <Route path="/clients" component={ClientSessionPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </React.Fragment>

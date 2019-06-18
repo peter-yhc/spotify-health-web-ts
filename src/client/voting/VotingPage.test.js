@@ -1,15 +1,16 @@
-import { mount, shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme/build';
 import React from 'react';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { CircularProgress } from '@material-ui/core';
-import ConnectedClientSessionPage, { ClientSessionPage } from './ClientSessionPage';
-import HealthIndicatorCard from '../health-indicators/VotingHealthIndicatorCard';
-import { clientStoreActions } from '../store/client';
-import { initialState as clientInitialState } from '../store/client/client-store-reducer';
+import { CircularProgress } from '@material-ui/core/index';
+import ConnectedVotingPage, { VotingPage } from './VotingPage';
+import HealthIndicatorCard from '../../health-indicators/VotingHealthIndicatorCard';
+import { clientStoreActions } from '../../store/client';
+import { initialState as clientInitialState } from '../../store/client/client-store-reducer';
+import { Breadcrumb } from '../../admin/layout-components';
 
-jest.mock('../store/client');
+jest.mock('../../store/client');
 
 const mockClasses = { header: '', main: '', location: '' };
 const mockStore = configureStore([thunk]);
@@ -17,20 +18,20 @@ const mockStore = configureStore([thunk]);
 describe('SessionsPage component', () => {
   test('render page', () => {
     const wrapper = shallow(
-      <ClientSessionPage
+      <VotingPage
         classes={mockClasses}
         cards={[]}
         location={{ search: '?session=91567904' }}
         dispatch={jest.fn()}
       />,
     );
-    expect(wrapper.find('header').text()).toContain('Client Session');
+    expect(wrapper.find(Breadcrumb).length).toBe(1);
     expect(wrapper.find(HealthIndicatorCard).length).toBe(0);
   });
 
   test('can render progress if cards not present', () => {
     const wrapper = shallow(
-      <ClientSessionPage
+      <VotingPage
         classes={mockClasses}
         cards={[]}
         location={{ search: '?session=91567904' }}
@@ -43,7 +44,7 @@ describe('SessionsPage component', () => {
 
   test('can render indicators if card present', () => {
     const wrapper = shallow(
-      <ClientSessionPage
+      <VotingPage
         classes={mockClasses}
         cards={[{ indicator: 'a', textAwesome: 'awesome', textCrap: 'crappy' }]}
         location={{ search: '?session=91567904' }}
@@ -70,10 +71,10 @@ describe('SessionsPage component', () => {
 
     mount(
       <Provider store={mockedStore}>
-        <ConnectedClientSessionPage
+        <ConnectedVotingPage
           classes={mockClasses}
           cards={[]}
-          location={{ search: '?session=91567904' }}
+          location={{ search: '?session=91567904', pathname: '/clients/voting' }}
         />
       </Provider>,
     );
@@ -91,10 +92,10 @@ describe('SessionsPage component', () => {
 
     mount(
       <Provider store={mockedStore}>
-        <ConnectedClientSessionPage
+        <ConnectedVotingPage
           classes={mockClasses}
           cards={[]}
-          location={{ search: '?session=91567904' }}
+          location={{ search: '?session=91567904', pathname: '/clients/voting' }}
         />
       </Provider>,
     );

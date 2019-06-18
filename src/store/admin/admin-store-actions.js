@@ -15,7 +15,7 @@ const registerSession = () => async (dispatch) => {
     type: 'SESSION_REGISTERED',
     id: sessionId,
     indicators,
-    link: `http://${window.location.hostname}:${window.location.port}/clients?session=${sessionId}`,
+    link: `http://${window.location.hostname}:${window.location.port}/clients/voting?session=${sessionId}`,
   });
 };
 
