@@ -39,7 +39,7 @@ export const Breadcrumb = (props) => {
     <React.Fragment>
       <section className={classes.container}>
         <span className={classes.breadCrumbs}>
-          Admin Panel
+          Facilitator
         </span>
         <Icon>chevron_right</Icon>
         <span className={isActive('instructions')}>

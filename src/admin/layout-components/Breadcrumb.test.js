@@ -15,7 +15,7 @@ describe('Breadcrumb test', () => {
     );
 
     const texts = wrapper.find('span');
-    expect(texts.at(0).text()).toBe('Admin Panel');
+    expect(texts.at(0).text()).toBe('Facilitator');
     expect(texts.at(1).text()).toBe('Instructions');
     expect(texts.at(2).text()).toBe('Voting');
     expect(texts.at(3).text()).toBe('Summary');
