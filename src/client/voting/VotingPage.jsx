@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { VotingHealthIndicatorCard } from '../../health-indicators';
 import { clientStoreActions } from '../../store/client';
 import Theme from '../../Theme';
-import { Breadcrumb } from '../../admin/layout-components';
+import { Breadcrumb } from '../layout-components';
 
 const styles = makeStyles({
   container: {
