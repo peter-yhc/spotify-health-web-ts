@@ -6,7 +6,7 @@ const styles = makeStyles({
   section: {
     width: '50%',
     boxSizing: 'border-box',
-    padding: '1.5em',
+    padding: '30px',
     display: 'grid',
     gridTemplateColumns: '1fr',
     gridTemplateRows: '2fr 7fr 1fr',
