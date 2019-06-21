@@ -20,7 +20,7 @@ const styles = makeStyles({
     },
   },
   title: {
-    fontFamily: '"Montserrat", "OpenSans", sans-serif',
+    fontFamily: '"Montserrat", "Open Sans", sans-serif',
     textTransform: 'uppercase',
     marginTop: '0.7em',
   },
