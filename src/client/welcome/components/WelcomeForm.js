@@ -26,6 +26,19 @@ const styles = makeStyles({
     width: '75%',
     fontSize: '0.9rem',
   },
+  button: {
+    width: '100px',
+    marginLeft: 'auto',
+    marginRight: '36px',
+    color: Theme.WHITE,
+    backgroundColor: Theme.GREEN,
+    '&:hover': {
+      backgroundColor: Theme.GREEN_DARKER,
+    },
+    '& span': {
+      fontWeight: 500,
+    },
+  },
 });
 
 const WelcomeForm = () => {
@@ -65,7 +78,7 @@ const WelcomeForm = () => {
           margin="normal"
         />
       </form>
-      <Button>Continue</Button>
+      <Button className={classes.button} variant="contained" href="#">Continue</Button>
     </section>
   );
 };
