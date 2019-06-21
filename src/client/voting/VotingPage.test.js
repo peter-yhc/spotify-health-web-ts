@@ -8,7 +8,7 @@ import ConnectedVotingPage, { VotingPage } from './VotingPage';
 import HealthIndicatorCard from '../../health-indicators/VotingHealthIndicatorCard';
 import { clientStoreActions } from '../../store/client';
 import { initialState as clientInitialState } from '../../store/client/client-store-reducer';
-import { Breadcrumb } from '../../admin/layout-components';
+import { Breadcrumb } from '../layout-components';
 
 jest.mock('../../store/client');
 
