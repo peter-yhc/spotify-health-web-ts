@@ -1,34 +1,42 @@
 import React from 'react';
 import { makeStyles, Paper } from '@material-ui/core';
-import WelcomeDescription from './components/WelcomeDescription';
+import PropTypes from 'prop-types';
 import WelcomeForm from './components/WelcomeForm';
+import WelcomeTitle from './components/WelcomeTitle';
 
 const styles = makeStyles({
   container: {
-    display: 'grid',
-    gridTemplateColumns: 'auto 700px auto',
-    gridTemplateRows: 'auto 400px auto',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     height: '100vh',
   },
   frame: {
+    width: '450px',
+    height: '500px',
     gridColumn: '2 /3',
     gridRow: '2 / 3',
-    display: 'flex',
-    flexDirection: 'row',
+    display: 'grid',
+    gridTemplateRows: '60px auto',
+    alignItems: 'center',
   },
 });
 
-const WelcomePage = () => {
+const WelcomePage = ({ location }) => {
   const classes = styles();
 
   return (
-    <div className={classes.container}>
+    <article className={classes.container}>
       <Paper className={classes.frame}>
-        <WelcomeDescription />
-        <WelcomeForm />
+        <WelcomeTitle />
+        <WelcomeForm forwardLink={location.search} />
       </Paper>
-    </div>
+    </article>
   );
+};
+
+WelcomePage.propTypes = {
+  location: PropTypes.object.isRequired,
 };
 
 export default WelcomePage;

@@ -1,21 +1,24 @@
 import { Button, makeStyles, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Theme from '../../../Theme';
+import UserCache, { Account } from '../../mixin/user-cache';
 
 const styles = makeStyles({
   section: {
     color: Theme.BLACK,
-    width: '50%',
     boxSizing: 'border-box',
-    padding: '30px',
+    padding: '1em',
     display: 'grid',
     gridTemplateColumns: '1fr',
-    gridTemplateRows: '2fr 7fr 1fr',
+    gridTemplateRows: '60px auto 50px',
+    alignItems: 'center',
+    height: '100%',
   },
-  title: {
-    fontFamily: '"Montserrat", "OpenSans", sans-serif',
-    textTransform: 'uppercase',
+  intro: {
     marginTop: '0.7em',
+    textAlign: 'left',
   },
   sectionForm: {
     gridRow: '2 / 3',
@@ -23,13 +26,16 @@ const styles = makeStyles({
   textField: {
     marginTop: 0,
     marginBottom: '1em',
-    width: '75%',
+    width: '100%',
     fontSize: '0.9rem',
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   button: {
     width: '100px',
-    marginLeft: 'auto',
-    marginRight: '36px',
     color: Theme.WHITE,
     backgroundColor: Theme.GREEN,
     '&:hover': {
@@ -41,20 +47,31 @@ const styles = makeStyles({
   },
 });
 
-const WelcomeForm = () => {
+const WelcomeForm = ({ forwardLink }) => {
   const classes = styles();
+  const account = UserCache.getAccountDetails();
 
-  const [firstName, updateFirstName] = useState(undefined);
-  const [surname, updateSurname] = useState(undefined);
-  const [alias, updateAlias] = useState(undefined);
+  const [firstName, updateFirstName] = useState(account.firstname);
+  const [surname, updateSurname] = useState(account.surname);
+  const [alias, updateAlias] = useState(account.alias);
 
   const handleChange = update => (event) => {
     update(event.target.value);
   };
 
+  const handleSubmit = () => {
+    UserCache.setAccountDetails(new Account(firstName, surname, alias));
+  };
+
   return (
     <section className={classes.section}>
-      <h6 className={classes.title}>Profile</h6>
+      <div>
+        <p className={classes.intro}>
+          Welcome to your team’s health check. Before we
+          get started please let your facilitator who you are. You may
+          opt for an alias instead if you wish to remain anonymous.
+        </p>
+      </div>
       <form className={classes.sectionForm} noValidate autoComplete="off">
         <TextField
           label="First Name"
@@ -70,6 +87,7 @@ const WelcomeForm = () => {
           onChange={handleChange(updateSurname)}
           margin="normal"
         />
+        <span>OR</span>
         <TextField
           label="Alias (Optional)"
           className={classes.textField}
@@ -78,9 +96,24 @@ const WelcomeForm = () => {
           margin="normal"
         />
       </form>
-      <Button className={classes.button} variant="contained" href="#">Continue</Button>
+      <div className={classes.buttonContainer}>
+        <Button
+          className={classes.button}
+          variant="contained"
+          href="#"
+          onClick={handleSubmit}
+          component={Link}
+          to={`/clients/voting/${forwardLink}`}
+        >
+          Continue
+        </Button>
+      </div>
     </section>
   );
+};
+
+WelcomeForm.propTypes = {
+  forwardLink: PropTypes.string.isRequired,
 };
 
 export default WelcomeForm;
