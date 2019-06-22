@@ -10,7 +10,11 @@ const setAccountDetails = (account) => {
 
 const getAccountDetails = () => {
   const details = JSON.parse(localStorage.getItem('shw.account'));
-  return new Account(details.firstname, details.surname, details.alias);
+  return new Account(
+    details && details.firstname ? details.firstname : undefined,
+    details && details.surname ? details.surname : undefined,
+    details && details.alias ? details.alias : undefined,
+  );
 };
 
 export default {
