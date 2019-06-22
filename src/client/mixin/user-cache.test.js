@@ -1,6 +1,10 @@
 import UserCache, { Account } from './user-cache';
 
 describe('User Cache', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
   test('can set account name', () => {
     const account = new Account('first', 'last', 'alias');
     UserCache.setAccountDetails(account);

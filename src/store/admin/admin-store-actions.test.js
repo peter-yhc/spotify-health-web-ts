@@ -35,7 +35,7 @@ describe('heath indicator actions', () => {
     expect(SocketApi.initSocket).toBeCalledWith('id id');
     expect(store.getActions()).toEqual([{
       type: 'SESSION_REGISTERED',
-      link: 'http://localhost:/clients/voting?session=id id',
+      link: 'http://localhost:/clients/welcome?session=id id',
       id: 'id id',
       indicators: [],
     }]);
