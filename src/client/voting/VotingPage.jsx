@@ -7,6 +7,7 @@ import { VotingHealthIndicatorCard } from '../../health-indicators';
 import { clientStoreActions } from '../../store/client';
 import Theme from '../../Theme';
 import { Breadcrumb } from '../layout-components';
+import UserCache from '../mixin/user-cache';
 
 const styles = makeStyles({
   container: {
@@ -41,7 +42,17 @@ export const VotingPage = ({ cards, location, dispatch, clientId }) => {
   const sessionId = location.search.split('session=')[1];
 
   useEffect(() => {
-    dispatch(clientStoreActions.registerClientToSession(sessionId));
+    const account = UserCache.getAccountDetails();
+
+    const username = account.firstname && account.surname
+      ? `${account.firstname} ${account.surname}`
+      : account.alias;
+
+    dispatch(clientStoreActions.registerClientToSession({
+      sessionId,
+      clientId: account.id,
+      clientName: username,
+    }));
   }, [dispatch, sessionId]);
 
   useEffect(() => {

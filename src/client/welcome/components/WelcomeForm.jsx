@@ -60,7 +60,7 @@ const WelcomeForm = ({ forwardLink }) => {
   };
 
   const handleSubmit = () => {
-    UserCache.setAccountDetails(new Account(firstName, surname, alias));
+    UserCache.setAccountDetails(new Account(firstName, surname, alias, account.id));
   };
 
   return (

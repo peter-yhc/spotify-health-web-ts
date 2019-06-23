@@ -1,7 +1,8 @@
-export function Account(firstname, surname, alias) {
+export function Account(firstname, surname, alias, id) {
   this.firstname = firstname;
   this.surname = surname;
   this.alias = alias;
+  this.id = id;
 }
 
 const setAccountDetails = (account) => {
@@ -14,6 +15,7 @@ const getAccountDetails = () => {
     details && details.firstname ? details.firstname : undefined,
     details && details.surname ? details.surname : undefined,
     details && details.alias ? details.alias : undefined,
+    details && details.id ? details.id : undefined,
   );
 };
 

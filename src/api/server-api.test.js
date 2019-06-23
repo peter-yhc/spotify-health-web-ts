@@ -29,11 +29,12 @@ describe('Server API tests', () => {
     axios.mockImplementation((params) => {
       expect(params.method).toBe('PUT');
       expect(params.url).toContain('sessions/bleh/participants');
-      expect(params.data.name).toBeTruthy();
-      return ({ data: { id: 'client id', name: 'client name' } });
+      expect(params.data.id).toBe('client id');
+      expect(params.data.name).toBe('client name');
+      return { data: 'stub' };
     });
 
-    await ServerApi.registerClient('bleh');
+    await ServerApi.registerClient({ sessionId: 'bleh', clientId: 'client id', clientUsername: 'client name' });
   });
 
   test('can retrieve indicators', async () => {

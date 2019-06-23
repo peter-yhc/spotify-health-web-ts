@@ -33,12 +33,13 @@ const retrieveHealthIndicators = async (sessionId) => {
   return (await axios.get(`http://${HOSTNAME}${PORT}/sessions/${sessionId}`)).data.indicators;
 };
 
-const registerClient = async (sessionId) => {
+const registerClient = async ({ sessionId, clientId, clientName }) => {
   const response = await axios({
     method: 'PUT',
     url: `http://${HOSTNAME}${PORT}/sessions/${sessionId}/participants`,
     data: {
-      name: Math.random().toString(36).slice(2),
+      id: clientId,
+      name: clientName,
     },
   });
   return response.data;
