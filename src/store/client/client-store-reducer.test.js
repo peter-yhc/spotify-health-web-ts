@@ -9,13 +9,11 @@ describe('client session reducer test', () => {
     expect(clientStoreReducer(undefined, {})).toEqual({
       session: {
         id: undefined,
-        status: 'UNCONFIRMED',
-      },
-      client: {
-        id: undefined,
+        passkey: undefined,
       },
       cards: [],
       submissions: {},
+      username: undefined,
     });
   });
 
@@ -25,7 +23,9 @@ describe('client session reducer test', () => {
     }));
 
     const dispatchSpy = jest.fn();
-    await (clientStoreActions.retrieveHealthIndicators()(dispatchSpy));
+    const sessionId = '1';
+    const passkey = '2';
+    await (clientStoreActions.retrieveHealthIndicators({ sessionId, passkey })(dispatchSpy));
 
     expect(clientStoreReducer(undefined, dispatchSpy.mock.calls[0][0]).cards)
       .toEqual({

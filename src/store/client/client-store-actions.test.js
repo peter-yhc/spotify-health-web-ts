@@ -1,7 +1,7 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import clientStoreActions from './client-store-actions';
-import { ServerApi, SocketApi } from '../../api';
+import { ServerApi } from '../../api';
 
 const mockStore = configureStore([thunk]);
 const store = mockStore({
@@ -20,7 +20,7 @@ describe('heath indicator actions', () => {
 
   test('retrieves health indicators', async () => {
     ServerApi.retrieveHealthIndicators.mockImplementation(async (param) => {
-      expect(param).toBe('066161150');
+      expect(param).toEqual({ sessionId: '9999', passkey: '0000' });
       return [
         {
           indicator: '1',
@@ -30,7 +30,10 @@ describe('heath indicator actions', () => {
       ];
     });
 
-    await store.dispatch(clientStoreActions.retrieveHealthIndicators('066161150'));
+    await store.dispatch(clientStoreActions.retrieveHealthIndicators({
+      sessionId: '9999',
+      passkey: '0000',
+    }));
 
     const action = store.getActions()[0];
     expect(action.type).toBe('SHOW_INDICATORS');
@@ -41,15 +44,18 @@ describe('heath indicator actions', () => {
 
   test('registers clients', async () => {
     ServerApi.registerClient.mockImplementation(async (sessionId) => {
-      expect(sessionId).toBe('155239283');
-      return ({ id: 'some client id' });
+      expect(sessionId).toEqual({ sessionId: '9999', username: 'bob' });
+      return 'abcxyz';
     });
 
-    await store.dispatch(clientStoreActions.registerClientToSession('155239283'));
+    await store.dispatch(clientStoreActions.registerClientToSession({
+      sessionId: '9999',
+      username: 'bob',
+    }));
 
     const action = store.getActions()[0];
     expect(action.type).toBe('CLIENT_REGISTERED');
-    expect(action.sessionId).toBe('155239283');
-    expect(action.clientId).toBe('some client id');
+    expect(action.sessionId).toBe('9999');
+    expect(action.passkey).toBe('abcxyz');
   });
 });

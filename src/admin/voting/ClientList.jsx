@@ -8,11 +8,17 @@ import { adminStoreActions } from '../../store/admin';
 
 const styles = makeStyles({
   container: {
+    padding: '0.5rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  clientList: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+    marginTop: '0.5rem',
   },
   name: {
-    padding: '0.5em',
     textAlign: 'left',
   },
 });
@@ -39,7 +45,10 @@ export const ClientList = ({ dispatch, sessionId, clients }) => {
 
   return (
     <Paper className={classes.container}>
-      {renderClients()}
+      <span>Participants</span>
+      <div className={classes.clientList}>
+        {renderClients()}
+      </div>
     </Paper>
   );
 };

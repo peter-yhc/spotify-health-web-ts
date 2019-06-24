@@ -1,12 +1,12 @@
 import React from 'react';
-import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import Icon from '@material-ui/core/Icon/index';
+import { makeStyles } from '@material-ui/core';
+import { connect } from 'react-redux';
 import Theme from '../../Theme';
 
-const styles = {
+const styles = makeStyles({
   container: {
-    width: '100%',
     height: '36px',
     backgroundColor: Theme.BLACK,
     color: Theme.WHITE,
@@ -23,16 +23,35 @@ const styles = {
   active: {
     color: Theme.BLUE,
   },
-};
+  userContainer: {
+    marginRight: '10px',
+    marginLeft: 'auto',
+    display: 'flex',
+    alignItems: 'center',
+  },
+});
 
-export const Breadcrumb = (props) => {
-  const { classes, location } = props;
+export const Breadcrumb = ({ location, username }) => {
+  const classes = styles();
 
   const isActive = (name) => {
     if (location.includes(name)) {
       return [classes.breadCrumbs, classes.active].join(' ');
     }
     return classes.breadCrumbs;
+  };
+
+  const showLogin = () => {
+    if (username) {
+      return (
+        <div className={classes.userContainer}>
+          <Icon>account_circle</Icon>
+          &nbsp;
+          <span className={classes.breadCrumbs}>{username}</span>
+        </div>
+      );
+    }
+    return (<div />);
   };
 
   return (
@@ -53,14 +72,19 @@ export const Breadcrumb = (props) => {
         <span className={isActive('summary')}>
           Summary
         </span>
+        {showLogin()}
       </section>
     </React.Fragment>
   );
 };
 
 Breadcrumb.propTypes = {
-  classes: PropTypes.object.isRequired,
   location: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(Breadcrumb);
+const mapStateToProps = state => ({
+  username: state.clientStoreReducer.username,
+});
+
+export default connect(mapStateToProps)(Breadcrumb);

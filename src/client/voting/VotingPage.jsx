@@ -24,21 +24,8 @@ const styles = makeStyles({
   },
 });
 
-const STATE = {
-  WAITING_DATA: 'waiting data',
-  READY: 'loaded',
-};
-
 export const VotingPage = ({ dispatch, cards, session }) => {
   const classes = styles();
-  const [state, updateState] = useState(STATE.WAITING_DATA);
-  useEffect(() => {
-    if (!cards || cards.length === 0) {
-      updateState(STATE.WAITING_DATA);
-    } else {
-      updateState(STATE.READY);
-    }
-  }, [cards]);
 
   useEffect(() => {
     dispatch(clientStoreActions.retrieveHealthIndicators(
@@ -60,7 +47,7 @@ export const VotingPage = ({ dispatch, cards, session }) => {
   return (
     <main className={classes.main}>
       {(() => {
-        if (state === STATE.WAITING_DATA) {
+        if (!cards || cards.length === 0) {
           return (<CircularProgress className={classes.progress} />);
         }
         return showCards();

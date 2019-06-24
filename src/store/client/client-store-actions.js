@@ -11,7 +11,7 @@ const registerClientToSession = ({ sessionId, username }) => async (dispatch) =>
   });
 };
 
-const retrieveHealthIndicators = ({sessionId, passkey}) => async (dispatch) => {
+const retrieveHealthIndicators = ({ sessionId, passkey }) => async (dispatch) => {
   const indicators = await ServerApi.retrieveHealthIndicators({ sessionId, passkey });
   dispatch({
     type: 'SHOW_INDICATORS',
