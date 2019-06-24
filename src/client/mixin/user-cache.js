@@ -3,6 +3,12 @@ export function Account(firstname, surname, alias, id) {
   this.surname = surname;
   this.alias = alias;
   this.id = id;
+
+  this.getUsername = function getUsername() {
+    return firstname && surname
+      ? `${firstname} ${surname}`
+      : alias;
+  };
 }
 
 const setAccountDetails = (account) => {

@@ -32,7 +32,7 @@ export const SessionGenerator = ({ dispatch, sessionId, sessionLink }) => {
 
   useEffect(() => {
     dispatch(adminStoreActions.registerSession());
-  }, []);
+  }, [dispatch]);
 
   const handleClick = () => {
     if (!sessionId) {

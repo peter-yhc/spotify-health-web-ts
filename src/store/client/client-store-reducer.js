@@ -3,11 +3,9 @@ export const initialState = {
   submissions: {},
   session: {
     id: undefined,
-    status: 'UNCONFIRMED',
+    passkey: undefined,
   },
-  client: {
-    id: undefined,
-  },
+  username: undefined,
 };
 
 const clientStoreReducer = (state = initialState, action) => {
@@ -20,14 +18,16 @@ const clientStoreReducer = (state = initialState, action) => {
     case 'CLIENT_REGISTERED': {
       return {
         ...state,
-        client: {
-          ...state.client,
-          id: action.clientId,
-        },
         session: {
-          ...state.session,
           id: action.sessionId,
+          passkey: action.passkey,
         },
+      };
+    }
+    case 'SET_USERNAME': {
+      return {
+        ...state,
+        username: action.username,
       };
     }
     default:

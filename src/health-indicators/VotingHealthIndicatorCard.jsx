@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { connect } from 'react-redux';
 import CardText from './components/CardText';
-import { clientStoreActions } from '../store/client';
 import { SocketApi } from '../api';
 
 const styles = makeStyles({
@@ -41,7 +40,7 @@ const styles = makeStyles({
 });
 
 export const VotingHealthIndicatorCard = ({
-  indicator, textAwesome, textCrap, sessionId, clientId,
+  indicator, textAwesome, textCrap, sessionId, username,
 }) => {
   const classes = styles();
   const [activeButton, setActiveButton] = useState(-1);
@@ -49,7 +48,7 @@ export const VotingHealthIndicatorCard = ({
   const handleClick = (vote, button) => (e) => {
     e.preventDefault();
     setActiveButton(button);
-    SocketApi.submitVote(sessionId, clientId, { indicator, vote });
+    SocketApi.submitVote(sessionId, username, { indicator, vote });
   };
 
   return (
@@ -62,10 +61,18 @@ export const VotingHealthIndicatorCard = ({
         <CardText text={textCrap} variant="bad" />
       </section>
       <footer className={classes.buttonContainer}>
-        <Button className={activeButton === 0 ? classes.activeUnhappy : ''} onClick={handleClick('unhappy', 0)} href="#">
+        <Button
+          className={activeButton === 0 ? classes.activeUnhappy : ''}
+          onClick={handleClick('unhappy', 0)}
+          href="#"
+        >
           <Icon>sentiment_very_dissatisfied</Icon>
         </Button>
-        <Button className={activeButton === 1 ? classes.activeNeutral : ''} onClick={handleClick('neutral', 1)} href="#">
+        <Button
+          className={activeButton === 1 ? classes.activeNeutral : ''}
+          onClick={handleClick('neutral', 1)}
+          href="#"
+        >
           <Icon>sentiment_neutral</Icon>
         </Button>
         <Button className={activeButton === 2 ? classes.activeHappy : ''} onClick={handleClick('happy', 2)} href="#">
@@ -81,12 +88,12 @@ VotingHealthIndicatorCard.propTypes = {
   textAwesome: PropTypes.string.isRequired,
   textCrap: PropTypes.string.isRequired,
   sessionId: PropTypes.string.isRequired,
-  clientId: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
   sessionId: state.clientStoreReducer.session.id,
-  clientId: state.clientStoreReducer.client.id,
+  username: state.clientStoreReducer.username,
 });
 
 export default connect(mapStateToProps)(VotingHealthIndicatorCard);

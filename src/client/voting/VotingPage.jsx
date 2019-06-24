@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { CircularProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
@@ -6,21 +6,8 @@ import { connect } from 'react-redux';
 import { VotingHealthIndicatorCard } from '../../health-indicators';
 import { clientStoreActions } from '../../store/client';
 import Theme from '../../Theme';
-import { Breadcrumb } from '../layout-components';
-import UserCache from '../mixin/user-cache';
 
 const styles = makeStyles({
-  container: {
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    gridTemplateRows: '100px calc(100vh - 100px)',
-  },
-  header: {
-    gridRow: '1 / 2',
-  },
-  title: {
-    marginTop: '30px',
-  },
   main: {
     padding: '1em',
     gridRow: '2 / 3',
@@ -37,32 +24,29 @@ const styles = makeStyles({
   },
 });
 
-export const VotingPage = ({ cards, location, dispatch, clientId }) => {
+const STATE = {
+  WAITING_DATA: 'waiting data',
+  READY: 'loaded',
+};
+
+export const VotingPage = ({ dispatch, cards, session }) => {
   const classes = styles();
-  const sessionId = location.search.split('session=')[1];
-
+  const [state, updateState] = useState(STATE.WAITING_DATA);
   useEffect(() => {
-    const account = UserCache.getAccountDetails();
-
-    const username = account.firstname && account.surname
-      ? `${account.firstname} ${account.surname}`
-      : account.alias;
-
-    dispatch(clientStoreActions.registerClientToSession({
-      sessionId,
-      clientId: account.id,
-      clientName: username,
-    }));
-  }, [dispatch, sessionId]);
-
-  useEffect(() => {
-    if (!clientId) {
-      return;
+    if (!cards || cards.length === 0) {
+      updateState(STATE.WAITING_DATA);
+    } else {
+      updateState(STATE.READY);
     }
-    dispatch(clientStoreActions.retrieveHealthIndicators(sessionId));
-  }, [dispatch, clientId]);
+  }, [cards]);
 
-  const generateCards = () => {
+  useEffect(() => {
+    dispatch(clientStoreActions.retrieveHealthIndicators(
+      { sessionId: session.id, passkey: session.passkey },
+    ));
+  }, [dispatch, session]);
+
+  const showCards = () => {
     return cards.map(card => (
       <VotingHealthIndicatorCard
         key={card.name}
@@ -73,43 +57,28 @@ export const VotingPage = ({ cards, location, dispatch, clientId }) => {
     ));
   };
 
-  const awaitData = () => {
-    if (!cards || cards.length === 0) {
-      return (
-        <CircularProgress className={classes.progress} />
-      );
-    }
-    return generateCards();
-  };
-
   return (
-    <article className={classes.container}>
-      <header className={classes.header}>
-        <Breadcrumb location={location.pathname} />
-      </header>
-      <main className={classes.main}>
-        {awaitData()}
-      </main>
-    </article>
+    <main className={classes.main}>
+      {(() => {
+        if (state === STATE.WAITING_DATA) {
+          return (<CircularProgress className={classes.progress} />);
+        }
+        return showCards();
+      })()}
+    </main>
   );
 };
 
 VotingPage.propTypes = {
-  cards: PropTypes.array.isRequired,
-  location: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  clientId: PropTypes.string,
-};
-
-VotingPage.defaultProps = {
-  clientId: undefined,
+  cards: PropTypes.array.isRequired,
+  session: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     cards: state.clientStoreReducer.cards,
-    clientId: state.clientStoreReducer.client.id,
-    sessionId: state.clientStoreReducer.session.id,
+    session: state.clientStoreReducer.session,
   };
 };
 

@@ -1,9 +1,11 @@
 import { Button, makeStyles, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import Theme from '../../../Theme';
 import UserCache, { Account } from '../../mixin/user-cache';
+import { clientStoreActions } from '../../../store/client';
 
 const styles = makeStyles({
   section: {
@@ -47,73 +49,88 @@ const styles = makeStyles({
   },
 });
 
-const WelcomeForm = ({ forwardLink }) => {
+const WelcomeForm = ({ dispatch, forwardLink }) => {
   const classes = styles();
   const account = UserCache.getAccountDetails();
 
   const [firstName, updateFirstName] = useState(account.firstname);
   const [surname, updateSurname] = useState(account.surname);
   const [alias, updateAlias] = useState(account.alias);
+  const [formSubmitted, updateFormSubmitted] = useState(false);
 
   const handleChange = update => (event) => {
     update(event.target.value);
   };
 
-  const handleSubmit = () => {
-    UserCache.setAccountDetails(new Account(firstName, surname, alias, account.id));
+  const handleSubmit = async () => {
+    const updatedAccount = new Account(firstName, surname, alias, account.id);
+    UserCache.setAccountDetails(updatedAccount);
+
+    dispatch(clientStoreActions.setUsername(updatedAccount.getUsername()));
+
+    const sessionId = forwardLink.split('session=')[1];
+    await dispatch(clientStoreActions.registerClientToSession({
+      sessionId,
+      username: updatedAccount.getUsername(),
+    }));
+    updateFormSubmitted(true);
   };
 
-  return (
-    <section className={classes.section}>
-      <div>
-        <p className={classes.intro}>
-          Welcome to your team’s health check. Before we
-          get started please let your facilitator who you are. You may
-          opt for an alias instead if you wish to remain anonymous.
-        </p>
-      </div>
-      <form className={classes.sectionForm} noValidate autoComplete="off">
-        <TextField
-          label="First Name"
-          className={classes.textField}
-          value={firstName}
-          onChange={handleChange(updateFirstName)}
-          margin="normal"
-        />
-        <TextField
-          label="Surname"
-          className={classes.textField}
-          value={surname}
-          onChange={handleChange(updateSurname)}
-          margin="normal"
-        />
-        <span>OR</span>
-        <TextField
-          label="Alias (Optional)"
-          className={classes.textField}
-          value={alias}
-          onChange={handleChange(updateAlias)}
-          margin="normal"
-        />
-      </form>
-      <div className={classes.buttonContainer}>
-        <Button
-          className={classes.button}
-          variant="contained"
-          href="#"
-          onClick={handleSubmit}
-          component={Link}
-          to={`/clients/voting/${forwardLink}`}
-        >
-          Continue
-        </Button>
-      </div>
-    </section>
-  );
+  return ((() => {
+    if (formSubmitted) {
+      return <Redirect to={`/clients/voting${forwardLink}`} />;
+    }
+    return (
+      <section className={classes.section}>
+        <div>
+          <p className={classes.intro}>
+            Welcome to your team’s health check. Before we
+            get started please let your facilitator who you are. You may
+            opt for an alias instead if you wish to remain anonymous.
+          </p>
+        </div>
+        <form className={classes.sectionForm} noValidate>
+          <TextField
+            label="First Name"
+            className={classes.textField}
+            value={firstName || ''}
+            onChange={handleChange(updateFirstName)}
+            margin="normal"
+          />
+          <TextField
+            label="Surname"
+            className={classes.textField}
+            value={surname || ''}
+            onChange={handleChange(updateSurname)}
+            margin="normal"
+          />
+          <span>OR</span>
+          <TextField
+            label="Alias (Optional)"
+            className={classes.textField}
+            value={alias || ''}
+            onChange={handleChange(updateAlias)}
+            margin="normal"
+          />
+        </form>
+        <div className={classes.buttonContainer}>
+          <Button
+            className={classes.button}
+            variant="contained"
+            href="#"
+            onClick={handleSubmit}
+          >
+            Continue
+          </Button>
+        </div>
+      </section>
+    );
+  })());
 };
 
 WelcomeForm.propTypes = {
   forwardLink: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default WelcomeForm;
+export default connect()(WelcomeForm);

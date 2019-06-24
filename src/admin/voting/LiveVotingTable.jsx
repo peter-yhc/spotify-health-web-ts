@@ -17,7 +17,7 @@ export const LiveVotingTable = ({ dispatch, sessionId, indicatorVotes }) => {
         }));
       });
     }
-  }, [sessionId]);
+  }, [dispatch, sessionId]);
 
   const generateTableBody = () => {
     return indicatorVotes.map(result => (

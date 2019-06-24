@@ -7,7 +7,7 @@ import Theme from '../../Theme';
 const styles = {
   container: {
     width: '100%',
-    height: '2em',
+    height: '36px',
     backgroundColor: Theme.BLACK,
     color: Theme.WHITE,
     textAlign: 'left',

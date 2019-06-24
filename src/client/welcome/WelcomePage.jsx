@@ -26,12 +26,12 @@ const WelcomePage = ({ location }) => {
   const classes = styles();
 
   return (
-    <article className={classes.container}>
+    <main className={classes.container}>
       <Paper className={classes.frame}>
         <WelcomeTitle />
         <WelcomeForm forwardLink={location.search} />
       </Paper>
-    </article>
+    </main>
   );
 };
 

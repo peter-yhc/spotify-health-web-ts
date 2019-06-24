@@ -26,7 +26,7 @@ export const ClientList = ({ dispatch, sessionId, clients }) => {
         dispatch(adminStoreActions.clientJoined(data.participant));
       });
     }
-  }, [sessionId]);
+  }, [dispatch, sessionId]);
 
   const renderClients = () => {
     if (!clients || clients.length === 0) {
