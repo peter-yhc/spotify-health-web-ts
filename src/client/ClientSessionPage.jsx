@@ -2,10 +2,10 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 import { makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import WelcomePage from './welcome/WelcomePage';
 import { Breadcrumb } from './layout-components';
-import SessionVotingPage from './voting/SessionVotingPage';
+import AuthRequiredClientRoute from '../router/AuthRequiredClientRoute';
+import VotingPage from './voting/VotingPage';
 
 const styles = makeStyles({
   container: {
@@ -31,7 +31,7 @@ const ClientSessionPage = ({ location }) => {
       </header>
       <Switch>
         <Route path="/clients/welcome" component={WelcomePage} />
-        <Route path="/clients/voting" component={SessionVotingPage} />
+        <AuthRequiredClientRoute path="/clients/voting" component={VotingPage} />
       </Switch>
     </article>
   );
@@ -41,14 +41,4 @@ ClientSessionPage.propTypes = {
   location: PropTypes.object.isRequired,
 };
 
-ClientSessionPage.defaultProps = {
-  username: undefined,
-};
-
-const mapStateToProps = (state) => {
-  return {
-    username: state.clientStoreReducer.username,
-  };
-};
-
-export default connect(mapStateToProps)(ClientSessionPage);
+export default ClientSessionPage;
