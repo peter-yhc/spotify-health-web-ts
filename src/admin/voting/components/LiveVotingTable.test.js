@@ -3,14 +3,14 @@ import { mount, shallow } from 'enzyme/build';
 import configureStore from 'redux-mock-store';
 import { TableBody, TableCell, TableHead, TableRow } from '@material-ui/core/index';
 import ConnectedLiveVotingTable, { LiveVotingTable } from './LiveVotingTable';
-import { SocketApi } from '../../api';
-import { adminStoreActions } from '../../store/admin';
+import { SocketApi } from '../../../api';
+import { adminStoreActions } from '../../../store/admin';
 
 const mockStore = configureStore();
 const store = mockStore();
 
-jest.mock('../../api');
-jest.mock('../../store/admin');
+jest.mock('../../../api');
+jest.mock('../../../store/admin');
 
 const indicatorVotesStub = [{
   indicator: 'Are you enjoying this app?',

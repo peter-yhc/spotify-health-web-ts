@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import LiveVotingTable from './LiveVotingTable';
-import SessionGenerator from './SessionGenerator';
-import ClientList from './ClientList';
+import LiveVotingTable from './components/LiveVotingTable';
+import SessionGenerator from './components/SessionGenerator';
+import ClientList from './components/ClientList';
 
 const styles = makeStyles({
   container: {

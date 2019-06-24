@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core/index';
 import { connect } from 'react-redux';
-import { SocketApi } from '../../api';
-import { adminStoreActions } from '../../store/admin';
+import { SocketApi } from '../../../api';
+import { adminStoreActions } from '../../../store/admin';
 
 export const LiveVotingTable = ({ dispatch, sessionId, indicatorVotes }) => {
   useEffect(() => {

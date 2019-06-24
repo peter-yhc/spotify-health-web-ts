@@ -1,10 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount } from 'enzyme/build';
 import configureStore from 'redux-mock-store';
 import SessionGenerator from './SessionGenerator';
-import { adminStoreActions } from '../../store/admin';
+import { adminStoreActions } from '../../../store/admin';
 
-jest.mock('../../store/admin');
+jest.mock('../../../store/admin');
 const mockStore = configureStore();
 const store = mockStore({
   adminStoreReducer: {

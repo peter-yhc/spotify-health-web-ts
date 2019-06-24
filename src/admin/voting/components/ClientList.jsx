@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Paper } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { Paper } from '@material-ui/core/index';
+import { makeStyles } from '@material-ui/styles/index';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { SocketApi } from '../../api';
-import { adminStoreActions } from '../../store/admin';
+import { SocketApi } from '../../../api';
+import { adminStoreActions } from '../../../store/admin';
 
 const styles = makeStyles({
   container: {

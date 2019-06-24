@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { InputBase, Paper } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { InputBase, Paper } from '@material-ui/core/index';
+import { makeStyles } from '@material-ui/styles/index';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './SessionGenerator.css';
-import { adminStoreActions } from '../../store/admin';
+import { adminStoreActions } from '../../../store/admin';
 
 const styles = makeStyles({
   container: {

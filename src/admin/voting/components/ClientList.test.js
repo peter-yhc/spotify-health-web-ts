@@ -1,12 +1,12 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme/build';
 import configureStore from 'redux-mock-store';
 import ConnectedClientList, { ClientList } from './ClientList';
-import { SocketApi } from '../../api';
-import { adminStoreActions } from '../../store/admin';
+import { SocketApi } from '../../../api';
+import { adminStoreActions } from '../../../store/admin';
 
-jest.mock('../../api');
-jest.mock('../../store/admin');
+jest.mock('../../../api');
+jest.mock('../../../store/admin');
 
 describe('client test renders', () => {
   test('displays message when there are zero clients', () => {
