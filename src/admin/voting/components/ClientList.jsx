@@ -45,7 +45,7 @@ export const ClientList = ({ dispatch, sessionId, clients }) => {
 
   return (
     <Paper className={classes.container}>
-      <span>Participants</span>
+      <span>Participants:</span>
       <div className={classes.clientList}>
         {renderClients()}
       </div>

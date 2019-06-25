@@ -51,7 +51,7 @@ export const SessionGenerator = ({ dispatch, sessionId, sessionLink }) => {
   return (
     <Paper className={classes.container} onClick={handleClick}>
       <span className={classes.popupText} ref={popup}>Copied</span>
-      <span>Session Link</span>
+      <span>Share this session link with your team members:</span>
       <InputBase
         id="session-link-field"
         value={sessionLink}

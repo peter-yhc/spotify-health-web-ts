@@ -12,7 +12,7 @@ describe('client test renders', () => {
   test('displays message when there are zero clients', () => {
     const wrapper = shallow(<ClientList sessionId="88888" dispatch={jest.fn()} clients={[]} />);
 
-    expect(wrapper.find('span').at(0).text()).toBe('Participants');
+    expect(wrapper.find('span').at(0).text()).toBe('Participants:');
     expect(wrapper.find('span').at(1).text()).toBe('No one has joined this session yet...');
   });
 
