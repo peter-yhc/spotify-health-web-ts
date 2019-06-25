@@ -22,7 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "deploy": "aws s3 sync build/ s3://spotify-health-check-demo"
   },
   "eslintConfig": {
     "extends": "react-app"
