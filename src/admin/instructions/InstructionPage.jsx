@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import Button from '@material-ui/core/Button/index';
 import { Link } from 'react-router-dom';
+import { Button } from 'common';
 import stubData from '../../health-indicators/health-indicators-stub';
 import { MiniHealthIndicatorCard } from '../../health-indicators';
 import Theme from '../../Theme';

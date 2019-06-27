@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme/build';
-import { Button } from '@material-ui/core/index';
+import { Button } from 'common';
 import { Link } from 'react-router-dom';
 import InstructionPage from './InstructionPage';
 import { MiniHealthIndicatorCard } from '../../health-indicators';
@@ -22,6 +22,6 @@ describe('InstructionPage tests', () => {
     const link = wrapper.find(Link);
     expect(link.props().to).toBe('/admin/voting');
     const button = link.find(Button);
-    expect(button.text()).toBe('Get started');
+    expect(button.containsMatchingElement('Get started')).toBeTruthy();
   });
 });
