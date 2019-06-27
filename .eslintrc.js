@@ -13,4 +13,11 @@ module.exports = {
     'import/no-named-as-default': [0],
     'import/named': [0],
   },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+  }
 };
