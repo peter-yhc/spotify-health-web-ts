@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Button, Icon, Typography } from '@material-ui/core';
+import { Icon, Typography } from '@material-ui/core';
+import { Button } from 'common';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { connect } from 'react-redux';
@@ -40,7 +41,11 @@ const styles = makeStyles({
 });
 
 export const VotingHealthIndicatorCard = ({
-  indicator, textAwesome, textCrap, sessionId, username,
+  indicator,
+  textAwesome,
+  textCrap,
+  sessionId,
+  username,
 }) => {
   const classes = styles();
   const [activeButton, setActiveButton] = useState(-1);
@@ -62,20 +67,27 @@ export const VotingHealthIndicatorCard = ({
       </section>
       <footer className={classes.buttonContainer}>
         <Button
-          className={activeButton === 0 ? classes.activeUnhappy : ''}
+          color={activeButton === 0 ? 'red' : 'neutral'}
+          variant="outline"
           onClick={handleClick('unhappy', 0)}
           href="#"
         >
           <Icon>sentiment_very_dissatisfied</Icon>
         </Button>
         <Button
-          className={activeButton === 1 ? classes.activeNeutral : ''}
+          color={activeButton === 1 ? 'orange' : 'neutral'}
+          variant="outline"
           onClick={handleClick('neutral', 1)}
           href="#"
         >
           <Icon>sentiment_neutral</Icon>
         </Button>
-        <Button className={activeButton === 2 ? classes.activeHappy : ''} onClick={handleClick('happy', 2)} href="#">
+        <Button
+          color={activeButton === 2 ? 'green' : 'neutral'}
+          variant="outline"
+          onClick={handleClick('happy', 2)}
+          href="#"
+        >
           <Icon>sentiment_very_satisfied</Icon>
         </Button>
       </footer>

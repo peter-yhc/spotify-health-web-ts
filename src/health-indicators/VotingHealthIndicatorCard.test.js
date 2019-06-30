@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { Button } from '@material-ui/core';
+import { Button } from 'common';
 import { VotingHealthIndicatorCard } from './VotingHealthIndicatorCard';
 import CardText from './components/CardText';
 import { SocketApi } from '../api';
