@@ -112,7 +112,7 @@ const InstructionPage = () => {
             Maecenas sagittis dui eu lectus mollis rutrum.
           </p>
           <Link to="/admin/voting">
-            <Button className={classes.startButton} variant="contained" href="#">Get started</Button>
+            <Button className={classes.startButton} variant="contained" color="green" href="#">Get started</Button>
           </Link>
         </section>
         <section className={classes.cardContainer}>

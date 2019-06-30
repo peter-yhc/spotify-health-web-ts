@@ -1,5 +1,11 @@
 @value white: hsl(0, 0%, 90%);
+@value white_darker: hsl(0, 0%, 85%);
 @value black: hsl(0, 0%, 30%);
 @value green: hsl(170, 55%, 30%);
-@value green_darker: hsl(168,55%,25%);
+@value green_darker: hsl(170, 55%, 25%);
 @value blue: hsl(200, 50%, 70%);
+@value blue_darker: hsl(200, 50%, 65%);
+@value orange: hsl(30, 100%, 50%);
+@value orange_darker: hsl(30, 100%, 45%);
+@value red: hsl(12, 100%, 50%);
+@value red_darker: hsl(12, 100%, 45%);

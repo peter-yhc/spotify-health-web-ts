@@ -27,7 +27,7 @@ describe('client test renders', () => {
 
     const names = wrapper.find('span');
     expect(names.length).toBe(3);
-    expect(names.at(0).text()).toBe('Participants');
+    expect(names.at(0).text()).toBe('Participants:');
     expect(names.at(1).text()).toBe('Ren');
     expect(names.at(2).text()).toBe('Stimpy');
   });

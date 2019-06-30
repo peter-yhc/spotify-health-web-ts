@@ -1,0 +1,40 @@
+@value colors: "../../theme.css";
+@value green, green_darker, white, white_darker, orange, orange_darker, red, red_darker, black from colors;
+
+.button {
+  background-color: black;
+  color: white;
+  padding: 12px;
+  border: 0;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 0.02857em;
+  line-height: 18px;
+  &:hover {
+    background-color: white_darker;
+  }
+}
+
+.button-green {
+  background-color: green;
+  &:hover {
+    background-color: green_darker;
+  }
+}
+
+.button-orange {
+  background-color: orange;
+  &:hover {
+    background-color: orange_darker;
+  }
+}
+
+.button-red {
+  background-color: red;
+  &:hover {
+    background-color: red_darker;
+  }
+}
