@@ -1,32 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
-import { makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import WelcomePage from './welcome/WelcomePage';
 import { Breadcrumb } from './layout-components';
 import AuthRequiredClientRoute from '../router/AuthRequiredClientRoute';
 import VotingPage from './voting/VotingPage';
-
-const styles = makeStyles({
-  container: {
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    gridTemplateRows: '100px calc(100vh - 100px)',
-  },
-  header: {
-    gridRow: '1 / 2',
-  },
-  title: {
-    marginTop: '30px',
-  },
-});
+import styles from './ClientSessionPage.module.scss';
 
 const ClientSessionPage = ({ location }) => {
-  const classes = styles();
-
   return (
-    <article className={classes.container}>
-      <header className={classes.header}>
+    <article className={styles.container}>
+      <header className={styles.header}>
         <Breadcrumb location={location.pathname} />
       </header>
       <Switch>

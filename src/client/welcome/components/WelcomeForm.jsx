@@ -1,4 +1,5 @@
-import { Button, makeStyles, TextField } from '@material-ui/core';
+import { makeStyles, TextField } from '@material-ui/core';
+import { Button } from 'common';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -117,6 +118,7 @@ const WelcomeForm = ({ dispatch, forwardLink }) => {
           <Button
             className={classes.button}
             variant="contained"
+            color="green"
             href="#"
             onClick={handleSubmit}
           >
