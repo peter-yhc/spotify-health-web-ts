@@ -6,7 +6,6 @@ import Theme from '../../Theme';
 
 const styles = {
   container: {
-    width: '100%',
     height: '36px',
     backgroundColor: Theme.BLACK,
     color: Theme.WHITE,
