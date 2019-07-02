@@ -1,5 +1,4 @@
-@value colors: "../../theme.css";
-@value green, green_darker, white, black from colors;
+@import '../../theme.scss';
 
 .button {
   background-color: #FFFFFF;
@@ -13,22 +12,22 @@
   letter-spacing: 0.02857em;
   line-height: 18px;
   &:hover {
-    background-color: white;
+    background-color: $white;
   }
 }
 
 .button-neutral {
-  color: black;
+  color: $black;
 }
 
 .button-green {
-  color: green;
+  color: $green;
 }
 
 .button-orange {
-  color: orange;
+  color: $orange;
 }
 
 .button-red {
-  color: red;
+  color: $red;
 }
