@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { InputBase, Paper } from '@material-ui/core/index';
-import { makeStyles } from '@material-ui/styles/index';
+import { InputBase, makeStyles, Paper } from '@material-ui/core/index';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './SessionGenerator.css';

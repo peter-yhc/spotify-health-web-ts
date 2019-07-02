@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '@material-ui/core/Icon/index';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Icon } from '@material-ui/core';
 import { connect } from 'react-redux';
 import Theme from '../../Theme';
 

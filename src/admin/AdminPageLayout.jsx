@@ -1,13 +1,13 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 import { Breadcrumb } from './layout-components';
 import InstructionPage from './instructions/InstructionPage';
 import VotingPage from './voting/VotingPage';
 import ResultSummaryPage from './summary/ResultSummaryPage';
 
-const styles = {
+const styles = makeStyles({
   article: {
     display: 'grid',
     gridTemplateColumns: '40px 50px auto 50px 40px',
@@ -21,10 +21,11 @@ const styles = {
     padding: '1em',
     gridColumn: '2 / 5',
   },
-};
+});
 
 export const AdminPageLayout = (props) => {
-  const { classes, match, location } = props;
+  const classes = styles();
+  const { match, location } = props;
   if (match.isExact) {
     return (<Redirect to="/admin/instructions" />);
   }
@@ -46,9 +47,8 @@ export const AdminPageLayout = (props) => {
 };
 
 AdminPageLayout.propTypes = {
-  classes: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AdminPageLayout);
+export default AdminPageLayout;

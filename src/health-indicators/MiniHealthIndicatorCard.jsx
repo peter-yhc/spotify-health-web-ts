@@ -1,10 +1,10 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 import CardText from './components/CardText';
 
-const styles = {
+const styles = makeStyles({
   indicatorCard: {
     height: '250px',
     padding: '1vw 0',
@@ -20,10 +20,11 @@ const styles = {
     padding: '0 0.5em',
     marginBottom: '0.5em',
   },
-};
+});
 
 export const MiniHealthIndicatorCard = (props) => {
-  const { indicator, textAwesome, textCrap, classes } = props;
+  const classes = styles();
+  const { indicator, textAwesome, textCrap } = props;
 
   return (
     <Paper className={classes.indicatorCard}>
@@ -39,10 +40,9 @@ export const MiniHealthIndicatorCard = (props) => {
 };
 
 MiniHealthIndicatorCard.propTypes = {
-  classes: PropTypes.object.isRequired,
   indicator: PropTypes.string.isRequired,
   textAwesome: PropTypes.string.isRequired,
   textCrap: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(MiniHealthIndicatorCard);
+export default MiniHealthIndicatorCard;

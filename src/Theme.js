@@ -1,9 +1,13 @@
 export default {
   WHITE: 'hsl(0, 0%, 90%)',
+  WHITE_DARKER: 'hsl(0, 0%, 85%)',
   BLACK: 'hsl(0, 0%, 30%)',
   GREEN: 'hsl(170, 55%, 30%)',
-  GREEN_DARKER: 'hsl(168,55%,25%)',
+  GREEN_DARKER: 'hsl(170, 55%, 25%)',
   BLUE: 'hsl(200, 50%, 70%)',
-  GREEN_OVERRIDE: 'hsl(170, 55%, 30%) !important',
-  WHITE_OVERRIDE: 'hsl(0, 0%, 90%) !important',
+  BLUE_DARKER: 'hsl(200, 50%, 65%)',
+  ORANGE: 'hsl(30, 100%, 50%)',
+  ORANGE_DARKER: 'hsl(30, 100%, 45%)',
+  RED: 'hsl(12, 100%, 50%)',
+  RED_DARKER: 'hsl(12, 100%, 45%)',
 };

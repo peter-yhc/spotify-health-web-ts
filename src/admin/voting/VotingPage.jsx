@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 import LiveVotingTable from './components/LiveVotingTable';
 import SessionGenerator from './components/SessionGenerator';
 import ClientList from './components/ClientList';

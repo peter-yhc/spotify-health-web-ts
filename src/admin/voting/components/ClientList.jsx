@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { Paper } from '@material-ui/core/index';
-import { makeStyles } from '@material-ui/styles/index';
+import { makeStyles, Paper } from '@material-ui/core';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SocketApi } from '../../../api';

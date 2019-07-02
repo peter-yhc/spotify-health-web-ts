@@ -1,10 +1,10 @@
 import React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Icon from '@material-ui/core/Icon/index';
 import Theme from '../../Theme';
 
-const styles = {
+const styles = makeStyles({
   container: {
     height: '36px',
     backgroundColor: Theme.BLACK,
@@ -22,10 +22,11 @@ const styles = {
   active: {
     color: Theme.BLUE,
   },
-};
+});
 
 export const Breadcrumb = (props) => {
-  const { classes, location } = props;
+  const classes = styles();
+  const { location } = props;
 
   const isActive = (name) => {
     if (location.includes(name)) {
@@ -58,8 +59,7 @@ export const Breadcrumb = (props) => {
 };
 
 Breadcrumb.propTypes = {
-  classes: PropTypes.object.isRequired,
   location: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(Breadcrumb);
+export default Breadcrumb;

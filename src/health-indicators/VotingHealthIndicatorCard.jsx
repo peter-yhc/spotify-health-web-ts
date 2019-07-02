@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Icon, Typography } from '@material-ui/core';
+import { makeStyles, Icon, Typography } from '@material-ui/core';
 import { Button } from 'common';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
 import { connect } from 'react-redux';
 import CardText from './components/CardText';
 import { SocketApi } from '../api';
@@ -41,12 +40,12 @@ const styles = makeStyles({
 });
 
 export const VotingHealthIndicatorCard = ({
-  indicator,
-  textAwesome,
-  textCrap,
-  sessionId,
-  username,
-}) => {
+                                            indicator,
+                                            textAwesome,
+                                            textCrap,
+                                            sessionId,
+                                            username,
+                                          }) => {
   const classes = styles();
   const [activeButton, setActiveButton] = useState(-1);
 

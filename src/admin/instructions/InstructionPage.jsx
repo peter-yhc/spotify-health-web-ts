@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Button } from 'common';
 import stubData from '../../health-indicators/health-indicators-stub';

@@ -1,8 +1,7 @@
 import React from 'react';
-import { withStyles } from '@material-ui/styles';
-import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core';
 
-const styles = {
+const styles = makeStyles({
   content: {
     minHeight: '100vh',
     display: 'flex',
@@ -10,10 +9,10 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
   },
-};
+});
 
-const NotFoundPage = (props) => {
-  const { classes } = props;
+const NotFoundPage = () => {
+  const classes = styles();
 
   return (
     <React.Fragment>
@@ -24,8 +23,4 @@ const NotFoundPage = (props) => {
   );
 };
 
-NotFoundPage.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-};
-
-export default withStyles(styles)(NotFoundPage);
+export default NotFoundPage;
