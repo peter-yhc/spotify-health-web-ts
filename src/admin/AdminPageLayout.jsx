@@ -8,18 +8,20 @@ import VotingPage from './voting/VotingPage';
 import ResultSummaryPage from './summary/ResultSummaryPage';
 
 const styles = makeStyles({
-  article: {
+  page: {
     display: 'grid',
-    gridTemplateColumns: '40px 50px auto 50px 40px',
+    gridTemplateColumns: 'minmax(auto, 200px) auto minmax(auto, 200px) ',
     gridTemplateRows: '100px auto',
+    gridTemplateAreas: `
+      'header header header'
+      'padding-left main padding-right'
+    `,
   },
   header: {
-    marginBottom: '1em',
-    gridColumn: '1 / 6',
+    gridArea: 'header',
   },
   main: {
-    padding: '1em',
-    gridColumn: '2 / 5',
+    gridArea: 'main',
   },
 });
 
@@ -31,7 +33,7 @@ export const AdminPageLayout = (props) => {
   }
 
   return (
-    <article className={classes.article}>
+    <div className={classes.page}>
       <header className={classes.header}>
         <Breadcrumb location={location.pathname} />
       </header>
@@ -42,7 +44,7 @@ export const AdminPageLayout = (props) => {
           <Route path="/admin/results" component={ResultSummaryPage} />
         </Switch>
       </main>
-    </article>
+    </div>
   );
 };
 

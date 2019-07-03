@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core';
-import { CircularProgress } from '@material-ui/core';
+import { makeStyles, CircularProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { VotingHealthIndicatorCard } from '../../health-indicators';
@@ -8,13 +7,11 @@ import { clientStoreActions } from '../../store/client';
 import Theme from '../../Theme';
 
 const styles = makeStyles({
-  main: {
-    padding: '1em',
-    gridRow: '2 / 3',
+  container: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))',
     gridAutoRows: '420px',
-    gridRowGap: '10px',
+    gridRowGap: Theme.SPACING,
     justifyItems: 'center',
     alignItems: 'center',
     marginBottom: 'auto',
@@ -45,14 +42,14 @@ export const VotingPage = ({ dispatch, cards, session }) => {
   };
 
   return (
-    <main className={classes.main}>
+    <article className={classes.container}>
       {(() => {
         if (!cards || cards.length === 0) {
           return (<CircularProgress className={classes.progress} />);
         }
         return showCards();
       })()}
-    </main>
+    </article>
   );
 };
 

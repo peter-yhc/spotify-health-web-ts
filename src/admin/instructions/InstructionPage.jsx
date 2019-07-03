@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { Button } from 'common';
 import stubData from '../../health-indicators/health-indicators-stub';
 import { MiniHealthIndicatorCard } from '../../health-indicators';
 import Theme from '../../Theme';
@@ -65,7 +64,7 @@ const InstructionPage = () => {
 
   return (
     <React.Fragment>
-      <div className={classes.container}>
+      <article className={classes.container}>
         <section className={classes.instructions}>
           <h4>How does this work?</h4>
           <p>
@@ -112,13 +111,13 @@ const InstructionPage = () => {
             Maecenas sagittis dui eu lectus mollis rutrum.
           </p>
           <Link to="/admin/voting">
-            <Button className={classes.startButton} variant="contained" href="#">Get started</Button>
+            <Button className={classes.startButton} variant="contained" color="green" href="#">Get started</Button>
           </Link>
         </section>
         <section className={classes.cardContainer}>
           {showCards()}
         </section>
-      </div>
+      </article>
     </React.Fragment>
   );
 };

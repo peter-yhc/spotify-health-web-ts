@@ -31,9 +31,9 @@ describe('Breadcrumb test', () => {
     );
 
     const crumbs = wrapper.find('span');
-    expect(crumbs.at(0).props().className).toBe('');
-    expect(crumbs.at(1).props().className).toBe('');
-    expect(crumbs.at(2).props().className).toBe(' active');
-    expect(crumbs.at(3).props().className).toBe('');
+    expect(crumbs.at(0).props().className).not.toContain('active');
+    expect(crumbs.at(1).props().className).not.toContain('active');
+    expect(crumbs.at(2).props().className).toContain('active');
+    expect(crumbs.at(3).props().className).not.toContain('active');
   });
 });

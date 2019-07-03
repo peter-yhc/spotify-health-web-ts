@@ -1,9 +1,9 @@
-import { makeStyles, Button, TextField } from '@material-ui/core';
+import { Button, makeStyles, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import Theme from '../../../Theme';
+import Theme from 'Theme';
 import UserCache, { Account } from '../../mixin/user-cache';
 import { clientStoreActions } from '../../../store/client';
 
@@ -11,27 +11,32 @@ const styles = makeStyles({
   section: {
     color: Theme.BLACK,
     boxSizing: 'border-box',
-    padding: '1em',
+    padding: Theme.SPACING,
     display: 'grid',
     gridTemplateColumns: '1fr',
     gridTemplateRows: '60px auto 50px',
+    gridTemplateAreas: `
+      'blurb'
+      'form'
+      'actions'
+    `,
     alignItems: 'center',
     height: '100%',
   },
   intro: {
-    marginTop: '0.7em',
+    gridArea: 'blurb',
     textAlign: 'left',
   },
   sectionForm: {
-    gridRow: '2 / 3',
+    gridArea: 'form',
   },
   textField: {
-    marginTop: 0,
-    marginBottom: '1em',
+    marginBottom: Theme.SPACING,
     width: '100%',
     fontSize: '0.9rem',
   },
   buttonContainer: {
+    gridArea: 'actions',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-end',

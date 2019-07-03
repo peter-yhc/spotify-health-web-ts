@@ -10,4 +10,5 @@ export default {
   ORANGE_DARKER: 'hsl(30, 100%, 45%)',
   RED: 'hsl(12, 100%, 50%)',
   RED_DARKER: 'hsl(12, 100%, 45%)',
+  SPACING: '15px',
 };

@@ -9,7 +9,6 @@ const styles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100vh',
   },
   frame: {
     width: '450px',
@@ -26,12 +25,12 @@ const WelcomePage = ({ location }) => {
   const classes = styles();
 
   return (
-    <main className={classes.container}>
+    <article className={classes.container}>
       <Paper className={classes.frame}>
         <WelcomeTitle />
         <WelcomeForm forwardLink={location.search} />
       </Paper>
-    </main>
+    </article>
   );
 };
 

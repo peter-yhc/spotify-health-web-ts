@@ -13,7 +13,7 @@ const styles = makeStyles({
   },
 });
 
-function LandingPage() {
+export function LandingPage() {
   const classes = styles();
   return (
     <React.Fragment>

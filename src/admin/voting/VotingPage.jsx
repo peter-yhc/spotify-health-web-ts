@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
+import Theme from 'Theme';
 import LiveVotingTable from './components/LiveVotingTable';
 import SessionGenerator from './components/SessionGenerator';
 import ClientList from './components/ClientList';
@@ -7,39 +8,36 @@ import ClientList from './components/ClientList';
 const styles = makeStyles({
   container: {
     display: 'grid',
-    gridTemplateColumns: 'minmax(auto, 100px) 3fr 50px 2fr minmax(auto, 100px)',
-    gridTemplateRows: '75px 75px auto 75px',
+    gridTemplateColumns: '3fr 2fr',
+    gridTemplateRows: '75px 75px auto',
+    gridRowGap: Theme.SPACING,
+    gridColumnGap: Theme.SPACING,
+    gridTemplateAreas: `
+      'results link'
+      'results participants'
+      'results empty'
+    `,
   },
-  main: {
-    gridColumn: '2 / 3',
-    gridRow: '1 / 4',
+  voting: {
+    gridArea: 'results',
   },
   sessionGenerator: {
-    gridColumn: '4 / 5',
-    gridRow: '1 / 2',
+    gridArea: 'link',
   },
   clientList: {
-    gridColumn: '4 / 5',
-    gridRow: '2 / 3',
+    gridArea: 'participants',
   },
   '@media screen and (max-width:760px)': {
     container: {
       display: 'grid',
       gridTemplateColumns: '1fr',
       gridTemplateRows: 'repeat(3, auto)',
-      gridRowGap: '0.75em',
-    },
-    main: {
-      gridColumn: '1 / 2',
-      gridRow: '3 / 4',
-    },
-    sessionGenerator: {
-      gridColumn: '1 / 2',
-      gridRow: '1 / 2',
-    },
-    clientList: {
-      gridColumn: '1 / 2',
-      gridRow: '2 / 3',
+      gridRowGap: Theme.SPACING,
+      gridTemplateAreas: `
+        'link'
+        'participants'
+        'results'
+      `,
     },
   },
 });
@@ -48,19 +46,17 @@ export const VotingPage = () => {
   const classes = styles();
 
   return (
-    <React.Fragment>
-      <section className={classes.container}>
-        <div className={classes.main}>
-          <LiveVotingTable />
-        </div>
-        <div className={classes.sessionGenerator}>
-          <SessionGenerator />
-        </div>
-        <div className={classes.clientList}>
-          <ClientList />
-        </div>
-      </section>
-    </React.Fragment>
+    <article className={classes.container}>
+      <div className={classes.voting}>
+        <LiveVotingTable />
+      </div>
+      <div className={classes.sessionGenerator}>
+        <SessionGenerator />
+      </div>
+      <div className={classes.clientList}>
+        <ClientList />
+      </div>
+    </article>
   );
 };
 
