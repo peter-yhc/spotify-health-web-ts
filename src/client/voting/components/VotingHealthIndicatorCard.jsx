@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Paper from '@material-ui/core/Paper';
-import { makeStyles, Button, Icon, Typography } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper/index';
+import { makeStyles, Button, Icon, Typography } from '@material-ui/core/index';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CardText from './components/CardText';
-import { SocketApi } from '../api';
+import CardText from './CardText';
+import { SocketApi } from '../../../api';
 
 const styles = makeStyles({
   indicatorCard: {

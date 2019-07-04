@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { makeStyles, CircularProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { VotingHealthIndicatorCard } from '../../health-indicators';
+import VotingHealthIndicatorCard from './components/VotingHealthIndicatorCard';
 import { clientStoreActions } from '../../store/client';
 import Theme from '../../Theme';
 

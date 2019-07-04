@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { CircularProgress } from '@material-ui/core/index';
 import ConnectedVotingPage, { VotingPage } from './VotingPage';
-import HealthIndicatorCard from '../../health-indicators/VotingHealthIndicatorCard';
+import HealthIndicatorCard from './components/VotingHealthIndicatorCard';
 import { clientStoreActions } from '../../store/client';
 
 jest.mock('../../store/client');

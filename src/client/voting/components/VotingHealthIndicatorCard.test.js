@@ -1,9 +1,9 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { Button } from '@material-ui/core';
+import { mount, shallow } from 'enzyme/build';
+import { Button } from '@material-ui/core/index';
 import { VotingHealthIndicatorCard } from './VotingHealthIndicatorCard';
-import CardText from './components/CardText';
-import { SocketApi } from '../api';
+import CardText from './CardText';
+import { SocketApi } from '../../../api';
 
 jest.mock('../api');
 

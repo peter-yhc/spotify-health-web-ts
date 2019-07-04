@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Icon, makeStyles } from '@material-ui/core';
+import { Grid, Icon, makeStyles } from '@material-ui/core/index';
 import PropTypes from 'prop-types';
 
 const styles = makeStyles({
