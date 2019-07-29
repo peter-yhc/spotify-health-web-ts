@@ -2,7 +2,4 @@
 import ServerApi from './server-api';
 import SocketApi from './socket-api';
 
-export {
-  ServerApi,
-  SocketApi,
-};
+export { ServerApi, SocketApi };

@@ -25,9 +25,7 @@ export const VotingPage = ({ dispatch, cards, session }) => {
   const classes = styles();
 
   useEffect(() => {
-    dispatch(clientStoreActions.retrieveHealthIndicators(
-      { sessionId: session.id, passkey: session.passkey },
-    ));
+    dispatch(clientStoreActions.retrieveHealthIndicators(session.id, session.passkey));
   }, [dispatch, session]);
 
   const showCards = () => {

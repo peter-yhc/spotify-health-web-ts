@@ -74,10 +74,7 @@ const WelcomeForm = ({ dispatch, forwardLink }) => {
     dispatch(clientStoreActions.setUsername(updatedAccount.getUsername()));
 
     const sessionId = forwardLink.split('session=')[1];
-    await dispatch(clientStoreActions.registerClientToSession({
-      sessionId,
-      username: updatedAccount.getUsername(),
-    }));
+    await dispatch(clientStoreActions.registerClientToSession(sessionId, updatedAccount.getUsername()));
     updateFormSubmitted(true);
   };
 
@@ -122,7 +119,6 @@ const WelcomeForm = ({ dispatch, forwardLink }) => {
           <Button
             className={classes.button}
             variant="contained"
-            color="green"
             href="#"
             onClick={handleSubmit}
           >

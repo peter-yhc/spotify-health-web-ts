@@ -7,7 +7,7 @@ const voteSubmitted = ({ indicator, value, client }) => ({
   client,
 });
 
-const registerSession = () => async (dispatch) => {
+const registerSession = () => async dispatch => {
   const { sessionId, indicators } = await ServerApi.createSession();
   SocketApi.initSocket(sessionId);
 
@@ -24,7 +24,6 @@ const clientJoined = ({ id, name }) => ({
   id,
   name,
 });
-
 
 export default {
   registerSession,
