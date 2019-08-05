@@ -82,13 +82,13 @@ export const VotingHealthIndicatorCard = ({
   );
 };
 
-VotingHealthIndicatorCard.propTypes = {
-  indicator: PropTypes.string.isRequired,
-  textAwesome: PropTypes.string.isRequired,
-  textCrap: PropTypes.string.isRequired,
-  sessionId: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-};
+// VotingHealthIndicatorCard.propTypes = {
+//   indicator: PropTypes.string.isRequired,
+//   textAwesome: PropTypes.string.isRequired,
+//   textCrap: PropTypes.string.isRequired,
+//   sessionId: PropTypes.string.isRequired,
+//   username: PropTypes.string.isRequired,
+// };
 
 const mapStateToProps = state => ({
   sessionId: state.clientStoreReducer.session.id,

@@ -9,6 +9,7 @@
     "@types/node": "^12.6.8",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.5",
+    "@types/react-redux": "^7.1.1",
     "@types/react-router": "^5.0.3",
     "axios": "^0.19.0",
     "node-sass": "^4.12.0",
@@ -42,6 +43,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/enzyme": "^3.10.3",
+    "@types/redux-mock-store": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "chai": "^4.2.0",

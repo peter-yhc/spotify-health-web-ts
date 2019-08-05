@@ -5,7 +5,7 @@ import { VotingHealthIndicatorCard } from './VotingHealthIndicatorCard';
 import CardText from './CardText';
 import { SocketApi } from '../../../api';
 
-jest.mock('../api');
+jest.mock('../../../api');
 
 describe('indicator cards', () => {
   test('can show card texts', () => {

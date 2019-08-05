@@ -61,7 +61,7 @@ async function registerClient(sessionId: string, username: string): Promise<stri
     return response.data.passkey;
 }
 
-interface HealthIndicator {
+export interface HealthIndicator {
     name: string;
     textAwesome: string;
     textCrappy: string;
